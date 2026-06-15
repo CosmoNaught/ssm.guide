@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7 The Memory Problem – State Space Models</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<link href="../../chapters/03-s4/06-memory-problem.qmd#sec-7-1" rel="next">
+<link href="../../chapters/02-foundations/05-transfer-functions.qmd#sec-6-8" rel="prev">
+<link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!--
+  Shared math macros for the HTML build (mirrors _macros.tex).
+  Injected into every page's <head> via `include-in-header` in _quarto.yml,
+  so the macros resolve on every chapter page of the book.
+  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
+  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+-->
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      R: "{\\mathbb{R}}",
+      C: "{\\mathbb{C}}",
+      N: "{\\mathbb{N}}",
+      dd: "{\\,\\mathrm{d}}",
+      dmodel: "{d_{\\mathrm{model}}}",
+      Bbatch: "{\\mathsf{B}}",
+      feed: "{D_{\\mathrm{feed}}}",
+      Abar: "{\\bar A}",
+      Bbar: "{\\bar B}",
+      Kbar: "{\\bar K}",
+      tr: "{\\operatorname{tr}}",
+      diag: "{\\operatorname{diag}}",
+      rank: "{\\operatorname{rank}}",
+      spanop: "{\\operatorname{span}}",
+      Real: "{\\operatorname{Re}}",
+      Imag: "{\\operatorname{Im}}",
+      spec: "{\\operatorname{spec}}",
+      rhoop: "{\\rho}",
+      Id: "{I}",
+      poly: "{\\mathcal{P}}",
+      GL: "{G_L}",
+      inner: ["{\\left\\langle #1,#2\\right\\rangle}", 2],
+      HiPPO: "{\\mathrm{HiPPO}}",
+      LegS: "{\\mathrm{LegS}}",
+      DPLR: "{\\mathrm{DPLR}}",
+      NPLR: "{\\mathrm{NPLR}}",
+      ifft: "{\\operatorname{IFFT}}",
+      bigO: "{\\mathcal{O}}"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">State Space Models</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CosmoNaught/ssm-book"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/03-s4/06-memory-problem.html">7. The Memory Problem</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../misc/icon-orange.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../misc/icon-orange.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/reader-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reader’s Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/roadmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Roadmap &amp; Contributing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-introduction/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 Sequences and memory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Recurrence, convolution, and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 The state space route</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Why structure is needed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Notes and references</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/01-state-as-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. State as Memory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 What problem is the model trying to solve?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 The state equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 What does it mean for the state to be memory?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.5 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/02-continuous-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Continuous-Time Linear State Spaces</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Solving the differential equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Lag and the impulse response</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 How the eigenvalues of A shape memory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Fading memory and oscillatory memory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Linearity and time-invariance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.6 From a scalar input to model dimension d_model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/03-discretisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Discretisation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Why discretisation is needed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 Sampling and the exact one-step formula</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 Holding the input constant between samples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 A second route: averaging the state dynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 Eigenvalues and the step size as a timescale</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.6 From recurrence to kernel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Recurrence, Convolution, and Toeplitz Maps</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 The question after discretisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.2 From the recurrence to a convolution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.3 What the discrete kernel means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.4 The convolution matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.5 Why a fixed kernel requires time-invariance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.6 Cost of recurrence and convolution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.7 The kernel-generation problem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.8 Same model, two algorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-9" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.9 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.10 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/05-transfer-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Transfer Functions and Kernel Generation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.1 Why another view is useful</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.2 The transfer function in diagonal coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.3 The discrete generating function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.4 The discrete generating function in diagonal coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.5 Finite kernels as polynomials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.6 What the resolvent changes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/06-memory-problem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">7. The Memory Problem</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.1 A fixed state is not a stored history</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.2 Slow decay is not enough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.3 Approximating the history by projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.4 Moving the history to a fixed interval</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.5 A polynomial basis and its online dynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.6 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.7 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/07-hippo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. HiPPO</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.1 From projection to a state equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.2 The shifted Legendre basis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.3 Differentiating the coefficients</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.4 The HiPPO-LegS matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.5 What the state contains</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.6 The time factor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/08-structured-state-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Structured State Matrices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.1 The cost of density</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.2 Why diagonalisation would help</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.3 Stable diagonalisation and cheap corrections</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.4 The HiPPO matrix is normal plus rank one</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.5 Why the DPLR form is useful</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.6 Complex coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. The S4 Kernel Algorithm</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.1 The computational target</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.2 From kernel coefficients to Fourier samples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.3 The bilinear discretisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.4 The diagonal resolvent as a Cauchy product</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.5 The low-rank correction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.6 Assembling the kernel and its cost</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/10-diagonal-state-spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Diagonal State Spaces: DSS, S4D, and S5</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.1 Removing the correction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.2 The continuous-time diagonal kernel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.3 The discrete-time kernel and its Vandermonde form</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.4 Complex modes and real kernels</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.5 Why diagonalisation alone is not enough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.6 Structured diagonal initialisations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.7 Stable parameterisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.8 Shared state and the parallel scan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-9" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.9 What the diagonal model preserves</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-10" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.10 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.11 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#sec-7-1" id="toc-sec-7-1" class="nav-link active" data-scroll-target="#sec-7-1">7.1 A fixed state is not a stored history</a></li>
+  <li><a href="#sec-7-2" id="toc-sec-7-2" class="nav-link" data-scroll-target="#sec-7-2">7.2 Slow decay is not enough</a></li>
+  <li><a href="#sec-7-3" id="toc-sec-7-3" class="nav-link" data-scroll-target="#sec-7-3">7.3 Approximating the history by projection</a></li>
+  <li><a href="#sec-7-4" id="toc-sec-7-4" class="nav-link" data-scroll-target="#sec-7-4">7.4 Moving the history to a fixed interval</a></li>
+  <li><a href="#sec-7-5" id="toc-sec-7-5" class="nav-link" data-scroll-target="#sec-7-5">7.5 A polynomial basis and its online dynamics</a></li>
+  <li><a href="#sec-7-6" id="toc-sec-7-6" class="nav-link" data-scroll-target="#sec-7-6">7.6 Notation</a></li>
+  <li><a href="#sec-7-7" id="toc-sec-7-7" class="nav-link" data-scroll-target="#sec-7-7">7.7 Notes and references</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">7 The Memory Problem</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A fixed state cannot be a stored copy of the past. It must choose which summaries of the past to keep. HiPPO begins from this choice: represent the history by projection coefficients in a polynomial basis, then ask whether those coefficients can be updated online as new input arrives.</p>
+<section id="sec-7-1" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-1">7.1 A fixed state is not a stored history</h2>
+<p>A sequence can be long, but the state has fixed dimension:</p>
+<p><span class="math display">\[
+x_k\in\R^N.
+\]</span></p>
+<p>The state cannot store the whole input history</p>
+<p><span class="math display">\[
+u_0,u_1,\dots,u_k
+\]</span></p>
+<p>as a list. It can only store <span class="math inline">\(N\)</span> numbers derived from that history.</p>
+<p>For the linear state space models considered here, compression into a fixed-dimensional state is a modelling constraint, not merely an implementation detail. Two histories that produce the same state cannot be distinguished by the model from that time onward. Future outputs depend on the past only through the state.</p>
+<p>The state update and the interpretation of the state must be chosen together.</p>
+<p>An arbitrary state matrix gives an arbitrary memory. Some modes may decay too quickly. Some may preserve information without separating different parts of the past. Some may separate histories in exact arithmetic but lose that separation to rounding error. A useful state should spend its <span class="math inline">\(N\)</span> coordinates on complementary summaries of the input history.</p>
+</section>
+<section id="sec-7-2" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-2">7.2 Slow decay is not enough</h2>
+<p>The simplest one-coordinate memory is a single decaying mode:</p>
+<p><span class="math display">\[
+x'(t)=ax(t)+bu(t),
+\qquad
+a&lt;0.
+\]</span></p>
+<p>With zero initial state,</p>
+<p><span class="math display">\[
+x(t)=\int_0^t e^{a(t-s)}bu(s)\,\dd s.
+\]</span></p>
+<p>The state is an exponentially weighted average of the past. Making <span class="math inline">\(a\)</span> closer to zero makes the memory longer, because the exponential decays more slowly.</p>
+<p>But longer memory is not the same as richer memory. The state is still one number. It cannot distinguish two histories that have the same exponentially weighted average.</p>
+<p>Adding more modes gives more summaries:</p>
+<p><span class="math display">\[
+x(t)\in\R^N.
+\]</span></p>
+<p>Yet these summaries should not be arbitrary. If several coordinates measure nearly the same feature of the history, state dimension is wasted. If all modes decay at similar rates, they cover similar timescales. If the state only stores coarse averages, recent detail is lost. If it only stores recent detail, distant structure is lost.</p>
+<p>A good memory should describe the shape of the history at several resolutions, rather than spending all of its coordinates on the same kind of summary.</p>
+</section>
+<section id="sec-7-3" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-3">7.3 Approximating the history by projection</h2>
+<p>To control which summaries the <span class="math inline">\(N\)</span> coordinates carry, treat the history itself as the object to be approximated. In continuous time, the past input up to time <span class="math inline">\(t\)</span> is a function:</p>
+<p><span class="math display">\[
+u|_{[0,t]}.
+\]</span></p>
+<p>A finite-dimensional state cannot store this function exactly. It can store an approximation.</p>
+<p>Function approximation gives a concrete interpretation to the state. Choose basis functions</p>
+<p><span class="math display">\[
+\phi_0,\phi_1,\dots,\phi_{N-1}
+\]</span></p>
+<p>on an interval. Approximate a function <span class="math inline">\(f\)</span> by</p>
+<p><span class="math display">\[
+\widehat f(r)=\sum_{n=0}^{N-1}c_n\phi_n(r).
+\]</span></p>
+<p>The coefficients</p>
+<p><span class="math display">\[
+c_0,c_1,\dots,c_{N-1}
+\]</span></p>
+<p>become the state:</p>
+<p><span class="math display">\[
+c=
+\begin{pmatrix}
+c_0\\
+c_1\\
+\vdots\\
+c_{N-1}
+\end{pmatrix}
+\in\R^N.
+\]</span></p>
+<p>The state is therefore not an anonymous hidden vector. It is the coordinate vector of an approximation to the input history.</p>
+<p>What remains is to pin down which coefficients to use. To define the best approximation, an inner product is needed. On <span class="math inline">\([0,1]\)</span>, the standard inner product is</p>
+<p><span class="math display">\[
+\inner{f}{g}
+=
+\int_0^1 f(r)g(r)\,\dd r.
+\]</span></p>
+<p>If the basis functions are orthonormal, then</p>
+<p><span class="math display">\[
+\inner{\phi_n}{\phi_k}
+=
+\begin{cases}
+1, &amp; n=k,\\
+0, &amp; n\ne k.
+\end{cases}
+\]</span></p>
+<p>The <strong>projection coefficients</strong> are then</p>
+<p><span class="math display">\[
+c_n=\inner{f}{\phi_n}
+=
+\int_0^1 f(r)\phi_n(r)\,\dd r.
+\]</span></p>
+<p>Orthogonality matters because each coefficient measures a new direction in function space. The coefficient <span class="math inline">\(c_0\)</span> measures the component of <span class="math inline">\(f\)</span> in the direction <span class="math inline">\(\phi_0\)</span>. The coefficient <span class="math inline">\(c_1\)</span> measures the component in the direction <span class="math inline">\(\phi_1\)</span>, after removing what has already been measured by <span class="math inline">\(\phi_0\)</span>. Higher coefficients continue this process.</p>
+<p>The first <span class="math inline">\(N\)</span> coefficients give the best approximation to <span class="math inline">\(f\)</span> inside</p>
+<p><span class="math display">\[
+\spanop\{\phi_0,\dots,\phi_{N-1}\}
+\]</span></p>
+<p>in squared error:</p>
+<p><span class="math display">\[
+\int_0^1 |f(r)-\widehat f(r)|^2\,\dd r.
+\]</span></p>
+<p>Orthonormality is what makes truncation optimal. The squared error of any candidate in the span splits into a sum over coefficient mismatches, so matching the first <span class="math inline">\(N\)</span> coefficients and discarding the rest cannot be beaten within the span.</p>
+<p>Keeping more coefficients lowers the reconstruction error. For a smooth decaying oscillation on <span class="math inline">\([0,1]\)</span>, projecting onto a basis of orthogonal polynomials of degree <span class="math inline">\(&lt;N\)</span> (the Legendre basis of <a href="#sec-7-5" class="quarto-xref">Section&nbsp;5</a>) and reconstructing from the <span class="math inline">\(N\)</span> coefficients gives a maximum pointwise error that falls as <span class="math inline">\(N\)</span> grows.</p>
+<div id="eeb77888" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.projection_memory <span class="im">import</span> (</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    legendre_project, legendre_reconstruct)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="dv">256</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>signal <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">2.0</span> <span class="op">*</span> r) <span class="op">*</span> np.cos(<span class="fl">2.0</span> <span class="op">*</span> np.pi <span class="op">*</span> r)   <span class="co"># a smooth history</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recon_error(N):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> legendre_project(signal, N)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    approx <span class="op">=</span> legendre_reconstruct(coeffs, <span class="bu">len</span>(signal)).real</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(signal <span class="op">-</span> approx)))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N = 3:  max error = </span><span class="sc">{</span>recon_error(<span class="dv">3</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"N = 8:  max error = </span><span class="sc">{</span>recon_error(<span class="dv">8</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>N = 3:  max error = 0.3381
+N = 8:  max error = 0.0013</code></pre>
+</div>
+</div>
+<p>Three coefficients (a degree-<span class="math inline">\(2\)</span> fit) leave a visible residual. Eight track the curve to roughly a thousandth of its amplitude. A smooth history is described by a few coefficients. The state dimension <span class="math inline">\(N\)</span> controls how fine that description is.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../figures/fig-7-2-projection.svg" class="img-fluid figure-img" style="width:85.0%" alt="Three panels: (a) a fan of Legendre basis curves, (b) a history curve with its smoother projection and the error band between them, (c) the coefficient bars kept as the state."></p>
+<figcaption>Figure 7.1. The state stores the coefficients of an approximation. (a) A finite basis <span class="math inline">\(\phi_0,\dots,\phi_{N-1}\)</span>, one colour per function. (b) The history <span class="math inline">\(f_t(r)\)</span> (blue) and its projection <span class="math inline">\(\widehat f_t(r)\)</span> onto that basis (orange). The shaded band is the approximation error. (c) The projection coefficients <span class="math inline">\(c=(c_0,\dots,c_{N-1})\)</span>, coloured to match their basis functions. These coefficients are the state that is kept, not the samples.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-7-4" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-4">7.4 Moving the history to a fixed interval</h2>
+<p>Projection onto a finite basis is defined on a fixed interval, but the history is not. At time <span class="math inline">\(t\)</span>, the input history lies on <span class="math inline">\([0,t]\)</span>. At a later time, it lies on a different interval. There are two ways to fit a growing history onto one fixed basis. The first projects only a fixed-length window of the recent past and discards everything older. This forgets hard beyond the window edge, so an input that falls off the back of the window leaves no trace in the state. The second rescales the whole interval <span class="math inline">\([0,t]\)</span> onto <span class="math inline">\([0,1]\)</span>, so the entire past is retained but at a resolution that coarsens as <span class="math inline">\(t\)</span> grows. We take the rescaling route, so that nothing is forgotten outright and the distant past is merely summarised more coarsely than the recent past.</p>
+<p>For <span class="math inline">\(0\le r\le 1\)</span>, define</p>
+<p><span class="math display">\[
+f_t(r)=u(tr).
+\]</span></p>
+<p>The point <span class="math inline">\(r=1\)</span> corresponds to the present input <span class="math inline">\(u(t)\)</span>. The point <span class="math inline">\(r=0\)</span> corresponds to the beginning of the history. Intermediate values of <span class="math inline">\(r\)</span> represent relative position inside the history. The function <span class="math inline">\(f_t\)</span> is the <strong>rescaled history</strong>.</p>
+<p>The <span class="math inline">\(n\)</span>th coefficient of the rescaled history is</p>
+<p><span class="math display">\[
+c_n(t)
+=
+\int_0^1 u(tr)\phi_n(r)\,\dd r.
+\]</span></p>
+<p>The state is</p>
+<p><span class="math display">\[
+c(t)=
+\begin{pmatrix}
+c_0(t)\\
+c_1(t)\\
+\vdots\\
+c_{N-1}(t)
+\end{pmatrix}.
+\]</span></p>
+<p>As <span class="math inline">\(t\)</span> changes, the state must change for two reasons. First, a new input value arrives at the present endpoint. Second, the whole history is rescaled, because the interval <span class="math inline">\([0,t]\)</span> has grown. The state update must account for both effects.</p>
+<p>A constant input isolates the second effect. Take <span class="math inline">\(u\equiv 1\)</span>. Then <span class="math inline">\(f_t(r)=u(tr)=1\)</span> for every <span class="math inline">\(t\)</span>, so the rescaled history is the same function no matter how far the interval has grown. Every coefficient <span class="math inline">\(c_n(t)=\int_0^1 1\cdot\phi_n(r)\,\dd r\)</span> is then fixed, and the state <span class="math inline">\(c(t)\)</span> does not move as <span class="math inline">\(t\)</span> increases. The rescaling has absorbed the growth of the interval, which is exactly what the second effect was meant to do.</p>
+<p>A changing input then moves the state through the first coefficient. Reading <span class="math inline">\(c_0\)</span> with <span class="math inline">\(\phi_0(r)=1\)</span> and substituting <span class="math inline">\(s=tr\)</span> gives</p>
+<p><span class="math display">\[
+c_0(t)=\int_0^1 u(tr)\,\dd r=\frac{1}{t}\int_0^t u(s)\,\dd s,
+\]</span></p>
+<p>the running average of the input over the whole history. A constant input holds this average fixed, while any input whose level drifts pulls <span class="math inline">\(c_0(t)\)</span> with it. The remaining coefficients then record how the input is distributed across the interval, beyond its average level.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../figures/fig-7-1-rescale.svg" class="img-fluid figure-img" style="width:80.0%" alt="The interval from zero to t rescaled to zero to one, present marked at r equals one."></p>
+<figcaption>Figure 7.2. The growing history on <span class="math inline">\([0,t]\)</span> is rescaled to the fixed interval <span class="math inline">\([0,1]\)</span> by <span class="math inline">\(f_t(r)=u(tr)\)</span>, with <span class="math inline">\(r=1\)</span> the present.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-7-5" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-5">7.5 A polynomial basis and its online dynamics</h2>
+<p>The construction so far holds for any orthonormal basis. The choice of basis fixes what the coefficients mean. Polynomials are a natural basis for approximating smooth functions on an interval. Low-degree terms describe coarse structure. Higher-degree terms describe finer variation.</p>
+<p>The first coefficient can represent an average level. The next can represent a trend. Higher coefficients can represent curvature and more detailed changes across the history.</p>
+<p>Orthogonal polynomials are especially useful because the coefficients separate these roles cleanly. On an interval, the classical choice is the Legendre basis. The <strong>shifted Legendre basis</strong> on <span class="math inline">\([0,1]\)</span> begins with</p>
+<p><span class="math display">\[
+\phi_0(r)=1,
+\]</span></p>
+<p><span class="math display">\[
+\phi_1(r)=\sqrt{3}(2r-1),
+\]</span></p>
+<p><span class="math display">\[
+\phi_2(r)=\sqrt{5}(6r^2-6r+1).
+\]</span></p>
+<p>The coefficient of <span class="math inline">\(\phi_0\)</span> records the constant component of the rescaled history. The coefficient of <span class="math inline">\(\phi_1\)</span> records the linear component. The coefficient of <span class="math inline">\(\phi_2\)</span> records the quadratic component, and so on.</p>
+<p>The state dimension <span class="math inline">\(N\)</span> now has a concrete interpretation as the number of polynomial coefficients retained from the history.</p>
+<p>The rescaling raises a cost objection. The coefficient formula</p>
+<p><span class="math display">\[
+c_n(t)=\int_0^1 u(tr)\phi_n(r)\,\dd r
+\]</span></p>
+<p>looks like it requires recomputing an integral over the whole history whenever <span class="math inline">\(t\)</span> changes. That would not give an online state space model, one whose update at time <span class="math inline">\(t\)</span> uses only the current state and the current input. The polynomial basis resolves the objection.</p>
+<p>For the Legendre basis, these coefficients satisfy a closed differential equation. The coefficients can be updated directly from the current state and the current input. No stored list of past inputs is needed.</p>
+<p>The operator that gives these online coefficient dynamics is called the <strong>High-order Polynomial Projection Operator</strong>, abbreviated <strong>HiPPO</strong> <span class="citation" data-cites="gu2020hippo">(<a href="#ref-gu2020hippo" role="doc-biblioref">Gu et al. 2020</a>)</span>. It turns the idea of polynomial approximation into a state equation.</p>
+</section>
+<section id="sec-7-6" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-6">7.6 Notation</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(u(t)\)</span></td>
+<td>input signal</td>
+<td>scalar function</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f_t(r)\)</span></td>
+<td>rescaled history <span class="math inline">\(u(tr)\)</span></td>
+<td>function on <span class="math inline">\([0,1]\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(r\)</span></td>
+<td>relative position in the history</td>
+<td><span class="math inline">\([0,1]\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\phi_n\)</span></td>
+<td><span class="math inline">\(n\)</span>th basis function</td>
+<td>function on <span class="math inline">\([0,1]\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(c_n(t)\)</span></td>
+<td>projection coefficient of <span class="math inline">\(f_t\)</span></td>
+<td>scalar</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(c(t)\)</span></td>
+<td>vector of first <span class="math inline">\(N\)</span> coefficients</td>
+<td><span class="math inline">\(\R^N\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(N\)</span></td>
+<td>number of retained coefficients</td>
+<td>positive integer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-7-7" class="level2">
+<h2 class="anchored" data-anchor-id="sec-7-7">7.7 Notes and references</h2>
+<p>The projection view of memory treats the input history as a function to be approximated and stores the coefficients of that approximation as the state. The choice of an orthonormal basis, and the use of the Legendre basis on a finite interval, rest on the classical theory of orthogonal polynomials <span class="citation" data-cites="szego1939">(<a href="#ref-szego1939" role="doc-biblioref">Szegő 1939</a>)</span>. The online coefficient dynamics that turn this static projection into a state equation are due to the High-order Polynomial Projection Operator <span class="citation" data-cites="gu2020hippo">(<a href="#ref-gu2020hippo" role="doc-biblioref">Gu et al. 2020</a>)</span>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-gu2020hippo" class="csl-entry" role="listitem">
+Gu, Albert, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Ré. 2020. <span>“<span>HiPPO</span>: Recurrent Memory with Optimal Polynomial Projections.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em> 33. <a href="https://arxiv.org/abs/2008.07669">https://arxiv.org/abs/2008.07669</a>.
+</div>
+<div id="ref-szego1939" class="csl-entry" role="listitem">
+Szegő, Gábor. 1939. <em>Orthogonal Polynomials</em>. Vol. 23. American Mathematical Society Colloquium Publications. American Mathematical Society. <a href="https://doi.org/10.1090/coll/023">https://doi.org/10.1090/coll/023</a>.
+</div>
+</div>
+</section>
+<section id="summary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
+<p>A finite state is a compression of the input history. For linear state space models, different long histories can map to the same state, so the state coordinates must be chosen to preserve the summaries that matter for future outputs.</p>
+<p>A single exponential mode stores one weighted average of the past. Projection gives a richer design: rescale the history to <span class="math inline">\([0,1]\)</span>, approximate it in an orthonormal polynomial basis, and store the first <span class="math inline">\(N\)</span> coefficients. The state dimension then controls the number of retained coefficients. HiPPO starts from this projection view and asks for an online differential equation for those coefficients.</p>
+</section>
+<section id="exercises" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li><p>A single decaying mode with rate <span class="math inline">\(a&lt;0\)</span> stores the exponentially weighted average <span class="math inline">\(\int_0^t e^{a(t-s)}u(s)\,\dd s\)</span> of the history. Construct two distinct inputs on <span class="math inline">\([0,t]\)</span> that produce the same value of this average at time <span class="math inline">\(t\)</span>, and explain why slowing the decay (taking <span class="math inline">\(a\)</span> closer to <span class="math inline">\(0\)</span>) does not let the single mode separate them. What feature of the history does a slow mode preserve, and which features does it discard?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The stored value is the single number <span class="math inline">\(I=\int_0^t e^{a(t-s)}u(s)\,\dd s\)</span>. Any two inputs that integrate against the weight <span class="math inline">\(e^{a(t-s)}\)</span> to the same value collide. Take <span class="math inline">\(u\equiv 0\)</span> and a <span class="math inline">\(v\)</span> chosen so that <span class="math inline">\(\int_0^t e^{a(t-s)}v(s)\,\dd s=0\)</span>: for instance <span class="math inline">\(v(s)=e^{-a(t-s)}(s-t/2)\)</span> on <span class="math inline">\([0,t]\)</span>, whose integral against the weight is <span class="math inline">\(\int_0^t (s-t/2)\,\dd s=0\)</span>. Then <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are distinct but produce the same state, so the mode cannot tell them apart.</p>
+<p>Slowing the decay changes the weight, not the dimension. For any fixed <span class="math inline">\(a&lt;0\)</span> the map <span class="math inline">\(u\mapsto I\)</span> is a single linear functional, so its null space is infinite-dimensional; some non-zero input always integrates to zero. Taking <span class="math inline">\(a\)</span> closer to <span class="math inline">\(0\)</span> only flattens the weight towards a plain average over <span class="math inline">\([0,t]\)</span>, lengthening the window but still collapsing the history to one number.</p>
+<p>A slow mode preserves a weighted total of the history, emphasising recent input through the factor <span class="math inline">\(e^{a(t-s)}\)</span>. It discards everything orthogonal to that one weight: the distribution of the input across the window, its oscillations, and any rearrangement of mass that leaves the weighted total fixed.</p>
+</div>
+</div>
+</div></li>
+<li><p>Let <span class="math inline">\(f(r)=r\)</span> on <span class="math inline">\([0,1]\)</span> and use the shifted Legendre basis <span class="math inline">\(\phi_0(r)=1\)</span>, <span class="math inline">\(\phi_1(r)=\sqrt 3(2r-1)\)</span>. Compute the projection coefficients <span class="math inline">\(c_0=\inner{f}{\phi_0}\)</span> and <span class="math inline">\(c_1=\inner{f}{\phi_1}\)</span> by hand, write the degree-<span class="math inline">\(1\)</span> approximation <span class="math inline">\(\widehat f\)</span>, and verify that <span class="math inline">\(f-\widehat f\)</span> is orthogonal to both <span class="math inline">\(\phi_0\)</span> and <span class="math inline">\(\phi_1\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The first coefficient is <span class="math display">\[
+c_0=\int_0^1 r\cdot 1\,\dd r=\tfrac12.
+\]</span> The second is <span class="math display">\[
+c_1=\int_0^1 r\,\sqrt3(2r-1)\,\dd r
+=\sqrt3\int_0^1(2r^2-r)\,\dd r
+=\sqrt3\Bigl(\tfrac23-\tfrac12\Bigr)
+=\frac{\sqrt3}{6}.
+\]</span> The approximation is <span class="math display">\[
+\widehat f(r)=c_0\phi_0(r)+c_1\phi_1(r)
+=\tfrac12+\frac{\sqrt3}{6}\,\sqrt3(2r-1)
+=\tfrac12+\tfrac12(2r-1)=r.
+\]</span> So <span class="math inline">\(\widehat f=f\)</span> and the residual is <span class="math inline">\(f-\widehat f=0\)</span>, which is trivially orthogonal to every function, including <span class="math inline">\(\phi_0\)</span> and <span class="math inline">\(\phi_1\)</span>. The zero residual is expected because <span class="math inline">\(f(r)=r\)</span> already lies in <span class="math inline">\(\spanop\{\phi_0,\phi_1\}\)</span>, the degree-<span class="math inline">\(\le 1\)</span> polynomials, so its degree-<span class="math inline">\(1\)</span> projection reproduces it exactly.</p>
+</div>
+</div>
+</div></li>
+<li><p>Take the smooth history <span class="math inline">\(u(r)=e^{-2r}\cos(2\pi r)\)</span> on <span class="math inline">\([0,1]\)</span> sampled at <span class="math inline">\(256\)</span> points. Using <code>legendre_project</code> and <code>legendre_reconstruct</code>, compute the maximum reconstruction error for <span class="math inline">\(N=1,2,4,8,16,20,24,32\)</span> and tabulate it against <span class="math inline">\(N\)</span>. At which <span class="math inline">\(N\)</span> does the error stop falling, and how does that point relate to the number of oscillations the basis must resolve?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.projection_memory <span class="im">import</span> (</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    legendre_project, legendre_reconstruct)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="dv">256</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>signal <span class="op">=</span> np.exp(<span class="op">-</span><span class="fl">2.0</span> <span class="op">*</span> r) <span class="op">*</span> np.cos(<span class="fl">2.0</span> <span class="op">*</span> np.pi <span class="op">*</span> r)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recon_error(N):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> legendre_project(signal, N)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    approx <span class="op">=</span> legendre_reconstruct(coeffs, <span class="bu">len</span>(signal)).real</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(signal <span class="op">-</span> approx)))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">24</span>, <span class="dv">32</span>):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N = </span><span class="sc">{</span>N<span class="sc">:2d}</span><span class="ss">:  max error = </span><span class="sc">{</span>recon_error(N)<span class="sc">:.3e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The errors are</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(N\)</span></th>
+<th>max error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(9.58\times10^{-1}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2\)</span></td>
+<td><span class="math inline">\(7.02\times10^{-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(4\)</span></td>
+<td><span class="math inline">\(2.53\times10^{-1}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(8\)</span></td>
+<td><span class="math inline">\(1.30\times10^{-3}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(16\)</span></td>
+<td><span class="math inline">\(4.20\times10^{-11}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(20\)</span></td>
+<td><span class="math inline">\(1.17\times10^{-14}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(24\)</span></td>
+<td><span class="math inline">\(2.19\times10^{-15}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(32\)</span></td>
+<td><span class="math inline">\(9.10\times10^{-15}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The error falls steeply once <span class="math inline">\(N\)</span> passes the degree needed to bend the polynomial through the oscillation, then flattens at floating-point level near <span class="math inline">\(N=20\)</span>: past that point it no longer decreases but drifts between <span class="math inline">\(10^{-14}\)</span> and <span class="math inline">\(10^{-15}\)</span>, limited by the conditioning of the fit rather than by approximation.</p>
+<p>The history completes one full period of <span class="math inline">\(\cos(2\pi r)\)</span> on <span class="math inline">\([0,1]\)</span>, so the basis must turn over twice. A few low-degree polynomials cannot follow that turn, which is why <span class="math inline">\(N=1,2,4\)</span> leave large residuals; by <span class="math inline">\(N=8\)</span> the basis resolves the single oscillation to a thousandth of the amplitude, and adding further coefficients buys only smooth-tail corrections until the floor is reached.</p>
+</div>
+</div>
+</div></li>
+<li><p>The state can summarise the past by decay or by projection. For a fixed state dimension <span class="math inline">\(N\)</span>, contrast a bank of <span class="math inline">\(N\)</span> decaying modes with distinct rates against the <span class="math inline">\(N\)</span> Legendre coefficients of the rescaled history: which construction ties a coordinate to a fixed timescale, and which ties a coordinate to a shape across the whole interval? Then replace the decay bank by the simplest one-dimensional summary: the average of the history. Describe two histories it cannot tell apart but whose Legendre coefficients differ.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In a bank of decaying modes, coordinate <span class="math inline">\(n\)</span> is <span class="math inline">\(\int_0^t e^{a_n(t-s)}u(s)\,\dd s\)</span>, a weighted total whose weight <span class="math inline">\(e^{a_n(t-s)}\)</span> has a length set by the rate <span class="math inline">\(a_n\)</span>. Each coordinate is tied to a fixed timescale: a fast rate emphasises the recent past, a slow rate spreads its weight further back. The bank covers several windows, but every coordinate still records a single weighted total over its window.</p>
+<p>In the projection, coordinate <span class="math inline">\(n\)</span> is <span class="math inline">\(\int_0^1 f_t(r)\phi_n(r)\,\dd r\)</span>, the component of the rescaled history along the degree-<span class="math inline">\(n\)</span> polynomial <span class="math inline">\(\phi_n\)</span>. Here the coordinate is tied to a shape across the whole interval, not to a timescale: <span class="math inline">\(\phi_0\)</span> measures the constant level, <span class="math inline">\(\phi_1\)</span> the linear trend, <span class="math inline">\(\phi_2\)</span> the curvature, and so on. The summary describes the form of the history at increasing resolution.</p>
+<p>For the one-dimensional average summary, whose stored value is <span class="math inline">\(\tfrac1t\int_0^t u(s)\,\dd s\)</span>, two histories with the same average are indistinguishable. Compare a constant <span class="math inline">\(u\equiv 1\)</span> on <span class="math inline">\([0,t]\)</span> with a ramp <span class="math inline">\(u(s)=2s/t\)</span>: both have average <span class="math inline">\(1\)</span>, so the average summary returns the same value, yet the ramp has a non-zero linear component while the constant does not. The projection records this in <span class="math inline">\(c_1\)</span>, the coefficient of <span class="math inline">\(\phi_1\)</span>, and so distinguishes the two histories that the average collapses together.</p>
+<p>The same contrast can be made for a finite bank of exponential summaries. The proof uses a finite-dimensional null-space argument: finitely many exponential summaries define finitely many linear functionals, so many histories share the same stored values.</p>
+</div>
+</div>
+</div></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<!-- Move the page breadcrumb up into the orange navbar, just after the
+     "State Space Models" brand, so the banner reads
+     "State Space Models > <section> > <subsection>". The node is relocated
+     (not duplicated); on narrow screens it keeps its d-none class and the
+     secondary-nav breadcrumb takes over as before. -->
+<script>
+(function () {
+  function moveBreadcrumb() {
+    var brand = document.querySelector("#quarto-header .navbar-brand-container");
+    var crumbs = document.querySelector("#title-block-header nav.quarto-title-breadcrumbs");
+    if (brand && crumbs && !brand.contains(crumbs)) {
+      crumbs.classList.add("ssm-navbar-breadcrumbs");
+      brand.appendChild(crumbs);
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", moveBreadcrumb);
+  } else {
+    moveBreadcrumb();
+  }
+})();
+</script>
+<!--
+  Fix the bottom prev/next page navigation.
+
+  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
+  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
+  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
+  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
+  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
+  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+-->
+<script>
+(function () {
+  function normPath(p) {
+    return p.replace(/index\.html$/, "").replace(/\/$/, "");
+  }
+
+  function fixPrevNext() {
+    var menu = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+    var nav = document.querySelector(".page-navigation");
+    if (!menu || !nav) return;
+
+    // Ordered, de-duplicated list of pages, anchors folded into their page.
+    var pages = [];
+    var anchors = menu.querySelectorAll("a.sidebar-link");
+    for (var n = 0; n < anchors.length; n++) {
+      var a = anchors[n];
+      if (!a.getAttribute("href")) continue;
+      var path = normPath(a.pathname);
+      var hasHash = !!a.hash;
+      var last = pages.length ? pages[pages.length - 1] : null;
+      if (!last || last.path !== path) {
+        pages.push({
+          path: path,
+          href: a.href.split("#")[0],
+          title: a.textContent.trim(),
+          titled: !hasHash
+        });
+      } else if (!hasHash && !last.titled) {
+        // a no-fragment link to the same page carries the page's own title
+        last.href = a.href.split("#")[0];
+        last.title = a.textContent.trim();
+        last.titled = true;
+      }
+    }
+
+    var here = normPath(location.pathname);
+    var i = -1;
+    for (var k = 0; k < pages.length; k++) {
+      if (pages[k].path === here) { i = k; break; }
+    }
+    if (i === -1) return;
+
+    function setSide(selector, page) {
+      var box = nav.querySelector(selector);
+      if (!box) return;
+      var link = box.querySelector("a");
+      if (!link) return;
+      if (!page) { box.style.display = "none"; return; }
+      link.setAttribute("href", page.href);
+      var text = link.querySelector(".nav-page-text");
+      if (text) text.textContent = page.title;
+    }
+
+    setSide(".nav-page-previous", i > 0 ? pages[i - 1] : null);
+    setSide(".nav-page-next", i < pages.length - 1 ? pages[i + 1] : null);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fixPrevNext);
+  } else {
+    fixPrevNext();
+  }
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/CosmoNaught\.github\.io\/ssm-book\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="pagination-link" aria-label="6.8 Notes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">6.8 Notes and references</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-1" class="pagination-link" aria-label="7.1 A fixed state is not a stored history">
+        <span class="nav-page-text">7.1 A fixed state is not a stored history</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>©&nbsp;2026 Cosmo Santoni. Text under <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY&nbsp;4.0</a>; code under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache&nbsp;2.0</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

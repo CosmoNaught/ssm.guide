@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5 Recurrence, Convolution, and Toeplitz Maps – State Space Models</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<link href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-1" rel="next">
+<link href="../../chapters/02-foundations/03-discretisation.qmd#sec-4-8" rel="prev">
+<link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!--
+  Shared math macros for the HTML build (mirrors _macros.tex).
+  Injected into every page's <head> via `include-in-header` in _quarto.yml,
+  so the macros resolve on every chapter page of the book.
+  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
+  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+-->
+<script>
+window.MathJax = {
+  tex: {
+    macros: {
+      R: "{\\mathbb{R}}",
+      C: "{\\mathbb{C}}",
+      N: "{\\mathbb{N}}",
+      dd: "{\\,\\mathrm{d}}",
+      dmodel: "{d_{\\mathrm{model}}}",
+      Bbatch: "{\\mathsf{B}}",
+      feed: "{D_{\\mathrm{feed}}}",
+      Abar: "{\\bar A}",
+      Bbar: "{\\bar B}",
+      Kbar: "{\\bar K}",
+      tr: "{\\operatorname{tr}}",
+      diag: "{\\operatorname{diag}}",
+      rank: "{\\operatorname{rank}}",
+      spanop: "{\\operatorname{span}}",
+      Real: "{\\operatorname{Re}}",
+      Imag: "{\\operatorname{Im}}",
+      spec: "{\\operatorname{spec}}",
+      rhoop: "{\\rho}",
+      Id: "{I}",
+      poly: "{\\mathcal{P}}",
+      GL: "{G_L}",
+      inner: ["{\\left\\langle #1,#2\\right\\rangle}", 2],
+      HiPPO: "{\\mathrm{HiPPO}}",
+      LegS: "{\\mathrm{LegS}}",
+      DPLR: "{\\mathrm{DPLR}}",
+      NPLR: "{\\mathrm{NPLR}}",
+      ifft: "{\\operatorname{IFFT}}",
+      bigO: "{\\mathcal{O}}"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">State Space Models</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CosmoNaught/ssm-book"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html">5. Recurrence, Convolution, and Toeplitz Maps</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../misc/icon-orange.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../misc/icon-orange.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/reader-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reader’s Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/00-front/roadmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Roadmap &amp; Contributing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/01-introduction/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 Sequences and memory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Recurrence, convolution, and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 The state space route</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Why structure is needed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.5 Notes and references</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/01-state-as-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. State as Memory</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 What problem is the model trying to solve?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2 The state equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.3 What does it mean for the state to be memory?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.4 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.5 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/02-continuous-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Continuous-Time Linear State Spaces</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 Solving the differential equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 Lag and the impulse response</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 How the eigenvalues of A shape memory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 Fading memory and oscillatory memory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 Linearity and time-invariance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.6 From a scalar input to model dimension d_model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/03-discretisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Discretisation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Why discretisation is needed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 Sampling and the exact one-step formula</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 Holding the input constant between samples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 A second route: averaging the state dynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 Eigenvalues and the step size as a timescale</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.6 From recurrence to kernel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5. Recurrence, Convolution, and Toeplitz Maps</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 The question after discretisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.2 From the recurrence to a convolution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.3 What the discrete kernel means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.4 The convolution matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.5 Why a fixed kernel requires time-invariance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.6 Cost of recurrence and convolution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.7 The kernel-generation problem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.8 Same model, two algorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-9" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.9 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.10 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/02-foundations/05-transfer-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Transfer Functions and Kernel Generation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.1 Why another view is useful</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.2 The transfer function in diagonal coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.3 The discrete generating function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.4 The discrete generating function in diagonal coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.5 Finite kernels as polynomials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.6 What the resolvent changes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/06-memory-problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. The Memory Problem</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.1 A fixed state is not a stored history</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.2 Slow decay is not enough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.3 Approximating the history by projection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.4 Moving the history to a fixed interval</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.5 A polynomial basis and its online dynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.6 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.7 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/07-hippo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. HiPPO</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.1 From projection to a state equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.2 The shifted Legendre basis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.3 Differentiating the coefficients</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.4 The HiPPO-LegS matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.5 What the state contains</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.6 The time factor</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/08-structured-state-matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Structured State Matrices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.1 The cost of density</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.2 Why diagonalisation would help</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.3 Stable diagonalisation and cheap corrections</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.4 The HiPPO matrix is normal plus rank one</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.5 Why the DPLR form is useful</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.6 Complex coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. The S4 Kernel Algorithm</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.1 The computational target</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.2 From kernel coefficients to Fourier samples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.3 The bilinear discretisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.4 The diagonal resolvent as a Cauchy product</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.5 The low-rank correction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.6 Assembling the kernel and its cost</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.7 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10.8 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../chapters/03-s4/10-diagonal-state-spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Diagonal State Spaces: DSS, S4D, and S5</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-1" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.1 Removing the correction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-2" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.2 The continuous-time diagonal kernel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-3" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.3 The discrete-time kernel and its Vandermonde form</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-4" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.4 Complex modes and real kernels</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-5" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.5 Why diagonalisation alone is not enough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-6" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.6 Structured diagonal initialisations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-7" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.7 Stable parameterisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-8" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.8 Shared state and the parallel scan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-9" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.9 What the diagonal model preserves</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-10" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.10 Notation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#exercises" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11.11 Notes and references</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#sec-5-1" id="toc-sec-5-1" class="nav-link active" data-scroll-target="#sec-5-1">5.1 The question after discretisation</a></li>
+  <li><a href="#sec-5-2" id="toc-sec-5-2" class="nav-link" data-scroll-target="#sec-5-2">5.2 From the recurrence to a convolution</a></li>
+  <li><a href="#sec-5-3" id="toc-sec-5-3" class="nav-link" data-scroll-target="#sec-5-3">5.3 What the discrete kernel means</a></li>
+  <li><a href="#sec-5-4" id="toc-sec-5-4" class="nav-link" data-scroll-target="#sec-5-4">5.4 The convolution matrix</a></li>
+  <li><a href="#sec-5-5" id="toc-sec-5-5" class="nav-link" data-scroll-target="#sec-5-5">5.5 Why a fixed kernel requires time-invariance</a></li>
+  <li><a href="#sec-5-6" id="toc-sec-5-6" class="nav-link" data-scroll-target="#sec-5-6">5.6 Cost of recurrence and convolution</a></li>
+  <li><a href="#sec-5-7" id="toc-sec-5-7" class="nav-link" data-scroll-target="#sec-5-7">5.7 The kernel-generation problem</a></li>
+  <li><a href="#sec-5-8" id="toc-sec-5-8" class="nav-link" data-scroll-target="#sec-5-8">5.8 Same model, two algorithms</a></li>
+  <li><a href="#sec-5-9" id="toc-sec-5-9" class="nav-link" data-scroll-target="#sec-5-9">5.9 Notation</a></li>
+  <li><a href="#sec-5-10" id="toc-sec-5-10" class="nav-link" data-scroll-target="#sec-5-10">5.10 Notes and references</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">5 Recurrence, Convolution, and Toeplitz Maps</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>After discretisation, the model can be run left to right as a recurrence. If the matrices do not change with position, the same input-output map can also be written as a convolution. The kernel records the effect of each input after each lag; the Toeplitz matrix records the same map on a finite sequence.</p>
+<section id="sec-5-1" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-1">5.1 The question after discretisation</h2>
+<p>After discretisation, the state space model becomes the recurrence</p>
+<p><span class="math display">\[
+x_{k+1}
+=
+\bar A x_k+\bar B u_k,
+\qquad
+y_k=Cx_{k+1}.
+\]</span></p>
+<p>At first, the equations look like a recurrent computation. Start from <span class="math inline">\(x_0\)</span>, read the sequence from left to right, and update the state one step at a time.</p>
+<p>Because the matrices <span class="math inline">\(\bar A\)</span>, <span class="math inline">\(\bar B\)</span>, and <span class="math inline">\(C\)</span> are fixed across time, the same model can also be written as a convolution. Instead of carrying the state explicitly, one precomputes a kernel that records how much an input affects the output after <span class="math inline">\(0\)</span> steps, <span class="math inline">\(1\)</span> step, <span class="math inline">\(2\)</span> steps, and so on.</p>
+<p>The same input-output map has two computational forms:</p>
+<p><span class="math display">\[
+\text{recurrence:}
+\qquad
+x_{k+1}=\bar A x_k+\bar B u_k,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\text{convolution:}
+\qquad
+y_k=\sum_{m=0}^k \bar K_m u_{k-m}.
+\]</span></p>
+<p>They compute the same input-output map. They differ in the order of computation, and therefore in cost and parallelism.</p>
+<p>No parameter has changed in the rewrite. The recurrence keeps the hidden state as a running variable; the convolution eliminates it and stores its effect in the lag coefficients.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../figures/fig-5-1-recurrence-chain.svg" class="img-fluid figure-img" style="width:80.0%" alt="A chain of state boxes with inputs entering and outputs leaving at each step."></p>
+<figcaption>Figure 5.1. The recurrence runs left to right along the dependency chain <span class="math inline">\(x_0\to x_1\to\cdots\to x_L\)</span>. Each input <span class="math inline">\(u_k\)</span> enters the state and each output <span class="math inline">\(y_k\)</span> is read from it.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-5-2" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-2">5.2 From the recurrence to a convolution</h2>
+<p>Fix a finite input sequence to work with. Let the input sequence have length <span class="math inline">\(L\)</span>:</p>
+<p><span class="math display">\[
+u_0,u_1,\dots,u_{L-1}.
+\]</span></p>
+<p>For now each <span class="math inline">\(u_k\)</span> is scalar. A <span class="math inline">\(\dmodel\)</span>-dimensional representation is handled by applying one scalar state space model to each coordinate, unless a MIMO state space model is explicitly used.</p>
+<p>The recurrence is</p>
+<p><span class="math display">\[
+x_{k+1}
+=
+\bar A x_k+\bar B u_k,
+\qquad
+k=0,\dots,L-1,
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+x_0=0.
+\]</span></p>
+<p>The output after consuming <span class="math inline">\(u_k\)</span> is</p>
+<p><span class="math display">\[
+y_k=Cx_{k+1}.
+\]</span></p>
+<p>The recurrence form computes <span class="math inline">\(x_1,x_2,\dots,x_L\)</span> in order. It is the most direct way to use the state.</p>
+<p>To see the convolution hidden inside the recurrence, expand the first few states.</p>
+<p>The first input gives</p>
+<p><span class="math display">\[
+x_1=\bar B u_0.
+\]</span></p>
+<p>After the second input,</p>
+<p><span class="math display">\[
+x_2
+=
+\bar A x_1+\bar B u_1
+=
+\bar A\bar B u_0+\bar B u_1.
+\]</span></p>
+<p>After the third input,</p>
+<p><span class="math display">\[
+x_3
+=
+\bar A x_2+\bar B u_2
+=
+\bar A^2\bar B u_0+\bar A\bar B u_1+\bar B u_2.
+\]</span></p>
+<p>Each input enters through <span class="math inline">\(\bar B\)</span>. Then, as time passes, it is propagated through powers of <span class="math inline">\(\bar A\)</span>. An input from farther in the past receives more powers of <span class="math inline">\(\bar A\)</span>.</p>
+<p>In general,</p>
+<p><span class="math display">\[
+x_{k+1}
+=
+\sum_{j=0}^k
+\bar A^{k-j}\bar B u_j.
+\]</span></p>
+<p>Applying <span class="math inline">\(C\)</span> gives</p>
+<p><span class="math display">\[
+y_k
+=
+\sum_{j=0}^k
+C\bar A^{k-j}\bar B u_j.
+\]</span></p>
+<p>The coefficient of <span class="math inline">\(u_j\)</span> depends only on the lag</p>
+<p><span class="math display">\[
+k-j.
+\]</span></p>
+<p>The difference <span class="math inline">\(k-j\)</span> is the discrete version of the continuous lag <span class="math inline">\(t-s\)</span>.</p>
+<p>Define</p>
+<p><span class="math display">\[
+\boxed{
+\bar K_m=C\bar A^m\bar B.
+}
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\boxed{
+y_k
+=
+\sum_{m=0}^k
+\bar K_m u_{k-m}.
+}
+\]</span></p>
+<p>The formula is causal discrete convolution. The output <span class="math inline">\(y_k\)</span> uses only the inputs <span class="math inline">\(u_0,\dots,u_k\)</span>.</p>
+<p>For a MIMO state space model, the same definition gives</p>
+<p><span class="math display">\[
+\bar K_m=C\bar A^m\bar B\in\R^{q\times p},
+\]</span></p>
+<p>and the convolution is matrix-vector convolution:</p>
+<p><span class="math display">\[
+y_k
+=
+\sum_{m=0}^k
+\bar K_m u_{k-m},
+\qquad
+u_{k-m}\in\R^p,
+\quad
+y_k\in\R^q.
+\]</span></p>
+</section>
+<section id="sec-5-3" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-3">5.3 What the discrete kernel means</h2>
+<p>The kernel coefficient</p>
+<p><span class="math display">\[
+\bar K_m=C\bar A^m\bar B
+\]</span></p>
+<p>has a direct interpretation.</p>
+<p>An input first enters the state through <span class="math inline">\(\bar B\)</span>. After <span class="math inline">\(m\)</span> steps, that contribution has been propagated by <span class="math inline">\(\bar A^m\)</span>. The output map <span class="math inline">\(C\)</span> then reads the result.</p>
+<p>Thus <span class="math inline">\(\bar K_m\)</span> is the effect of an input after <span class="math inline">\(m\)</span> discrete steps.</p>
+<p>The first few coefficients are</p>
+<p><span class="math display">\[
+\bar K_0=C\bar B,
+\]</span></p>
+<p><span class="math display">\[
+\bar K_1=C\bar A\bar B,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\bar K_2=C\bar A^2\bar B.
+\]</span></p>
+<p>The sequence</p>
+<p><span class="math display">\[
+\bar K_0,\bar K_1,\dots,\bar K_{L-1}
+\]</span></p>
+<p>is the discrete impulse response of the model over a length-<span class="math inline">\(L\)</span> sequence.</p>
+<p>The coefficient <span class="math inline">\(\bar K_0\)</span> is nonzero because the output is read from the updated state. The current input <span class="math inline">\(u_k\)</span> enters the state through <span class="math inline">\(\bar B\)</span>, and the output <span class="math inline">\(y_k\)</span> is read from the updated state <span class="math inline">\(x_{k+1}\)</span>.</p>
+<p>The discrete kernel is the continuous impulse response <span class="math inline">\(h(\tau)=Ce^{A\tau}B\)</span> sampled in time. Under zero-order hold the discrete transition matrix is <span class="math inline">\(\bar A=e^{A\Delta}\)</span>, so its powers are</p>
+<p><span class="math display">\[
+\bar A^m=e^{Am\Delta}.
+\]</span></p>
+<p>The kernel coefficient then reads</p>
+<p><span class="math display">\[
+\bar K_m=C\bar A^m\bar B=Ce^{Am\Delta}\bar B,
+\]</span></p>
+<p>which is the continuous impulse response evaluated at the lag <span class="math inline">\(m\Delta\)</span>, with <span class="math inline">\(\bar B\)</span> in place of <span class="math inline">\(B\)</span> to account for what the input does during one interval. The discrete kernel therefore samples a hold-modified copy of <span class="math inline">\(h\)</span> at the lags <span class="math inline">\(0,\Delta,2\Delta,\dots\)</span>.</p>
+<p>Take a decaying-rotation system, with</p>
+<p><span class="math display">\[
+A=
+\begin{pmatrix}
+-0.3 &amp; 1\\
+-1 &amp; -0.3
+\end{pmatrix},
+\quad
+\bar B=A^{-1}(\bar A-I)B,
+\quad
+\Delta=0.5,
+\]</span></p>
+<p>and <span class="math inline">\(B=(1,0.5)^\top\)</span>, <span class="math inline">\(C=(1,-1)\)</span>. The first few coefficients are</p>
+<p><span class="math display">\[
+\bar K_0,\bar K_1,\dots\approx 0.39,\ 0.55,\ 0.54,\ 0.41,\ 0.22,\ 0.03,\ -0.12,\dots,
+\]</span></p>
+<p>which rise, then decay, and later change sign. The decay comes from the magnitude of <span class="math inline">\(\bar A\)</span>, and the sign change comes from the rotation contributed by the imaginary parts of its eigenvalues.</p>
+<p>The decay is general. The eigenvalues of <span class="math inline">\(\bar A\)</span> here have magnitude about <span class="math inline">\(0.86\)</span>, so they lie inside the unit disc. When every eigenvalue of <span class="math inline">\(\bar A\)</span> satisfies <span class="math inline">\(|\lambda|&lt;1\)</span>, the powers <span class="math inline">\(\bar A^m\)</span> shrink and</p>
+<p><span class="math display">\[
+\bar K_m\to 0
+\qquad
+\text{as }m\to\infty.
+\]</span></p>
+<p>A kernel that fades to zero is fading memory written in discrete form. Distant inputs receive vanishing weight, the same fading as the continuous half-life described in the continuous-time chapter, now read off the discrete lags <span class="math inline">\(m\Delta\)</span>.</p>
+</section>
+<section id="sec-5-4" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-4">5.4 The convolution matrix</h2>
+<p>The convolution form can be written as a matrix multiplication, which makes the structure of the operation visible.</p>
+<p>Let</p>
+<p><span class="math display">\[
+u=
+\begin{pmatrix}
+u_0\\
+u_1\\
+\vdots\\
+u_{L-1}
+\end{pmatrix},
+\qquad
+y=
+\begin{pmatrix}
+y_0\\
+y_1\\
+\vdots\\
+y_{L-1}
+\end{pmatrix}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+y=Tu,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+T=
+\begin{pmatrix}
+\bar K_0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0\\
+\bar K_1 &amp; \bar K_0 &amp; 0 &amp; \cdots &amp; 0\\
+\bar K_2 &amp; \bar K_1 &amp; \bar K_0 &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\bar K_{L-1} &amp; \bar K_{L-2} &amp; \bar K_{L-3} &amp; \cdots &amp; \bar K_0
+\end{pmatrix}.
+\]</span></p>
+<p>The matrix is lower triangular because the model is causal. Entries above the diagonal would mean that an output depends on future inputs, and those entries are zero.</p>
+<p>The matrix is <strong>Toeplitz</strong> because each diagonal is constant. Equal lags have equal weights. Time-invariance appears in matrix form as constant diagonals.</p>
+<p>In the MIMO case, the same object is a block lower-triangular Toeplitz matrix. Each scalar entry <span class="math inline">\(\bar K_m\)</span> is replaced by a <span class="math inline">\(q\times p\)</span> block.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../figures/fig-5-2-toeplitz.svg" class="img-fluid figure-img" style="width:80.0%" alt="A lower-triangular Toeplitz matrix with equal diagonals shaded equally."></p>
+<figcaption>Figure 5.2. The convolution matrix is lower triangular because the model is causal, and Toeplitz because it is time-invariant. Equal lags share a diagonal, shaded equally here.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-5-5" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-5">5.5 Why a fixed kernel requires time-invariance</h2>
+<p>The fixed kernel exists because the same matrices are used at every step:</p>
+<p><span class="math display">\[
+\bar A,
+\qquad
+\bar B,
+\qquad
+C.
+\]</span></p>
+<p>The contribution of <span class="math inline">\(u_j\)</span> to <span class="math inline">\(y_k\)</span> is</p>
+<p><span class="math display">\[
+C\bar A^{k-j}\bar B u_j.
+\]</span></p>
+<p>The dependence is only on <span class="math inline">\(k-j\)</span>, the number of steps between the input and the output.</p>
+<p>If the matrices changed with time, the situation would be different. Suppose</p>
+<p><span class="math display">\[
+x_{k+1}
+=
+\bar A_kx_k+\bar B_ku_k,
+\qquad
+y_k=C_kx_{k+1}.
+\]</span></p>
+<p>Then the contribution of <span class="math inline">\(u_j\)</span> to <span class="math inline">\(y_k\)</span> would be</p>
+<p><span class="math display">\[
+C_k
+\bar A_k
+\bar A_{k-1}
+\cdots
+\bar A_{j+1}
+\bar B_j u_j.
+\]</span></p>
+<p>The coefficient depends on all the matrices between times <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>. It therefore depends on the input position itself, not just on the lag.</p>
+<p>If the sequence of matrices <span class="math inline">\(\bar A_k,\bar B_k,C_k\)</span> is fixed in advance, the model is still linear in the input sequence. Its input-output matrix is lower triangular, because the system is still causal, but it is not Toeplitz. Equal lags need not have equal weights.</p>
+<p>If the matrices are functions of the input sequence itself, then the input helps determine the coefficients multiplying the input. In that case the model no longer represents one fixed linear map from <span class="math inline">\(u\)</span> to <span class="math inline">\(y\)</span>. There is still a recurrence, but not a fixed convolution kernel.</p>
+</section>
+<section id="sec-5-6" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-6">5.6 Cost of recurrence and convolution</h2>
+<p>The recurrence computes</p>
+<p><span class="math display">\[
+x_{k+1}
+=
+\bar A x_k+\bar B u_k
+\]</span></p>
+<p>for <span class="math inline">\(k=0,\dots,L-1\)</span>.</p>
+<p>If <span class="math inline">\(\bar A\)</span> is dense, then multiplying <span class="math inline">\(\bar A x_k\)</span> costs <span class="math inline">\(O(N^2)\)</span> operations per step. Over <span class="math inline">\(L\)</span> steps, the cost is</p>
+<p><span class="math display">\[
+O(LN^2).
+\]</span></p>
+<p>If <span class="math inline">\(\bar A\)</span> is diagonal, then the multiplication costs <span class="math inline">\(O(N)\)</span> per step, so the total cost is</p>
+<p><span class="math display">\[
+O(LN).
+\]</span></p>
+<p>The recurrence needs only the current state, <span class="math inline">\(O(N)\)</span> numbers, and the next input. That makes it natural for streaming or generation.</p>
+<p>The direct recurrence has a time dependency chain. To compute <span class="math inline">\(x_{k+1}\)</span>, it uses <span class="math inline">\(x_k\)</span>. To compute <span class="math inline">\(x_k\)</span>, it uses <span class="math inline">\(x_{k-1}\)</span>. Written in this form, the computation follows</p>
+<p><span class="math display">\[
+x_0\to x_1\to x_2\to\cdots\to x_L.
+\]</span></p>
+<p>That statement is about the direct left-to-right algorithm. Special algebraic structure can sometimes give a different algorithm for the same recurrence.</p>
+<p>The convolution form removes that dependency chain at the price of forming and applying a kernel. The convolution form is</p>
+<p><span class="math display">\[
+y_k
+=
+\sum_{m=0}^k
+\bar K_m u_{k-m}.
+\]</span></p>
+<p>Computing this directly costs</p>
+<p><span class="math display">\[
+1+2+\cdots+L
+=
+\frac{L(L+1)}{2}
+\]</span></p>
+<p>multiply-adds per scalar coordinate, which is</p>
+<p><span class="math display">\[
+O(L^2).
+\]</span></p>
+<p>Direct convolution is not the useful algorithmic form. Convolution can be computed by the <strong>fast Fourier transform</strong> (<strong>FFT</strong>).</p>
+<p>For two finite sequences, linear convolution is computed by zero-padding both sequences, taking Fourier transforms, multiplying pointwise in frequency space, and applying the inverse Fourier transform. The zero-padding matters because the Fourier transform computes circular convolution. Padding to length at least <span class="math inline">\(2L-1\)</span> makes the circular result agree with the linear one.</p>
+<p>The FFT computes these transforms in roughly</p>
+<p><span class="math display">\[
+O(L\log L)
+\]</span></p>
+<p>time.</p>
+<p>Thus, once the kernel is available, the convolution form can process a full sequence with much more parallelism across positions than the recurrence.</p>
+</section>
+<section id="sec-5-7" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-7">5.7 The kernel-generation problem</h2>
+<p>The phrase “once the kernel is available” hides an important cost. The kernel is</p>
+<p><span class="math display">\[
+\bar K_m=C\bar A^m\bar B,
+\qquad
+m=0,\dots,L-1.
+\]</span></p>
+<p>A direct way to form it is to define</p>
+<p><span class="math display">\[
+v_0=\bar B,
+\qquad
+v_{m+1}=\bar A v_m,
+\]</span></p>
+<p>and then compute</p>
+<p><span class="math display">\[
+\bar K_m=Cv_m.
+\]</span></p>
+<p>If <span class="math inline">\(\bar A\)</span> is dense, each multiplication <span class="math inline">\(\bar A v_m\)</span> costs <span class="math inline">\(O(N^2)\)</span>. Generating <span class="math inline">\(L\)</span> kernel values then costs</p>
+<p><span class="math display">\[
+O(LN^2).
+\]</span></p>
+<p>If <span class="math inline">\(\bar A\)</span> is diagonal, kernel generation costs</p>
+<p><span class="math display">\[
+O(LN).
+\]</span></p>
+<p>A dense matrix couples all <span class="math inline">\(N\)</span> state coordinates but costs <span class="math inline">\(O(LN^2)\)</span> to generate the kernel. A diagonal matrix costs <span class="math inline">\(O(LN)\)</span> but evolves each coordinate independently, so it cannot mix them.</p>
+<p>The gap between the two is the factor <span class="math inline">\(N\)</span>. At representative sizes, with <span class="math inline">\(N=64\)</span> and <span class="math inline">\(L=4096\)</span>, dense kernel generation needs about <span class="math inline">\(4096\times 64^2\approx 1.7\times 10^7\)</span> multiply-adds, while diagonal generation needs about <span class="math inline">\(4096\times 64\approx 2.6\times 10^5\)</span>. The dense form does <span class="math inline">\(N=64\)</span> times the work.</p>
+<p>The diagonal form is cheap for a structural reason. Powers of a diagonal matrix act coordinate-wise, raising each diagonal entry to the same power, so every mode evolves on its own and never exchanges information with the others. These are exactly the independent eigenvalue modes of the continuous-time chapter, now frozen onto the coordinate axes. A diagonal <span class="math inline">\(\bar A\)</span> keeps each mode but loses any coupling between them.</p>
+<p>Structured state space models try to keep the memory behaviour of a dense-like <span class="math inline">\(A\)</span>, where modes can interact, while generating the kernel at a cost near the diagonal <span class="math inline">\(O(LN)\)</span> rather than the dense <span class="math inline">\(O(LN^2)\)</span>. The matrix <span class="math inline">\(A\)</span> must therefore be expressive enough for memory and structured enough for kernel generation.</p>
+</section>
+<section id="sec-5-8" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-8">5.8 Same model, two algorithms</h2>
+<p>The recurrence and convolution are not different models. The convolution was obtained by unrolling the recurrence, so both compute the same input-output map.</p>
+<p>In recurrence form, the state is explicit:</p>
+<p><span class="math display">\[
+x_{k+1}
+=
+\bar A x_k+\bar B u_k.
+\]</span></p>
+<p>In convolution form, the state is eliminated from the computation:</p>
+<p><span class="math display">\[
+y_k
+=
+\sum_{m=0}^k
+\bar K_m u_{k-m}.
+\]</span></p>
+<p>The state still exists mathematically. The convolution has summed over all the ways past inputs would have entered and evolved through the state.</p>
+<p>The recurrence-convolution equivalence is one reason state space models are useful. They can behave like recurrent models when processing one step at a time, and like convolutional models when processing a full sequence. Which form to use depends on the task.</p>
+<p>For streaming or generation, the recurrence is natural. The model stores a state, receives the next input, updates the state, and produces the next output. It does not need to store the whole input history.</p>
+<p>For full-sequence training, the convolution form can be preferable. If the kernel can be generated in time close to <span class="math inline">\(O(LN)\)</span>, the whole sequence can be processed with <span class="math inline">\(O(L\log L)\)</span> FFT-based convolution.</p>
+<p>The trade-off is therefore:</p>
+<ul>
+<li>recurrence avoids forming the kernel, but the direct algorithm follows a time dependency chain;</li>
+<li>convolution parallelises across the sequence, but requires the kernel;</li>
+<li>the cost of the kernel depends on the structure of <span class="math inline">\(\bar A\)</span>.</li>
+</ul>
+<p>The choice of the state matrix matters because <span class="math inline">\(A\)</span> determines both the memory modes and the cost of kernel generation. A useful <span class="math inline">\(A\)</span> must carry memory while keeping the associated computations cheap.</p>
+<p>The recurrence and the convolution compute the same output. For a small two-dimensional system, running it as a recurrence and convolving the input with its kernel agree up to floating-point error. The NumPy, PyTorch, and JAX implementations all reproduce the same comparison.</p>
+<div id="ed132800" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: a small two-dimensional system, discretised once</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.discretisation <span class="im">import</span> zoh_discretise</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1.0</span>], [<span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">0.3</span>]])   <span class="co"># a decaying rotation</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">0.5</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Abar, Bbar <span class="op">=</span> zoh_discretise(A, B, dt<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.cos(np.arange(<span class="dv">32</span>) <span class="op">*</span> <span class="fl">0.4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Each library runs the system as a recurrence, convolves the input with its kernel, and reports the largest difference:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div id="88cc08c1" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.kernels <span class="im">import</span> ssm_recurrence, ssm_kernel, causal_conv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y_rec <span class="op">=</span> ssm_recurrence(Abar, Bbar, C, u)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y_conv <span class="op">=</span> causal_conv(ssm_kernel(Abar, Bbar, C, <span class="bu">len</span>(u)), u)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> <span class="bu">float</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(y_rec <span class="op">-</span> y_conv)))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"max |recurrence - convolution| = </span><span class="sc">{</span>err<span class="sc">:.1e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>max |recurrence - convolution| = 8.9e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="b653fbd9" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.kernels <span class="im">import</span> (</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    ssm_recurrence <span class="im">as</span> rec_t, ssm_kernel <span class="im">as</span> ker_t, causal_conv <span class="im">as</span> conv_t)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>y_rec <span class="op">=</span> rec_t(Abar, Bbar, C, u)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>y_conv <span class="op">=</span> conv_t(ker_t(Abar, Bbar, C, <span class="bu">len</span>(u)), u)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> <span class="bu">float</span>(torch.<span class="bu">max</span>(torch.<span class="bu">abs</span>(y_rec <span class="op">-</span> y_conv)))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"max |recurrence - convolution| = </span><span class="sc">{</span>err<span class="sc">:.1e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>max |recurrence - convolution| = 8.9e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div id="7e2f7dd2" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.kernels <span class="im">import</span> (</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    ssm_recurrence <span class="im">as</span> rec_j, ssm_kernel <span class="im">as</span> ker_j, causal_conv <span class="im">as</span> conv_j)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_rec <span class="op">=</span> rec_j(Abar, Bbar, C, u)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>y_conv <span class="op">=</span> conv_j(ker_j(Abar, Bbar, C, <span class="bu">len</span>(u)), u)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> <span class="bu">float</span>(jnp.<span class="bu">max</span>(jnp.<span class="bu">abs</span>(y_rec <span class="op">-</span> y_conv)))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"max |recurrence - convolution| = </span><span class="sc">{</span>err<span class="sc">:.1e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>max |recurrence - convolution| = 2.2e-15</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-5-9" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-9">5.9 Notation</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(L\)</span></td>
+<td>sequence length</td>
+<td>positive integer</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(u=(u_0,\dots,u_{L-1})\)</span></td>
+<td>input sequence</td>
+<td><span class="math inline">\(\R^L\)</span> in the SISO case</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(y=(y_0,\dots,y_{L-1})\)</span></td>
+<td>output sequence</td>
+<td><span class="math inline">\(\R^L\)</span> in the SISO case</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar K_m\)</span></td>
+<td>discrete kernel coefficient <span class="math inline">\(C\bar A^m\bar B\)</span></td>
+<td>scalar or matrix</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\bar K\)</span></td>
+<td>kernel sequence</td>
+<td>length-<span class="math inline">\(L\)</span> sequence</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(T\)</span></td>
+<td>lower-triangular Toeplitz convolution matrix</td>
+<td><span class="math inline">\(\R^{L\times L}\)</span> in the SISO case</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(v_m\)</span></td>
+<td>state response vector <span class="math inline">\(\bar A^m\bar B\)</span></td>
+<td><span class="math inline">\(\R^N\)</span> or <span class="math inline">\(\R^{N\times p}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-5-10" class="level2">
+<h2 class="anchored" data-anchor-id="sec-5-10">5.10 Notes and references</h2>
+<p>The recurrence and convolution forms are standard in discrete-time signal processing and follow directly from unrolling the recurrence. The lower-triangular Toeplitz structure of a causal, time-invariant convolution, and the kernel interpretation of the impulse response, are treated in any account of discrete-time signal processing <span class="citation" data-cites="oppenheim1999dtsp">(<a href="#ref-oppenheim1999dtsp" role="doc-biblioref">Oppenheim et al. 1999</a>)</span>. The observation that a convolution can be evaluated through the fast Fourier transform, which makes the convolution form cheaper than the direct <span class="math inline">\(O(L^2)\)</span> sum, goes back to Cooley and Tukey <span class="citation" data-cites="cooley1965fft">(<a href="#ref-cooley1965fft" role="doc-biblioref">Cooley and Tukey 1965</a>)</span>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-cooley1965fft" class="csl-entry" role="listitem">
+Cooley, James W., and John W. Tukey. 1965. <span>“An Algorithm for the Machine Calculation of Complex <span>Fourier</span> Series.”</span> <em>Mathematics of Computation</em> 19 (90): 297–301. <a href="https://doi.org/10.1090/S0025-5718-1965-0178586-1">https://doi.org/10.1090/S0025-5718-1965-0178586-1</a>.
+</div>
+<div id="ref-oppenheim1999dtsp" class="csl-entry" role="listitem">
+Oppenheim, Alan V., Ronald W. Schafer, and John R. Buck. 1999. <em>Discrete-Time Signal Processing</em>. 2nd ed. Prentice Hall.
+</div>
+</div>
+</section>
+<section id="summary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
+<p>A discrete linear time-invariant state space model can be run as</p>
+<p><span class="math display">\[
+x_{k+1}=\bar A x_k+\bar B u_k
+\]</span></p>
+<p>or written as the convolution</p>
+<p><span class="math display">\[
+y_k=\sum_{m=0}^k \bar K_m u_{k-m},
+\qquad
+\bar K_m=C\bar A^m\bar B.
+\]</span></p>
+<p>The recurrence exposes the online computation. The convolution exposes the full input-output map and allows parallel application once the kernel is known.</p>
+<p>For a finite sequence, the convolution is a lower-triangular Toeplitz matrix: causality makes it lower triangular, and time-invariance makes equal lags share equal diagonals. The remaining computational problem is kernel generation. Dense powers of <span class="math inline">\(\bar A\)</span> cost <span class="math inline">\(O(LN^2)\)</span>, while diagonal dynamics cost <span class="math inline">\(O(LN)\)</span> but restrict how modes interact.</p>
+</section>
+<section id="exercises" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li><p>Take <span class="math inline">\(x_0=0\)</span> and unroll the recurrence <span class="math inline">\(x_{k+1}=\bar A x_k+\bar B u_k\)</span> by hand for <span class="math inline">\(L=4\)</span>. Write <span class="math inline">\(x_1,x_2,x_3,x_4\)</span> as sums of terms <span class="math inline">\(\bar A^{k-j}\bar B u_j\)</span>, and read off the coefficient of each <span class="math inline">\(u_j\)</span> in <span class="math inline">\(y_k=Cx_{k+1}\)</span>. Confirm that every coefficient depends only on the lag <span class="math inline">\(k-j\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Starting from <span class="math inline">\(x_0=0\)</span> and applying the recurrence, <span class="math display">\[
+x_1=\bar B u_0,
+\]</span> <span class="math display">\[
+x_2=\bar A\bar B u_0+\bar B u_1,
+\]</span> <span class="math display">\[
+x_3=\bar A^2\bar B u_0+\bar A\bar B u_1+\bar B u_2,
+\]</span> <span class="math display">\[
+x_4=\bar A^3\bar B u_0+\bar A^2\bar B u_1+\bar A\bar B u_2+\bar B u_3.
+\]</span> Reading <span class="math inline">\(y_k=Cx_{k+1}\)</span>, the coefficient of <span class="math inline">\(u_j\)</span> in <span class="math inline">\(y_k\)</span> is <span class="math inline">\(C\bar A^{k-j}\bar B\)</span>. For <span class="math inline">\(y_3\)</span> these are <span class="math inline">\(C\bar A^3\bar B,\,C\bar A^2\bar B,\,C\bar A\bar B,\,C\bar B\)</span> for <span class="math inline">\(j=0,1,2,3\)</span>. Each coefficient carries exactly <span class="math inline">\(k-j\)</span> powers of <span class="math inline">\(\bar A\)</span>, the number of steps between the input at <span class="math inline">\(j\)</span> and the output at <span class="math inline">\(k\)</span>, so it depends on the lag alone and not on <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> separately.</p>
+</div>
+</div>
+</div></li>
+<li><p>The kernel coefficient is <span class="math inline">\(\bar K_m=C\bar A^m\bar B\)</span>. Starting from the unrolled output <span class="math inline">\(y_k=\sum_{j=0}^k C\bar A^{k-j}\bar B u_j\)</span>, substitute <span class="math inline">\(m=k-j\)</span> to derive the convolution <span class="math inline">\(y_k=\sum_{m=0}^k\bar K_m u_{k-m}\)</span>, and state which range of <span class="math inline">\(m\)</span> contributes to <span class="math inline">\(y_k\)</span> and why no term with <span class="math inline">\(m&gt;k\)</span> appears.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Set <span class="math inline">\(m=k-j\)</span>, so <span class="math inline">\(j=k-m\)</span>. As <span class="math inline">\(j\)</span> runs over <span class="math inline">\(0,\dots,k\)</span>, the lag <span class="math inline">\(m\)</span> runs over <span class="math inline">\(k,\dots,0\)</span>, that is over <span class="math inline">\(0,\dots,k\)</span>. The summand <span class="math inline">\(C\bar A^{k-j}\bar B u_j\)</span> becomes <span class="math inline">\(C\bar A^m\bar B\,u_{k-m}=\bar K_m u_{k-m}\)</span>, giving <span class="math display">\[
+y_k=\sum_{m=0}^k\bar K_m u_{k-m}.
+\]</span> Only <span class="math inline">\(m=0,\dots,k\)</span> contributes. A term with <span class="math inline">\(m&gt;k\)</span> would correspond to <span class="math inline">\(j=k-m&lt;0\)</span>, an input before the start of the sequence; with <span class="math inline">\(x_0=0\)</span> there is no such input. Equivalently, <span class="math inline">\(y_k\)</span> uses only <span class="math inline">\(u_0,\dots,u_k\)</span>, so the output is causal.</p>
+</div>
+</div>
+</div></li>
+<li><p>For a scalar kernel sequence <span class="math inline">\(\bar K_0,\dots,\bar K_4\)</span>, write out the length-<span class="math inline">\(5\)</span> matrix <span class="math inline">\(T\)</span> with <span class="math inline">\(T_{ij}=\bar K_{i-j}\)</span> for <span class="math inline">\(i\ge j\)</span> and <span class="math inline">\(T_{ij}=0\)</span> otherwise. Verify that <span class="math inline">\(T\)</span> is lower triangular and that each of its diagonals is constant, and identify which kernel coefficient sits on the main diagonal.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>With rows and columns indexed from <span class="math inline">\(0\)</span> to <span class="math inline">\(4\)</span>, <span class="math display">\[
+T=
+\begin{pmatrix}
+\bar K_0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\bar K_1 &amp; \bar K_0 &amp; 0 &amp; 0 &amp; 0\\
+\bar K_2 &amp; \bar K_1 &amp; \bar K_0 &amp; 0 &amp; 0\\
+\bar K_3 &amp; \bar K_2 &amp; \bar K_1 &amp; \bar K_0 &amp; 0\\
+\bar K_4 &amp; \bar K_3 &amp; \bar K_2 &amp; \bar K_1 &amp; \bar K_0
+\end{pmatrix}.
+\]</span> The entries above the diagonal have <span class="math inline">\(i&lt;j\)</span>, hence index <span class="math inline">\(i-j&lt;0\)</span>, and are set to zero, so <span class="math inline">\(T\)</span> is lower triangular. Along any diagonal the difference <span class="math inline">\(i-j\)</span> is constant, so <span class="math inline">\(T_{ij}=\bar K_{i-j}\)</span> is the same on each diagonal. The main diagonal has <span class="math inline">\(i=j\)</span> and carries <span class="math inline">\(\bar K_0\)</span>.</p>
+</div>
+</div>
+</div></li>
+<li><p>Discretise the two-dimensional system of <a href="#sec-5-8" class="quarto-xref">Section&nbsp;8</a> with <code>zoh_discretise</code>, form the kernel with <code>ssm_kernel</code>, and run both <code>ssm_recurrence</code> and <code>causal_conv</code> on an input of your choice. Report the maximum absolute difference between the two outputs, and check that building <span class="math inline">\(T\)</span> with <code>toeplitz</code> and computing <span class="math inline">\(T u\)</span> reproduces the same result.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The recurrence, the direct convolution, and the matrix product <span class="math inline">\(Tu\)</span> all evaluate the same map, so they agree up to floating-point error.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.discretisation <span class="im">import</span> zoh_discretise</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.kernels <span class="im">import</span> (</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    ssm_recurrence, ssm_kernel, causal_conv, toeplitz)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1.0</span>], [<span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">0.3</span>]])</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">0.5</span>])</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>])</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>Abar, Bbar <span class="op">=</span> zoh_discretise(A, B, dt<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.cos(np.arange(<span class="dv">32</span>) <span class="op">*</span> <span class="fl">0.4</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> ssm_kernel(Abar, Bbar, C, <span class="bu">len</span>(u))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>y_rec <span class="op">=</span> ssm_recurrence(Abar, Bbar, C, u)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>y_conv <span class="op">=</span> causal_conv(K, u)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> toeplitz(K, <span class="bu">len</span>(u))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(y_rec <span class="op">-</span> y_conv)))        <span class="co"># convolution</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(y_rec <span class="op">-</span> T <span class="op">@</span> u.astype(<span class="bu">complex</span>))))  <span class="co"># Toeplitz product</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The convolution differs from the recurrence by about <span class="math inline">\(9\times 10^{-16}\)</span>, and <span class="math inline">\(Tu\)</span> by about <span class="math inline">\(1\times 10^{-15}\)</span>. Both are at the level of double-precision rounding, confirming that the three routes compute one and the same output.</p>
+</div>
+</div>
+</div></li>
+<li><p>Replace the fixed matrix <span class="math inline">\(\bar A\)</span> by a time-varying sequence <span class="math inline">\(\bar A_k\)</span>, so that the contribution of <span class="math inline">\(u_j\)</span> to <span class="math inline">\(y_k\)</span> becomes <span class="math inline">\(C_k\bar A_k\bar A_{k-1}\cdots\bar A_{j+1}\bar B_j u_j\)</span>. Explain why this contribution generally depends on <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> separately rather than on the lag <span class="math inline">\(k-j\)</span> alone, and hence why the convolution matrix remains lower triangular but is no longer Toeplitz.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the fixed case the product <span class="math inline">\(\bar A_k\cdots\bar A_{j+1}\)</span> collapses to <span class="math inline">\(\bar A^{k-j}\)</span>, because every factor is the same matrix and the count of factors is the lag. With time-varying matrices the factors are the specific matrices <span class="math inline">\(\bar A_{j+1},\dots,\bar A_k\)</span>, so the product names the actual times between <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>, not merely how many of them there are. Shifting both indices by the same amount, <span class="math inline">\(j\mapsto j+1\)</span> and <span class="math inline">\(k\mapsto k+1\)</span>, replaces this product by <span class="math inline">\(\bar A_{k+1}\cdots\bar A_{j+2}\)</span>, a different ordered product, and the read-in <span class="math inline">\(\bar B_j\)</span> and read-out <span class="math inline">\(C_k\)</span> change too. The coefficient therefore depends on the pair <span class="math inline">\((j,k)\)</span> and not on <span class="math inline">\(k-j\)</span> alone. The system is still causal: when <span class="math inline">\(j&gt;k\)</span> the product is empty and the contribution is zero, so the matrix stays lower triangular. But equal lags no longer carry equal entries, so the diagonals are not constant and the matrix is not Toeplitz.</p>
+</div>
+</div>
+</div></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<!-- Move the page breadcrumb up into the orange navbar, just after the
+     "State Space Models" brand, so the banner reads
+     "State Space Models > <section> > <subsection>". The node is relocated
+     (not duplicated); on narrow screens it keeps its d-none class and the
+     secondary-nav breadcrumb takes over as before. -->
+<script>
+(function () {
+  function moveBreadcrumb() {
+    var brand = document.querySelector("#quarto-header .navbar-brand-container");
+    var crumbs = document.querySelector("#title-block-header nav.quarto-title-breadcrumbs");
+    if (brand && crumbs && !brand.contains(crumbs)) {
+      crumbs.classList.add("ssm-navbar-breadcrumbs");
+      brand.appendChild(crumbs);
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", moveBreadcrumb);
+  } else {
+    moveBreadcrumb();
+  }
+})();
+</script>
+<!--
+  Fix the bottom prev/next page navigation.
+
+  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
+  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
+  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
+  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
+  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
+  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+-->
+<script>
+(function () {
+  function normPath(p) {
+    return p.replace(/index\.html$/, "").replace(/\/$/, "");
+  }
+
+  function fixPrevNext() {
+    var menu = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+    var nav = document.querySelector(".page-navigation");
+    if (!menu || !nav) return;
+
+    // Ordered, de-duplicated list of pages, anchors folded into their page.
+    var pages = [];
+    var anchors = menu.querySelectorAll("a.sidebar-link");
+    for (var n = 0; n < anchors.length; n++) {
+      var a = anchors[n];
+      if (!a.getAttribute("href")) continue;
+      var path = normPath(a.pathname);
+      var hasHash = !!a.hash;
+      var last = pages.length ? pages[pages.length - 1] : null;
+      if (!last || last.path !== path) {
+        pages.push({
+          path: path,
+          href: a.href.split("#")[0],
+          title: a.textContent.trim(),
+          titled: !hasHash
+        });
+      } else if (!hasHash && !last.titled) {
+        // a no-fragment link to the same page carries the page's own title
+        last.href = a.href.split("#")[0];
+        last.title = a.textContent.trim();
+        last.titled = true;
+      }
+    }
+
+    var here = normPath(location.pathname);
+    var i = -1;
+    for (var k = 0; k < pages.length; k++) {
+      if (pages[k].path === here) { i = k; break; }
+    }
+    if (i === -1) return;
+
+    function setSide(selector, page) {
+      var box = nav.querySelector(selector);
+      if (!box) return;
+      var link = box.querySelector("a");
+      if (!link) return;
+      if (!page) { box.style.display = "none"; return; }
+      link.setAttribute("href", page.href);
+      var text = link.querySelector(".nav-page-text");
+      if (text) text.textContent = page.title;
+    }
+
+    setSide(".nav-page-previous", i > 0 ? pages[i - 1] : null);
+    setSide(".nav-page-next", i < pages.length - 1 ? pages[i + 1] : null);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fixPrevNext);
+  } else {
+    fixPrevNext();
+  }
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/CosmoNaught\.github\.io\/ssm-book\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="pagination-link" aria-label="4.8 Notes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4.8 Notes and references</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-1" class="pagination-link" aria-label="5.1 The question after discretisation">
+        <span class="nav-page-text">5.1 The question after discretisation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>©&nbsp;2026 Cosmo Santoni. Text under <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY&nbsp;4.0</a>; code under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache&nbsp;2.0</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
