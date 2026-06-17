@@ -12,6 +12,7 @@ project:
     - misc/cosmo.jpeg
     - misc/icon-blue.svg
     - misc/icon-orange.svg
+    - CNAME
 
 website:
   title: "State Space Models"
