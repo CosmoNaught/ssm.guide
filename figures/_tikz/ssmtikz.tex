@@ -1,0 +1,50 @@
+% Shared TikZ style for the book figures; mirrors figures/_src/ssmstyle.py and
+% styles/theme.scss so TikZ diagrams match the matplotlib palette and sans maths.
+% Use: \documentclass[border=8pt]{standalone}\input{ssmtikz.tex}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}                    % Helvetica-like sans, close to the matplotlib Arial/Segoe fallback
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{sansmath}                  % sans maths to match the sans labels
+\sansmath
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,backgrounds,fit}
+
+% palette (mirrors ssmstyle.py)
+\definecolor{ink}{HTML}{303030}
+\definecolor{ssmblue}{HTML}{4A5C79}
+\definecolor{ssmbluedark}{HTML}{3A4A63}
+\definecolor{ssmorange}{HTML}{E37C47}
+\definecolor{ssmorangedark}{HTML}{CF6A37}
+% three further hues of the five-colour categorical palette (mirrors ssmstyle.py)
+\definecolor{ssmgreen}{HTML}{5E9C6E}
+\definecolor{ssmgreendark}{HTML}{4C8159}
+\definecolor{ssmplum}{HTML}{8E78A8}
+\definecolor{ssmplumdark}{HTML}{74608F}
+\definecolor{ssmrose}{HTML}{D6849A}
+\definecolor{ssmrosedark}{HTML}{BF6C84}
+\definecolor{ssmgrey}{HTML}{6B7280}
+\definecolor{ssmgreyline}{HTML}{C9CCD3}
+\definecolor{ssmgreyfill}{HTML}{F5F5F5}
+
+% Opaque white background (matplotlib figures bake one in; match it) so the
+% cropped standalone page is white, not transparent, in both the SVG and PNG.
+\pagecolor{white}
+
+\tikzset{
+  >={Stealth[length=2.6mm,width=2.1mm]},
+  every node/.style={inner sep=1.4pt, text=ink, font=\sffamily},
+  spine/.style={ssmbluedark, line width=1.0pt, line cap=round},
+  arrow/.style={->, ssmbluedark, line width=1.1pt, line cap=round},
+  arrowor/.style={->, ssmorangedark, line width=1.1pt, line cap=round},
+  greyarrow/.style={->, ssmgrey, line width=0.9pt, line cap=round},
+  statebox/.style={rounded corners=4pt, draw=ssmorangedark, fill=ssmorange,
+                   line width=1.4pt, text=white, align=center},
+  chainbox/.style={rounded corners=3pt, draw=ssmbluedark, fill=ssmbluedark,
+                   line width=1.0pt, text=white, minimum size=10mm, align=center},
+  chainboxhi/.style={rounded corners=3pt, draw=ssmorangedark, fill=ssmorange,
+                     line width=1.0pt, text=white, minimum size=10mm, align=center},
+  termlab/.style={text=ink},
+  rowlab/.style={text=ssmgrey, font=\small\sffamily},
+}

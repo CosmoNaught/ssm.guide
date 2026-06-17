@@ -1,0 +1,313 @@
+project:
+  type: website
+  output-dir: _book
+  execute-dir: project
+  # Explicit render list: keeps everything else in the working tree out of the output.
+  render:
+    - index.qmd
+    - chapters/
+  resources:
+    - cover/front_cover.png
+    - cover/front_cover_web.png
+    - misc/cosmo.jpeg
+    - misc/icon-blue.svg
+    - misc/icon-orange.svg
+
+website:
+  title: "State Space Models"
+  favicon: misc/icon-blue.svg
+  search: false
+  page-navigation: true
+  page-footer:
+    border: false
+    center: |
+      &copy;&nbsp;2026 Cosmo Santoni. Text under [CC&nbsp;BY&nbsp;4.0](https://creativecommons.org/licenses/by/4.0/); code under [Apache&nbsp;2.0](https://www.apache.org/licenses/LICENSE-2.0).
+  navbar:
+    background: "#e37c47"
+    foreground: "#ffffff"
+    title: "State Space Models"
+    pinned: true
+    search: false
+    right:
+      - icon: github
+        href: "https://github.com/CosmoNaught/ssm-book"
+        aria-label: GitHub
+  sidebar:
+    style: docked
+    logo: misc/icon-orange.svg
+    title: "State Space Models"
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+        text: "Home"
+      - href: chapters/00-front/preface.qmd
+        text: "Preface"
+      - href: chapters/00-front/acknowledgements.qmd
+        text: "Acknowledgements"
+      - href: chapters/00-front/reader-guide.qmd
+        text: "Reader's Guide"
+      - href: chapters/00-front/notation.qmd
+        text: "Notation & Preliminaries"
+      - href: chapters/00-front/roadmap.qmd
+        text: "Roadmap & Contributing"
+      - section: "1. Introduction"
+        href: chapters/01-introduction/index.qmd
+        contents:
+          - text: "1.1 Sequences and memory"
+            href: chapters/01-introduction/index.qmd#sec-1-1
+          - text: "1.2 Recurrence, convolution, and attention"
+            href: chapters/01-introduction/index.qmd#sec-1-2
+          - text: "1.3 The state space route"
+            href: chapters/01-introduction/index.qmd#sec-1-3
+          - text: "1.4 Why structure is needed"
+            href: chapters/01-introduction/index.qmd#sec-1-4
+          - text: "1.5 State space layers and attention"
+            href: chapters/01-introduction/index.qmd#sec-1-5
+          - text: "Footnotes and references"
+            href: chapters/01-introduction/index.qmd#footnotes
+          - text: "Exercises"
+            href: chapters/01-introduction/index.qmd#exercises
+      - section: "2. State as Memory"
+        href: chapters/02-foundations/01-state-as-memory.qmd
+        contents:
+          - text: "2.1 What problem is the model trying to solve?"
+            href: chapters/02-foundations/01-state-as-memory.qmd#sec-2-1
+          - text: "2.2 The state equation"
+            href: chapters/02-foundations/01-state-as-memory.qmd#sec-2-2
+          - text: "2.3 What does it mean for the state to be memory?"
+            href: chapters/02-foundations/01-state-as-memory.qmd#sec-2-3
+          - text: "2.4 Notation"
+            href: chapters/02-foundations/01-state-as-memory.qmd#sec-2-4
+          - text: "Exercises"
+            href: chapters/02-foundations/01-state-as-memory.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/02-foundations/01-state-as-memory.qmd#footnotes
+      - section: "3. Continuous-Time Linear State Spaces"
+        href: chapters/02-foundations/02-continuous-time.qmd
+        contents:
+          - text: "3.1 Solving the differential equation"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-1
+          - text: "3.2 Lag and the impulse response"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-2
+          - text: "3.3 How the eigenvalues of A shape memory"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-3
+          - text: "3.4 Fading memory and oscillatory memory"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-4
+          - text: "3.5 Linearity and time-invariance"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-5
+          - text: "3.6 From a scalar input to model dimension d_model"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-6
+          - text: "3.7 Notation"
+            href: chapters/02-foundations/02-continuous-time.qmd#sec-3-7
+          - text: "Exercises"
+            href: chapters/02-foundations/02-continuous-time.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/02-foundations/02-continuous-time.qmd#footnotes
+      - section: "4. Discretisation"
+        href: chapters/02-foundations/03-discretisation.qmd
+        contents:
+          - text: "4.1 Why discretisation is needed"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-1
+          - text: "4.2 Sampling and the exact one-step formula"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-2
+          - text: "4.3 Holding the input constant between samples"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-3
+          - text: "4.4 A second route: averaging the state dynamics"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-4
+          - text: "4.5 Eigenvalues and the step size as a timescale"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-5
+          - text: "4.6 From recurrence to kernel"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-6
+          - text: "4.7 Notation"
+            href: chapters/02-foundations/03-discretisation.qmd#sec-4-7
+          - text: "Exercises"
+            href: chapters/02-foundations/03-discretisation.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/02-foundations/03-discretisation.qmd#footnotes
+      - section: "5. Recurrence, Convolution, and Toeplitz Maps"
+        href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd
+        contents:
+          - text: "5.1 The question after discretisation"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-1
+          - text: "5.2 From the recurrence to a convolution"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-2
+          - text: "5.3 What the discrete kernel means"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-3
+          - text: "5.4 The convolution matrix"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-4
+          - text: "5.5 Why a fixed kernel requires time-invariance"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-5
+          - text: "5.6 Cost of recurrence and convolution"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-6
+          - text: "5.7 The kernel-generation problem"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-7
+          - text: "5.8 Same model, two algorithms"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-8
+          - text: "5.9 Notation"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-9
+          - text: "Exercises"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#footnotes
+      - section: "6. Transfer Functions and Kernel Generation"
+        href: chapters/02-foundations/05-transfer-functions.qmd
+        contents:
+          - text: "6.1 Why another view is useful"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-1
+          - text: "6.2 The transfer function in diagonal coordinates"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-2
+          - text: "6.3 The discrete generating function"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-3
+          - text: "6.4 The discrete generating function in diagonal coordinates"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-4
+          - text: "6.5 Finite kernels as polynomials"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-5
+          - text: "6.6 What the resolvent changes"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-6
+          - text: "6.7 Notation"
+            href: chapters/02-foundations/05-transfer-functions.qmd#sec-6-7
+          - text: "Exercises"
+            href: chapters/02-foundations/05-transfer-functions.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/02-foundations/05-transfer-functions.qmd#footnotes
+      - section: "7. The Memory Problem"
+        href: chapters/03-s4/06-memory-problem.qmd
+        contents:
+          - text: "7.1 A fixed state is not a stored history"
+            href: chapters/03-s4/06-memory-problem.qmd#sec-7-1
+          - text: "7.2 Slow decay is not enough"
+            href: chapters/03-s4/06-memory-problem.qmd#sec-7-2
+          - text: "7.3 Approximating the history by projection"
+            href: chapters/03-s4/06-memory-problem.qmd#sec-7-3
+          - text: "7.4 Moving the history to a fixed interval"
+            href: chapters/03-s4/06-memory-problem.qmd#sec-7-4
+          - text: "7.5 A polynomial basis and its online dynamics"
+            href: chapters/03-s4/06-memory-problem.qmd#sec-7-5
+          - text: "7.6 Notation"
+            href: chapters/03-s4/06-memory-problem.qmd#sec-7-6
+          - text: "Exercises"
+            href: chapters/03-s4/06-memory-problem.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/03-s4/06-memory-problem.qmd#footnotes
+      - section: "8. HiPPO"
+        href: chapters/03-s4/07-hippo.qmd
+        contents:
+          - text: "8.1 From projection to a state equation"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-1
+          - text: "8.2 The shifted Legendre basis"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-2
+          - text: "8.3 Differentiating the coefficients"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-3
+          - text: "8.4 The HiPPO-LegS matrix"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-4
+          - text: "8.5 What the state contains"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-5
+          - text: "8.6 The time factor"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-6
+          - text: "8.7 Notation"
+            href: chapters/03-s4/07-hippo.qmd#sec-8-7
+          - text: "Exercises"
+            href: chapters/03-s4/07-hippo.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/03-s4/07-hippo.qmd#footnotes
+      - section: "9. Structured State Matrices"
+        href: chapters/03-s4/08-structured-state-matrices.qmd
+        contents:
+          - text: "9.1 The cost of density"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-1
+          - text: "9.2 Why diagonalisation would help"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-2
+          - text: "9.3 Stable diagonalisation and cheap corrections"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-3
+          - text: "9.4 The HiPPO matrix is normal plus rank one"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-4
+          - text: "9.5 Why the DPLR form is useful"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-5
+          - text: "9.6 Complex coordinates"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-6
+          - text: "9.7 Notation"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#sec-9-7
+          - text: "Exercises"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/03-s4/08-structured-state-matrices.qmd#footnotes
+      - section: "10. The S4 Kernel Algorithm"
+        href: chapters/03-s4/09-s4-kernel-algorithm.qmd
+        contents:
+          - text: "10.1 The computational target"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-1
+          - text: "10.2 From kernel coefficients to Fourier samples"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-2
+          - text: "10.3 The bilinear discretisation"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-3
+          - text: "10.4 The diagonal resolvent as a Cauchy product"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-4
+          - text: "10.5 The low-rank correction"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-5
+          - text: "10.6 Assembling the kernel and its cost"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-6
+          - text: "10.7 Notation"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-7
+          - text: "Exercises"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/03-s4/09-s4-kernel-algorithm.qmd#footnotes
+      - section: "11. Diagonal State Spaces: DSS, S4D, and S5"
+        href: chapters/03-s4/10-diagonal-state-spaces.qmd
+        contents:
+          - text: "11.1 Removing the correction"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-1
+          - text: "11.2 The continuous-time diagonal kernel"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-2
+          - text: "11.3 The discrete-time kernel and its Vandermonde form"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-3
+          - text: "11.4 Complex modes and real kernels"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-4
+          - text: "11.5 Why diagonalisation alone is not enough"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-5
+          - text: "11.6 Structured diagonal initialisations"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-6
+          - text: "11.7 Stable parameterisation"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-7
+          - text: "11.8 Shared state and the parallel scan"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-8
+          - text: "11.9 What the diagonal model preserves"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-9
+          - text: "11.10 Notation"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-10
+          - text: "Exercises"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#exercises
+          - text: "Footnotes and references"
+            href: chapters/03-s4/10-diagonal-state-spaces.qmd#footnotes
+      - href: chapters/references.qmd
+        text: "References"
+
+bibliography: references.bib
+
+# Rename Pandoc's auto footnotes block from "Footnotes" to "Footnotes and references".
+language:
+  section-title-footnotes: "Footnotes and references"
+
+jupyter: python3
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles/light.scss, styles/theme.scss]
+      dark: [cosmo, styles/dark.scss, styles/theme.scss]
+    html-math-method: mathjax
+    include-in-header: _mathjax-config.html
+    include-after-body:
+      - _navbar-breadcrumb.html
+      - _prevnext-fix.html
+    link-citations: true
+    citations-hover: false
+    toc: true
+    toc-depth: 3
+    toc-title: "Table of Contents"
+    number-sections: false
+    grid:
+      sidebar-width: 340px

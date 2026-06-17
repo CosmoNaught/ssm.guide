@@ -1,0 +1,63 @@
+% Figure 5.1: the recurrence x_{k+1} = Abar x_k + Bbar u_k, y_k = C x_{k+1}
+% as an unrolled dependency chain. For chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd
+%
+% u_k/y_k attach to the block that PRODUCES x_{k+1}, not to x_k, so x_0 is an
+% input-free initial state and the terminal at block x_b carries index b-1.
+\documentclass[border=10pt]{standalone}
+\input{ssmtikz.tex}
+
+\tikzset{
+  % state block; hue set per node below
+  cell/.style={rounded corners=3pt, line width=1.0pt, text=white,
+               minimum size=12mm, align=center, font=\sffamily},
+  % input/output terminals
+  iobubble/.style={circle, draw=ssmgrey, fill=white, line width=1.0pt,
+                   minimum size=8mm, inner sep=0pt, text=ink, font=\sffamily},
+  chainarrow/.style={->, ssmgrey, line width=1.3pt, line cap=round},
+  ioarrow/.style={->, ssmgrey, line width=1.0pt, line cap=round},
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \def\sp{2.35}            % column spacing
+  \def\vio{1.7}            % vertical offset of i/o terminals from the state row
+
+  % state blocks x_0..x_3, then x_L; one palette hue each (fig 2.1 order)
+  \foreach \i/\col/\cold in {0/ssmorange/ssmorangedark, 1/ssmblue/ssmbluedark,
+                             2/ssmgreen/ssmgreendark, 3/ssmplum/ssmplumdark} {
+    \pgfmathsetmacro\xx{\i*\sp}
+    \node[cell, fill=\col, draw=\cold] (s\i) at (\xx,0) {$x_{\i}$};
+  }
+  \node (dots) at (4*\sp,0) {$\boldsymbol{\cdots}$};
+  \node[cell, fill=ssmrose, draw=ssmrosedark] (sL) at (5*\sp,0) {$x_L$};
+
+  % horizontal state passing
+  \foreach \a/\b in {0/1,1/2,2/3} {\draw[chainarrow] (s\a) -- (s\b);}
+  \draw[chainarrow] (s3) -- (dots);
+  \draw[chainarrow] (dots) -- (sL);
+
+  % terminal at block x_b carries index b-1: u_{b-1} in, y_{b-1} out
+  \foreach \b/\k in {1/0,2/1,3/2} {
+    \node[iobubble] (u\b) at ($(s\b)+(0,-\vio)$) {$u_{\k}$};
+    \node[iobubble] (y\b) at ($(s\b)+(0, \vio)$) {$y_{\k}$};
+    \draw[ioarrow] (u\b.north) -- (s\b.south);
+    \draw[ioarrow] (s\b.north) -- (y\b.south);
+  }
+  \node[iobubble] (uLm) at ($(sL)+(0,-\vio)$) {$u_{L-1}$};
+  \node[iobubble] (yLm) at ($(sL)+(0, \vio)$) {$y_{L-1}$};
+  \draw[ioarrow] (uLm.north) -- (sL.south);
+  \draw[ioarrow] (sL.north) -- (yLm.south);
+
+  % row labels
+  \def\lx{-1.95}
+  \node[rowlab, anchor=east] at (\lx, \vio) {output};
+  \node[rowlab, anchor=east] at (\lx, 0)    {state};
+  \node[rowlab, anchor=east] at (\lx,-\vio) {input};
+
+  % recurrence (book convention: barred matrices, output post-update)
+  \node[anchor=center] at (5.875,-2.95)
+     {$x_{k+1}=\bar{A}\,x_k+\bar{B}\,u_k
+       \qquad\qquad
+       y_k=C\,x_{k+1}$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,29 @@
+# Mathematical Background {.unnumbered}
+
+State space models are written here in the language of linear systems. The state is a vector, matrices update and read it, and matrix powers describe how information from earlier inputs survives to later positions. The calculations use matrix multiplication, eigenvalues, inverses, change of basis, ordinary differential equations, and generating functions.
+
+The same linear system can be read in several equivalent ways. The continuous-time equation gives the local evolution of the state. After discretisation, the update becomes a recurrence. Unrolling the recurrence gives a convolution kernel, whose coefficient at lag $m$ measures the effect of an input $m$ steps in the past. Packaging those coefficients into a generating function gives the transfer-function view.
+
+The main computational difficulty is concentrated in the state matrix. Dense matrices can mix coordinates and give the state nontrivial memory, but long kernels require many powers of the same matrix. Much of the algebra concerns representations that preserve the memory behaviour while making those powers, or the corresponding generating functions, cheaper to evaluate.
+
+## Basic tools
+
+Working familiarity with vectors and matrices is assumed. Matrix multiplication, transposes, inverses when they exist, eigenvalues at the level of a first linear algebra course, and the interpretation of a matrix as a linear map are used throughout.
+
+Basic single-variable calculus is also assumed. Derivatives and integrals appear from the beginning. Ordinary differential equations first enter through the scalar equation
+
+$$
+x'(t)=ax(t)+bu(t).
+$$
+
+This scalar equation already contains the main roles. The coefficient $a$ governs the internal evolution of the state, while $b$ determines how the input enters.
+
+Some deep learning vocabulary is assumed: neural network layers, learned parameters, gradients, and sequences of token representations. No prior knowledge of state space models, the Structured State Space sequence model (S4), Mamba, control theory, signal processing, or numerical analysis is needed.
+
+Free references for repairing this background are collected under [Background and further reading](notation.qmd#background-and-further-reading).
+
+## Mathematical notation
+
+The notation distinguishes continuous and sampled time. A trajectory written as $x(t)$ evolves over continuous time, while a sequence written as $x_k$ is indexed by discrete positions. The notation also distinguishes single-input and multi-input systems. A vector $B\in\mathbb R^{N\times 1}$ injects one input coordinate into an $N$-dimensional state, while a matrix $B\in\mathbb R^{N\times p}$ injects $p$ input coordinates.
+
+Global symbols keep their roles whenever possible. The state dimension is $N$, the sequence length is $L$, and the model dimension is $\dmodel$. Local symbols are introduced where a calculation needs them, then released.

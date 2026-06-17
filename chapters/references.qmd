@@ -1,0 +1,14 @@
+---
+nocite: |
+  @gu2020hippo, @gu2021lssl, @gu2022s4, @gupta2022dss, @gu2022s4d, @gu2023mamba,
+  @smith2023s5,
+  @vaswani2017attention, @lieber2024jamba, @hwang2024hydra, @nvidia2026nemotron3,
+  @kailath1980, @oppenheim1999dtsp, @tustin1947,
+  @cooley1965fft, @szego1939, @hager1989, @pan2001, @blelloch1990
+suppress-bibliography: false
+---
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

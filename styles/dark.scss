@@ -1,0 +1,89 @@
+/*-- scss:defaults --*/
+// Dark theme: Bootstrap base variables.
+$primary:    #9db4d6;
+$link-color: #9db4d6;
+$body-color: #d7d9dd;
+$body-bg:    #16181d;
+
+// Enable Bootstrap 5.3 dark-mode variables so base chrome darkens too.
+$enable-dark-mode: true;
+
+/*-- scss:rules --*/
+// Dark values for the shared design tokens (light originals in styles/light.scss).
+// Blue-grey is lifted to stay legible on the dark ground; orange is kept at its
+// light-mode value (#e37c47) so the navbar banner reads the same in both modes.
+:root {
+  --ssm-blue:          #9db4d6;   // blue-grey lifted ~2.5x for dark backgrounds
+  --ssm-blue-hover:    #b9cce6;
+  --ssm-orange:        #e37c47;   // cover orange — matched to light mode (same header banner colour)
+  --ssm-orange-hover:  #cf6a37;   // matched to light mode
+  --ssm-body:          #d7d9dd;   // off-white text (not pure white — easier read)
+  --ssm-bg:            #16181d;   // page + panel surfaces (near-black, cover navy)
+  --ssm-muted:         #9aa3b2;   // captions, footer text, affiliations
+  --ssm-surface:       #20242c;   // cover frame, bibtex card
+  --ssm-border:        #2e333d;   // hairline borders
+  --ssm-footer-bg:     #1b1e25;
+  --ssm-footer-border: #2e333d;
+  --ssm-output-bg:     #1c2027;   // executed-cell output wash
+  --ssm-output-border: #2e333d;
+  --ssm-output-spine:  #5b6b86;   // output left rule
+  --ssm-output-tag:    #8593a6;   // "Output" label
+  --ssm-toc-part:      #8593a6;   // landing TOC part label
+  --ssm-code-text:     #1c2742;   // inline code: deep navy, near-black
+  --ssm-code-bg:       #c3c7d0;   // light-grey pill so the navy reads on the dark page
+  --ssm-code-border:   #aab0bb;
+}
+
+// dark-only chrome that Bootstrap/Quarto would otherwise leave light
+
+// docked sidebar + collapsed mobile sidebar follow the page ground
+#quarto-sidebar,
+#quarto-sidebar.docked,
+.sidebar.sidebar-navigation { background-color: var(--ssm-bg) !important; }
+
+// horizontal rules and tables pick up the dark hairline + text
+hr { border-top-color: var(--ssm-border) !important; }
+.table { --bs-table-color: var(--ssm-body); border-color: var(--ssm-border); }
+
+// source code blocks: share the output block's dark blue wash so a cell's
+// source and its output read as one unit.
+div.sourceCode,
+div.sourceCode pre.sourceCode { background-color: var(--ssm-output-bg) !important; }
+
+// executed-cell output text: uniform orange. Quarto wraps stdout in a bare
+// <code>, so strip the inline-code chip rule above to stop output picking up
+// the pill.
+.cell-output pre,
+.cell-output code { color: var(--ssm-orange) !important; }
+.cell-output code {
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+// code-panel tab labels (NumPy / PyTorch / JAX): orange accent; active tab bolded.
+.panel-tabset .nav-tabs .nav-link { color: var(--ssm-orange) !important; }
+.panel-tabset .nav-tabs .nav-link:hover,
+.panel-tabset .nav-tabs .nav-link:focus { color: var(--ssm-orange-hover) !important; }
+.panel-tabset .nav-tabs .nav-link.active { color: var(--ssm-orange) !important; font-weight: 600; }
+
+// Figures are dark ink on a light/transparent ground, so sit each on a white
+// card to stay readable on the dark page. box-sizing keeps the inline width
+// honoured (padding inset, no overflow). Cover and author photos are custom
+// markup, not .quarto-figure images, so are untouched.
+.quarto-figure img,
+.cell-output-display img {
+  background: #ffffff;
+  padding: 0.6rem;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+// Brand icon: Quarto renders a light-content and a dark-content copy. Hide the
+// light copy and force the dark copy visible at desktop width (d-lg-inline
+// breakpoint); Quarto's body.quarto-dark swap was blanking it.
+.sidebar-header .sidebar-logo.light-content { display: none !important; }
+@media (min-width: 992px) {
+  .sidebar-header .sidebar-logo.dark-content { display: inline !important; }
+}

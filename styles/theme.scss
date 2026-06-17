@@ -1,0 +1,558 @@
+/*-- scss:defaults --*/
+
+// Mode-independent defaults. The palette lives in styles/light.scss and
+// styles/dark.scss as --ssm-* custom properties; these rules consume those
+// tokens, so this block skins both light and dark.
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$headings-font-weight: 600;
+
+/*-- scss:rules --*/
+
+// navbar brand: logo then book name, white, no hover recolour
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus,
+.navbar .navbar-brand .navbar-title,
+.navbar .navbar-brand:hover .navbar-title,
+.navbar .navbar-brand:focus .navbar-title {
+  color: #ffffff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+.navbar .navbar-brand .navbar-logo {
+  max-height: 30px;
+  width: auto;
+  margin-right: 0.6rem;
+}
+// the blue banner name is a label, not a link
+.navbar .navbar-brand { pointer-events: none; cursor: default; }
+// navbar tools (GitHub icon): white at rest, a softer white on hover/focus
+.navbar .nav-link,
+.navbar .quarto-navigation-tool { color: #ffffff !important; }
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .quarto-navigation-tool:hover,
+.navbar .quarto-navigation-tool:focus { color: rgba(255, 255, 255, 0.75) !important; }
+
+// banner follows the mode's orange; overrides the flat #e37c47 from _quarto.yml
+.navbar { background-color: var(--ssm-orange) !important; }
+
+// neutralise headroom.js, which slides the header out of view on scroll-down,
+// so the banner stays anchored at the top in both scroll directions
+#quarto-header.headroom { transition: none !important; }
+#quarto-header.headroom--unpinned,
+#quarto-header.headroom--pinned { transform: none !important; }
+
+// breadcrumb pulled into the banner after the brand (relocated by
+// _navbar-breadcrumb.html), white on the orange
+.navbar .navbar-brand-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  column-gap: 0.5rem;
+}
+.navbar .ssm-navbar-breadcrumbs { min-width: 0; }     // allow the trail to shrink
+.navbar .ssm-navbar-breadcrumbs .breadcrumb {
+  --bs-breadcrumb-divider-color: #ffffff;             // the ">" separators in white
+  margin: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 1.0rem;
+  font-weight: 600;
+}
+// brand has no trailing divider, so add the leading ">" before the first crumb
+.navbar .ssm-navbar-breadcrumbs .breadcrumb-item:first-child::before {
+  content: ">";
+  float: none;
+  color: #ffffff;
+  padding-right: 0.5rem;
+}
+// crumb links white at rest, underline on hover; beats Quarto's grey last-crumb rule
+.navbar .ssm-navbar-breadcrumbs .breadcrumb-item a,
+.navbar .ssm-navbar-breadcrumbs .breadcrumb li:last-of-type a {
+  color: #ffffff !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.navbar .ssm-navbar-breadcrumbs .breadcrumb-item a:hover,
+.navbar .ssm-navbar-breadcrumbs .breadcrumb li:last-of-type a:hover { color: #ffffff !important; text-decoration: underline; }
+
+// titles / headings in the cover blue-grey (var(--ssm-blue))
+main h1, h1.title,
+main h2,
+main h3, main h4       { color: var(--ssm-blue); }
+.header-section-number { color: var(--ssm-blue); }
+
+// links in the same blue-grey
+a        { color: var(--ssm-blue); }
+a:hover  { color: var(--ssm-blue-hover); }
+
+// inline code in prose: near-black navy text on a grey pill (tokens per mode in
+// light.scss / dark.scss). The chip stays light in both modes so the dark text
+// reads; .cell-output code overrides this in dark.scss.
+code:not(.sourceCode) {
+  color: var(--ssm-code-text);
+  background-color: var(--ssm-code-bg);
+  border: 1px solid var(--ssm-code-border);
+  border-radius: 0.25rem;
+}
+
+// inline citations: blue-grey at rest, orange on hover. doc-biblioref is the
+// role Pandoc gives the in-text citation link; .citation wraps it.
+.citation a,
+a[role="doc-biblioref"]        { color: var(--ssm-blue); text-decoration: none; }
+.citation a:hover,
+.citation a:focus,
+a[role="doc-biblioref"]:hover,
+a[role="doc-biblioref"]:focus  { color: var(--ssm-orange); text-decoration: none; }
+
+// active sidebar item picks up the orange accent
+.sidebar-item-text.active,
+.sidebar-item .active { color: var(--ssm-orange) !important; font-weight: 600; }
+
+// right-hand page TOC active entry: orange and bold, overriding Quarto's
+// blue-grey. Selectors mirror Quarto's own, so !important beats its rule.
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active,
+#TOC .nav-link.active {
+  color: var(--ssm-orange) !important;
+  border-left-color: var(--ssm-orange) !important;
+  font-weight: 700;
+}
+// hover within the page TOC also picks up the orange accent
+.sidebar nav[role="doc-toc"] ul > li > a:hover,
+#TOC .nav-link:hover { color: var(--ssm-orange) !important; }
+
+// keep wide display equations inside the text column. The Pandoc .math.display
+// wrapper is an inline span, so overflow is ignored unless it is made a block;
+// cap the MathJax container to the column width so long equations scroll.
+.math.display {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+mjx-container[display="true"] { max-width: 100%; }
+
+// a little more line height for math-heavy prose
+main p { line-height: 1.7; }
+
+// chapter landing-page outline: no bullets or underlines, orange left rule
+.chapter-outline > ul {
+  list-style: none !important;
+  margin: 0.75rem 0 0 0;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--ssm-orange) !important;   // the orange vertical line
+}
+.chapter-outline ul ul {
+  list-style: none !important;
+  margin: 0.2rem 0;
+  padding-left: 1.4rem;                         // indent subsections
+  border-left: none;
+}
+.chapter-outline li { margin: 0.3rem 0; }
+.chapter-outline a { text-decoration: none !important; color: var(--ssm-blue); }
+.chapter-outline a:hover { color: var(--ssm-orange); text-decoration: none !important; }
+.chapter-outline > ul > li > a { font-size: 1.15rem; font-weight: 600; }   // sections (2.1) larger
+.chapter-outline ul ul a { font-size: 0.95rem; font-weight: 400; }         // subsections smaller
+
+// bottom prev/next navigation, styled as a bar like the header
+.page-navigation {
+  display: flex;
+  margin-top: 3rem;
+  background: var(--ssm-orange);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.page-navigation .nav-page { flex: 1 1 0; }
+.page-navigation .nav-page-next { text-align: right; }
+.page-navigation .nav-page a {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+.page-navigation .nav-page a:hover { color: #ffffff !important; text-decoration: underline !important; }
+
+// page footer: light full-width bar at the bottom of every page
+.nav-footer {
+  background: var(--ssm-footer-bg);
+  border-top: 1px solid var(--ssm-footer-border);
+  color: var(--ssm-muted);
+  font-size: 0.9rem;
+}
+.nav-footer a { color: var(--ssm-blue); text-decoration: none; }
+.nav-footer a:hover { color: var(--ssm-orange); text-decoration: underline; }
+
+// home / landing page: centred, grey-framed cover + title block
+.ssm-landing {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0.5rem 0 3rem;
+  color: var(--ssm-body);
+  text-align: center;
+}
+
+// hero: grey-boxed cover + title/subtitle/buttons, centred as a group
+.ssm-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.ssm-cover-frame {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: var(--ssm-surface);                       // the grey box
+  border: 1px solid var(--ssm-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(48, 48, 48, 0.10);
+}
+.ssm-cover-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 1px 6px rgba(48, 48, 48, 0.18);
+}
+
+.ssm-hero-text { flex: 0 1 460px; min-width: 280px; text-align: center; }
+
+// title
+.ssm-title {
+  color: var(--ssm-orange) !important;
+  font-size: clamp(2.3rem, 5vw, 3.3rem);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6rem;
+  text-align: center;
+}
+// subtitle
+.ssm-subtitle {
+  color: var(--ssm-blue);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+  text-align: center;
+}
+.ssm-edition { color: var(--ssm-muted); font-size: 0.95rem; margin: 0 0 1.5rem; }
+
+// action buttons
+.ssm-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+.ssm-btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none !important;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.ssm-btn-primary { background: var(--ssm-orange); color: #ffffff !important; border-color: var(--ssm-orange); }
+.ssm-btn-primary:hover,
+.ssm-btn-primary:focus { background: var(--ssm-orange-hover); border-color: var(--ssm-orange-hover); color: #ffffff !important; }
+.ssm-btn-ghost { background: transparent; color: var(--ssm-blue) !important; border-color: var(--ssm-blue); }
+.ssm-btn-ghost:hover,
+.ssm-btn-ghost:focus { background: var(--ssm-blue); color: #ffffff !important; border-color: var(--ssm-blue); }
+
+// full-width sections below the hero, separated by whitespace not divider rules
+.ssm-section { margin-top: 3.5rem; padding-top: 0; }
+.ssm-section-heading { color: var(--ssm-blue); font-size: 1.55rem; font-weight: 600; margin: 0 0 1.1rem; text-align: center; }
+// !important beats the global main h2 { color: var(--ssm-blue) }
+.ssm-section-heading-orange { color: var(--ssm-orange) !important; }
+
+// changelog, "What's new" style: orange bracketed date + orange left rule
+.ssm-changelog { list-style: none; margin: 0; padding: 0; }
+.ssm-changelog-item {
+  margin: 0 0 1rem;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 3px solid var(--ssm-orange);
+  line-height: 1.6;
+}
+.ssm-changelog-item:last-child { margin-bottom: 0; }
+.ssm-changelog-date { color: var(--ssm-orange); font-weight: 700; margin-right: 0.4rem; white-space: nowrap; }
+.ssm-changelog-body { color: var(--ssm-body); }
+
+// authors: stacked card, round photo over blue name over affiliation
+.ssm-authors { display: flex; flex-wrap: wrap; gap: 2.75rem; justify-content: center; }
+.ssm-author { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.7rem; }
+.ssm-author-photo-link { display: inline-block; border-radius: 50%; line-height: 0; }
+.ssm-author-photo {
+  display: block;
+  width: 108px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+  box-shadow: none;
+  transition: box-shadow .15s ease;
+}
+.ssm-author-photo-link:hover .ssm-author-photo,
+.ssm-author-photo-link:focus-visible .ssm-author-photo {
+  box-shadow: 0 0 0 3px rgba(227, 124, 71, 0.22);   // orange ring on hover only
+}
+.ssm-author-meta { display: flex; flex-direction: column; align-items: center; }
+// author name: blue, underline on hover, no colour change
+.ssm-author-name {
+  color: var(--ssm-blue) !important;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.ssm-author-name:hover,
+.ssm-author-name:focus { color: var(--ssm-blue) !important; text-decoration: underline !important; }
+.ssm-author-affiliation { color: var(--ssm-muted); font-size: 0.95rem; margin-top: 0.1rem; }
+
+// one shared keyboard focus ring
+.ssm-landing a:focus-visible { outline: 3px solid rgba(227, 124, 71, 0.45); outline-offset: 2px; border-radius: 4px; }
+
+// Authors section anchored in the centre
+.ssm-authors-section .ssm-section-heading { text-align: center; }
+.ssm-authors-section .ssm-authors { justify-content: center; }
+
+// changelog: centred heading, full-width left-aligned entry list
+.ssm-changelog-section .ssm-section-heading { text-align: center; }
+.ssm-changelog-section .ssm-changelog { max-width: none; margin: 0; text-align: left; }
+
+// responsive: stack and centre on narrow screens
+@media (max-width: 800px) {
+  .ssm-hero { flex-direction: column; align-items: center; text-align: center; gap: 1.75rem; }
+  .ssm-hero-text { flex-basis: auto; }
+  .ssm-actions { justify-content: center; }
+  .ssm-author { justify-content: center; }
+}
+
+// two-zone header (desktop >=992px only; mobile keeps the collapsed navbar):
+// brand box in the white top-left corner, orange banner from the sidebar edge
+// rightward carrying the name in blue.
+$ssm-sidebar-w: 300px;
+$ssm-header-h: 3.9rem;   // shared height of the orange banner and the brand box
+
+// Match Quarto's lg breakpoint (992px), where both the docked sidebar and the
+// expanding navbar switch on. Gating at 1200px left a 992-1199px dead zone where
+// the sidebar was docked but this CSS was off, so the banner reverted to full
+// width and dropped the sidebar beneath it.
+@media (min-width: 992px) {
+  // pin the docked sidebar to a constant width so the brand box and the offset
+  // banner align to a single vertical line
+  #quarto-sidebar.docked {
+    width: $ssm-sidebar-w !important;
+    min-width: $ssm-sidebar-w !important;
+    max-width: $ssm-sidebar-w !important;
+    border-right: none !important;     // the banner edge is the divider
+  }
+  // banner begins at the sidebar's right edge, forced to the same height as the
+  // brand box so its lower edge lands on the divider beneath the wordmark
+  #quarto-header.fixed-top { left: $ssm-sidebar-w; }
+  #quarto-header.fixed-top,
+  #quarto-header.fixed-top .navbar {
+    height: $ssm-header-h !important;
+    min-height: $ssm-header-h !important;
+  }
+
+  // pin the brand box into the top-left corner, sidebar width, banner height.
+  // margin forced to 0: Quarto's 8.5px top margin otherwise pushes the box and
+  // its divider below the banner's bottom edge.
+  #quarto-sidebar .sidebar-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: $ssm-sidebar-w !important;
+    height: $ssm-header-h !important;
+    min-height: $ssm-header-h !important;
+    margin: 0 !important;
+    padding: 0 0 0 1em !important;
+    display: flex;
+    align-items: center;
+    background: var(--ssm-bg);
+    border-bottom: 1px solid var(--ssm-border);   // the underline, level with the orange
+    z-index: 1031;                       // above the fixed banner
+  }
+
+  // landing (full layout): Quarto's column-page-right cell stops short of the
+  // right edge, biasing content left. Span the whole grid and inset by the
+  // sidebar width so the centred .ssm-landing sits dead-centre of the visible zone.
+  .page-layout-full #quarto-document-content {
+    grid-column: 1 / -1 !important;
+    max-width: none !important;
+    padding-left: $ssm-sidebar-w !important;
+    padding-right: 0 !important;
+  }
+
+  // every other page: Quarto's default grid dumps all slack into one trailing
+  // column, so body + TOC hug the left. Rebuild the track list with a flexible
+  // gutter on both sides so the block sits centred in the zone right of the
+  // sidebar. Safe because chapters use no full-bleed .column-page content.
+  #quarto-content.page-columns:not(.page-layout-full) {
+    grid-template-columns:
+      [screen-start screen-start-inset page-start page-start-inset body-start-outset] #{$ssm-sidebar-w}
+      [body-start] minmax(2em, 1fr)
+      [body-content-start] minmax(0, 860px)
+      [body-content-end] minmax(2.5em, 4em)
+      [body-end] minmax(0, 240px)
+      [body-end-outset page-end-inset page-end] minmax(2em, 1fr)
+      [screen-end-inset screen-end] !important;
+  }
+
+  // right-hand TOC: pin under the banner, sticky while scrolling. align-self:start
+  // lets position:sticky work inside the grid row; opaque so no content shows through.
+  #quarto-margin-sidebar {
+    position: sticky !important;
+    top: calc(#{$ssm-header-h} + 1rem);
+    align-self: start;
+    max-height: calc(100vh - #{$ssm-header-h} - 2rem);
+    overflow-y: auto;
+    background: var(--ssm-bg);
+    z-index: 1;
+  }
+
+  // footer: full-bleed bar below the sidebar, so its centred line is symmetric
+  // on the full page rather than inset past the sidebar
+  .nav-footer {
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    max-width: none !important;
+    height: $ssm-header-h !important;          // same height as the top header
+    min-height: $ssm-header-h !important;
+    padding: 0 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;            // vertically centre the line
+  }
+
+  // prev/next bar: stretch from the sidebar edge to the page edge (Quarto's
+  // default cell stops short of the right edge)
+  .page-navigation {
+    grid-column: 1 / -1 !important;
+    margin-left: #{$ssm-sidebar-w} !important;
+  }
+}
+
+// brand contents: orange icon + orange "State Space Models" wordmark
+.sidebar-header .sidebar-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none !important;
+}
+.sidebar-header .sidebar-logo { max-height: 34px; width: auto; margin: 0; }
+// Quarto emits light- and dark-content copies of the brand icon; each mode hides
+// the variant it does not use (light.scss, dark.scss). Hiding dark-content here
+// unconditionally blanked the icon in dark mode.
+.sidebar-header .sidebar-logo-link::after {
+  content: "State Space Models";
+  color: var(--ssm-orange);
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+// landing table of contents: full-width, left-aligned, orange left rules
+.ssm-toc { max-width: none; margin: 0; text-align: left; }
+.ssm-toc a { color: var(--ssm-blue); text-decoration: none; }
+.ssm-toc a:hover { color: var(--ssm-orange); text-decoration: underline; }
+.ssm-toc-num { color: var(--ssm-orange); font-weight: 700; display: inline-block; min-width: 2.4rem; }
+
+.ssm-toc-front,
+.ssm-toc-back { list-style: none; padding: 0; margin: 0; }
+// front matter: its own list above the chapters, with the same orange left rule
+.ssm-toc-front {
+  margin: 0 0 1.4rem;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--ssm-orange);
+}
+.ssm-toc-front li { margin: 0.45rem 0; }
+.ssm-toc-front a { font-size: 1.1rem; font-weight: 600; }
+
+.ssm-toc-chapters { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--ssm-orange); }
+.ssm-toc-ch { padding-left: 1.1rem; margin: 0.7rem 0; }
+.ssm-toc-ch > a { font-size: 1.1rem; font-weight: 600; }
+.ssm-toc-sec { list-style: none; padding-left: 0; margin: 0.35rem 0 0.7rem; }
+.ssm-toc-sec li { margin: 0.25rem 0; }
+.ssm-toc-sec a { font-size: 0.95rem; }
+.ssm-toc-part { list-style: none; margin: 1.2rem 0 0.5rem; padding-left: 1.1rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ssm-toc-part); }
+
+.ssm-toc-back {
+  margin-top: 1.4rem;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--ssm-orange);
+}
+.ssm-toc-back a { font-size: 1.1rem; font-weight: 600; }
+
+// executed code cells: set output apart from source. Quarto wraps source in
+// div.sourceCode and printed output in .cell-output, which is otherwise visually
+// indistinct from prose. Box the output, tuck it beneath its source, tag it.
+.cell { margin: 1.15rem 0; }
+
+// pull the printed result up against the source block it came from
+.cell > div.sourceCode { margin-bottom: 0; }
+
+.cell-output {
+  margin: 0;
+  background: var(--ssm-output-bg);                 // light blue-grey wash
+  border: 1px solid var(--ssm-output-border);
+  border-left: 3px solid var(--ssm-output-spine);      // muted blue-grey spine = "this is output"
+  border-radius: 0 0 6px 6px;
+  overflow-x: auto;
+}
+// the small uppercase tag that names the block
+.cell-output::before {
+  content: "Output";
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ssm-output-tag);
+  padding: 0.4rem 0.9rem 0;
+}
+.cell-output > pre,
+.cell-output pre {
+  margin: 0;
+  padding: 0.4rem 0.9rem 0.7rem;
+  background: none !important;
+  border: none !important;
+  font-family: SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ssm-body);
+  white-space: pre;                    // keep aligned columns; scroll if wide
+}
+// rich (image / HTML) cell output: no wash or tag, just the artefact
+.cell-output-display { background: none; border: none; }
+.cell-output-display::before { content: none; }
+
+// landing BibTeX block, centred
+.ssm-bibtex {
+  background: var(--ssm-surface);
+  border: 1px solid var(--ssm-border);
+  border-left: 3px solid var(--ssm-orange);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 0 auto;
+  max-width: 640px;
+  text-align: left;
+  overflow-x: auto;
+}
+.ssm-bibtex code {
+  font-family: SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ssm-body);
+  background: none;
+  padding: 0;
+  white-space: pre;
+}

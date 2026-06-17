@@ -1,0 +1,265 @@
+# Notation {.unnumbered}
+
+A single state space model can be read as a differential equation, a recurrence, a convolution kernel, or a transfer function. The same variables are kept across these views. The matrices $A,B,C$ define the continuous-time model, barred symbols denote discretised matrices, $N$ counts state coordinates, $L$ counts sequence positions, and $\dmodel$ counts representation width.
+
+## Scalars, vectors, and matrices
+
+Lowercase letters usually denote scalars or vectors. Uppercase letters usually denote matrices or sequence tensors. Greek letters are used for eigenvalues, step sizes, and scalar parameters.
+
+| Symbol | Meaning | Typical type |
+|---|---|---|
+| $a, b, c$ | scalar parameters in one-dimensional examples | $\R$ or $\C$ |
+| $u, x, y$ | input, state, and output variables | scalar or vector |
+| $A, B, C$ | state space matrices | matrices |
+| $I$ | identity matrix | size determined by context |
+| $\lambda$ | continuous-time eigenvalue | $\C$ |
+| $\mu$ | discrete-time eigenvalue | $\C$ |
+| $\Delta$ | step size | $\R_{>0}$ |
+
+Products are matrix products unless stated otherwise. Elementwise (Hadamard) products are written with $\odot$.
+
+## Dimensions
+
+Several dimensions vary independently. The state dimension $N$ controls the number of coordinates carried by one state space model. The sequence length $L$ controls how many positions are processed. The model dimension $\dmodel$ controls the width of a neural representation. Keeping these dimensions separate avoids identifying memory size with sequence length or representation width.
+
+| Symbol | Meaning | Example |
+|---|---|---|
+| $N$ | state dimension | $x(t)\in\R^N$ |
+| $L$ | sequence length | $u_0,\dots,u_{L-1}$ |
+| $\dmodel$ | model dimension of a neural sequence representation | $X\in\R^{\Bbatch\times L\times \dmodel}$ |
+| $\Bbatch$ | batch size | $\Bbatch$ sequences in a minibatch |
+| $p$ | number of input coordinates to a state space model | $u(t)\in\R^p$ |
+| $q$ | number of output coordinates from a state space model | $y(t)\in\R^q$ |
+| $n_{\mathrm{heads}}$ | number of heads, when a model is split into heads | architecture-dependent |
+
+The letter $D$ is not used for the model dimension. In classical state space notation, $D$ often denotes a direct input-to-output term,
+
+$$
+y(t)=Cx(t)+Du(t).
+$$
+
+Direct input-to-output terms are named explicitly. The model dimension is written as $\dmodel$.
+
+## Continuous-time state space notation
+
+The basic continuous-time state space model is
+
+$$
+x'(t)=Ax(t)+Bu(t),
+\qquad
+y(t)=Cx(t).
+$$
+
+The function $u(t)$ is the input, $x(t)$ is the state, and $y(t)$ is the output. The matrix $A$ controls the internal evolution of the state. The matrix $B$ controls how the input enters the state. The matrix $C$ controls how the output is read from the state.
+
+In the single-input single-output case,
+
+$$
+u(t)\in\R,
+\qquad
+x(t)\in\R^N,
+\qquad
+y(t)\in\R,
+$$
+
+and
+
+$$
+A\in\R^{N\times N},
+\qquad
+B\in\R^{N\times 1},
+\qquad
+C\in\R^{1\times N}.
+$$
+
+In the multi-input multi-output case,
+
+$$
+u(t)\in\R^p,
+\qquad
+x(t)\in\R^N,
+\qquad
+y(t)\in\R^q,
+$$
+
+and
+
+$$
+A\in\R^{N\times N},
+\qquad
+B\in\R^{N\times p},
+\qquad
+C\in\R^{q\times N}.
+$$
+
+The continuous-time impulse response is
+
+$$
+h(\tau)=Ce^{A\tau}B,
+\qquad
+\tau\ge 0.
+$$
+
+When causality needs to be written explicitly, $h(\tau)=0$ for $\tau<0$.
+
+## Discrete-time state space notation
+
+Discrete sequence positions are indexed from zero,
+
+$$
+k=0,1,\dots,L-1.
+$$
+
+The sampled input sequence is
+
+$$
+u_0,u_1,\dots,u_{L-1}.
+$$
+
+Discretised state and input matrices are marked with bars,
+
+$$
+\bar A,
+\qquad
+\bar B.
+$$
+
+The output matrix is usually unchanged and is still written as $C$.
+
+The basic discrete recurrence is
+
+$$
+x_{k+1}=\bar A x_k+\bar B u_k,
+\qquad
+x_0=0.
+$$
+
+Unless stated otherwise, the discrete output is read after the state update,
+
+$$
+y_k=Cx_{k+1}.
+$$
+
+With this convention, the current input contributes through the first kernel coefficient,
+
+$$
+\bar K_0=C\bar B.
+$$
+
+The alternative convention $y_k=Cx_k$ reads the output before the update; it shifts every kernel coefficient by one position and gives $\bar K_0=0$.
+
+The discrete kernel is
+
+$$
+\bar K_m=C\bar A^m\bar B,
+\qquad
+m\ge 0.
+$$
+
+The output can then be written as the causal convolution
+
+$$
+y_k=\sum_{m=0}^k \bar K_m u_{k-m}.
+$$
+
+The lag $m$ is the number of discrete steps between an input and the output it affects.
+
+## Transfer functions and generating functions
+
+The continuous-time transfer function is written as
+
+$$
+H(s)=C(sI-A)^{-1}B.
+$$
+
+The discrete generating function of the kernel is written as
+
+$$
+G(z)=\sum_{m=0}^{\infty}\bar K_m z^m
+= C(I-z\bar A)^{-1}\bar B,
+$$
+
+inside the region where the series is valid.
+
+The inverse
+
+$$
+(I-z\bar A)^{-1}
+$$
+
+is a resolvent. It summarises the whole sequence of powers
+
+$$
+I,\bar A,\bar A^2,\dots
+$$
+
+in a single matrix-valued function.
+
+## Sequences and tensors
+
+A single length-$L$ sequence of $\dmodel$-dimensional representations is usually written as
+
+$$
+X\in\R^{L\times \dmodel}.
+$$
+
+A batch of such sequences is written as
+
+$$
+X\in\R^{\Bbatch\times L\times \dmodel}.
+$$
+
+When a layer operates independently on coordinates of the model dimension, one coordinate may be denoted by $d$. In a batched tensor,
+
+$$
+X_{:,k,d}
+$$
+
+denotes coordinate $d$ at sequence position $k$, for all sequences in the batch.
+
+Tensor shapes are stated locally when the ordering of dimensions matters.
+
+## Real and complex quantities
+
+The basic fixed state space matrices are real unless stated otherwise. Complex eigenvalues may still appear when analysing real matrices. For a real matrix, nonreal eigenvalues occur in conjugate pairs, and their combined contribution to the real state is real.
+
+For a complex number $z=\alpha+i\beta$ with $\alpha,\beta\in\R$, the real part is written $\operatorname{Re} z=\alpha$ and the imaginary part is written $\operatorname{Im} z=\beta$. The same notation applies entrywise to complex vectors and matrices.
+
+For a continuous-time eigenvalue $\lambda$, the sign of $\operatorname{Re}\lambda$ governs growth or decay, while $\operatorname{Im}\lambda$ sets the oscillation frequency. For a discrete-time eigenvalue $\mu$, the magnitude $|\mu|$ governs growth or decay, while its argument sets the oscillation frequency.
+
+Complex-valued state parameters are used only when the model is explicitly stated to be complex-valued.
+
+## Background and further reading {#background-and-further-reading}
+
+The notation rests on standard tools from deep learning, linear algebra, differential equations, signals, systems, and scientific computing. The following free references are useful for repairing gaps in that background; they are not a second set of definitions.
+
+**Deep learning**
+
+- [*Dive into Deep Learning*](https://d2l.ai) — Zhang, Lipton, Li, and Smola. An interactive textbook with runnable code, covering layers, parameters, optimisation, and training.
+- [*Understanding Deep Learning*](https://udlbook.github.io/udlbook/) — Simon J. D. Prince. A mathematical treatment, free to download.
+- [*Deep Learning*](https://www.deeplearningbook.org/) — Goodfellow, Bengio, and Courville. A standard reference for the foundations.
+- [*Neural Networks: Zero to Hero*](https://karpathy.ai/zero-to-hero.html) — Andrej Karpathy. A video course that builds networks, including a small language model, from scratch.
+- [Stanford CS224n](https://web.stanford.edu/class/cs224n/) — course materials on sequence models and attention, the family the state space layer is set beside.
+
+**Mathematical background**
+
+- [*Mathematics for Machine Learning*](https://mml-book.github.io/) — Deisenroth, Faisal, and Ong. Linear algebra, calculus, and probability in one place, oriented towards machine learning.
+- [*Linear Algebra*](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/) — Gilbert Strang, MIT OpenCourseWare. Eigenvalues, diagonalisation, and the matrix operations used throughout.
+- [*Essence of Linear Algebra*](https://www.3blue1brown.com/topics/linear-algebra) — 3Blue1Brown. A short video series for geometric intuition.
+- [*Introduction to Applied Linear Algebra*](https://web.stanford.edu/~boyd/vmls/) — Boyd and Vandenberghe. Free PDF, with an applied orientation.
+- [*Differential Equations*](https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/) — Haynes Miller and Arthur Mattuck, MIT OpenCourseWare. The continuous-time model is a linear differential equation.
+
+**Signals, systems, and control**
+
+- [*Signals and Systems*](https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/) — Dennis Freeman, MIT OpenCourseWare. Convolution, sampling, the Fourier and z-transforms, and discretisation rules.
+- [Steve Brunton's lectures](https://www.youtube.com/@Eigensteve) — state-space models, control, and the Fourier transform for engineers and scientists.
+- [*The Scientist and Engineer's Guide to Digital Signal Processing*](https://www.dspguide.com/) — Steven W. Smith. A free, readable reference for convolution and the discrete Fourier transform.
+
+**Scientific computing in Python**
+
+- The official [NumPy](https://numpy.org/doc/stable/), [PyTorch](https://pytorch.org/tutorials/), and [JAX](https://docs.jax.dev/) documentation. The examples use all three libraries.
+
+**State space models**
+
+- [*The Annotated S4*](https://srush.github.io/annotated-s4/) — Sasha Rush and Sidd Karamcheti. A code-first walkthrough of S4.
+- [*Modeling Sequences with Structured State Spaces*](https://purl.stanford.edu/mb976vf9362) — Albert Gu. The PhD thesis in which much of this material was developed.

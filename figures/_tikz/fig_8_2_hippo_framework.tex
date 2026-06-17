@@ -1,0 +1,54 @@
+% Figure 8.2: the HiPPO pipeline. For chapters/03-s4/07-hippo.qmd, section 8.6.
+% Reuses fig72_history.png and fig72_coeffs.png; run fig_7_2_projection.py first.
+% PNG not PDF: dvisvgm drops an embedded PDF XObject but keeps a raster image.
+\documentclass[border=10pt]{standalone}
+\input{ssmtikz.tex}
+\usepackage{graphicx}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm,
+  stage/.style={rounded corners=5pt, draw=ssmbluedark, fill=ssmblue!8, line width=1.2pt},
+  ttl/.style={text=ssmgrey, font=\footnotesize\sffamily},
+  lab/.style={text=ink, font=\small\sffamily},
+  sub/.style={text=ssmgrey, font=\footnotesize\sffamily},
+  flow/.style={->, ssmgrey, line width=1.3pt, line cap=round},
+  flab/.style={text=ssmbluedark, font=\small\sffamily},
+]
+  % stage boxes (clockwise from top-left)
+  \draw[stage] (-2.1, 1.6) rectangle (2.1, 3.8);     % H  history
+  \draw[stage] ( 5.5, 1.6) rectangle (9.7, 3.8);     % C  coefficients
+  \draw[stage] ( 5.5,-2.2) rectangle (9.7, 0.0);     % O  continuous ODE
+  \draw[stage] (-2.1,-2.2) rectangle (2.1, 0.0);     % R  discrete recurrence
+
+  % titles
+  \node[ttl] at (0,   3.45) {history};
+  \node[ttl] at (7.6, 3.45) {coefficients};
+  \node[ttl] at (7.6,-0.35) {continuous-time ODE};
+  \node[ttl] at (0,  -0.35) {discrete recurrence};
+
+  % history curve reused from figure 7.2
+  \node at (0,2.66) {\includegraphics[width=3.0cm]{fig72_history.png}};
+  \node[lab] at (0,1.98) {$u(t)$ on $[0,t]$};
+
+  % coefficient bars reused from figure 7.2
+  \node at (7.6,2.66) {\includegraphics[width=2.3cm]{fig72_coeffs.png}};
+  \node[lab] at (7.6,1.98) {$c(t)\in\mathbb{R}^{N}$};
+
+  % equations
+  \node[lab] at (7.6,-1.12) {$c'(t)=A(t)\,c(t)+B(t)\,u(t)$};
+  \node[sub] at (7.6,-1.74) {$A_{\text{HiPPO}}=-H_N$};
+
+  \node[lab] at (0,-1.10) {$c_{k+1}=\bar{A}\,c_k+\bar{B}\,u_k$};
+  \node[sub] at (0,-1.72) {$c_k=c(t_k)$};
+
+  % flow arrows and operation labels
+  \draw[flow] (2.25, 2.7) -- (5.35, 2.7);            % H -> C
+  \node[flab] at (3.8, 3.05) {project onto basis};
+
+  \draw[flow] (7.6, 1.45) -- (7.6, 0.15);            % C -> O
+  \node[flab, anchor=west] at (7.82, 0.80) {differentiate};
+
+  \draw[flow] (5.35,-1.1) -- (2.25,-1.1);            % O -> R
+  \node[flab] at (3.8,-1.45) {discretise};
+\end{tikzpicture}
+\end{document}

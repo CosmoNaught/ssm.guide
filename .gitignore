@@ -1,0 +1,50 @@
+# Quarto build output
+/_book/
+/.quarto/
+
+# Stray per-file renders (proper output is _book/; bare `quarto render foo.qmd`
+# leaks foo.html / foo_files/ next to the source — keep them out of the tree)
+/chapters/**/*.html
+/chapters/**/*_files/
+
+/chapters.zip
+
+*.log
+.quarto-preview.err
+
+# Claude Code tooling for formatting
+/.claude/
+
+# Author-only notes
+/notes/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+
+# IPython runtime scratch (not the JAX startup profile)
+/.ipython/profile_default/history.sqlite
+/.ipython/profile_default/log/
+
+# Figure QA previews
+/figures/qa/
+
+# Third-party reference figures (local only)
+/figures/refs/
+
+# TikZ build intermediates
+/figures/_tikz/build/
+/figures/_tikz/*.pdf
+/figures/_tikz/fig72_*.png
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+**/*.quarto_ipynb
+**/*.quarto_ipynb_*

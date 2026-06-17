@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ssm_book"
+version = "0.1.0"
+description = "Reference implementations for the State Space Models book (NumPy / PyTorch / JAX)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = ["numpy", "scipy"]
+
+[project.optional-dependencies]
+torch = ["torch"]
+jax = ["jax", "jaxlib"]
+test = ["pytest", "torch", "jax", "jaxlib"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

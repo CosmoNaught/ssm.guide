@@ -1,0 +1,32 @@
+# Preface {.unnumbered}
+
+Long sequences force a choice about memory. A sentence, a waveform, a stream of events, or a sequence of measurements may contain information whose effect appears many positions after it is observed. Keeping every past element preserves information but makes the representation grow with the sequence. Compressing the past keeps the computation bounded, but the compression must retain the quantities that future outputs can use.
+
+A state space model makes the compression explicit by construction. The input history is not stored as a growing list; it is folded into a finite-dimensional vector, the state. Each new input updates that vector, and future outputs can depend on the past only through the current state.
+
+$$\text{How can a finite-dimensional state carry useful information through a long sequence?}$$
+
+A linear time-invariant state space model gives several views of the same object. In continuous time it is a differential equation. After sampling it is a recurrence. After eliminating the state it is a convolution kernel. After taking a generating function it is a resolvent. Each view exposes a different obstruction: the state must mean something, the discretisation must preserve the intended timescale, the kernel must be generated cheaply, and fixed kernels cannot adapt their coefficients to the content of the current input.
+
+These obstructions lead to the structured state space sequence model, S4. A finite state is first given a memory interpretation through online polynomial projection. The resulting state matrix is dense, so it cannot be used directly to generate long kernels by repeated multiplication. Its normal-plus-low-rank structure makes the resolvent cheap enough to evaluate, and the kernel can then be recovered by Fourier methods. Diagonal state space models remove the low-rank correction and keep only the modal part of this construction.
+
+Selective models change a different assumption. A fixed linear time-invariant model applies the same kernel wherever a pattern occurs. If the state matrices are allowed to depend on the input being processed, the model is no longer a fixed convolution, but the recurrence can still retain enough algebraic structure to be computed efficiently. This is the route taken by Mamba and related selective state space architectures.
+
+## State space models in neural sequence layers
+
+The phrase *state space model* is used in several fields. In control theory, it often refers to dynamical systems written in terms of hidden state variables. In statistics, it often refers to probabilistic latent-state models, filtering, smoothing, and state estimation. In neural sequence modelling, it refers to the state update and readout used inside a layer.
+
+The relevant object is the state space model inside a neural sequence layer: the state equation, its discretisation, the recurrence, the convolution kernel, and the structured computations that apply them. The surrounding architecture may add projections, nonlinearities, gates, normalisation, residual paths, and attention blocks. Those architectural components matter when they change the state space computation; otherwise the mathematical object is the state update and readout.
+
+Classical control concepts enter when they clarify this object. Probabilistic filtering, Kalman smoothing, statistical system identification, and stochastic latent-variable modelling are separate subjects.
+
+## Fixed and selective dynamics
+
+With fixed dynamics, solving the continuous-time equation shows how an input at one time affects later outputs. Sampling the solution gives a recurrence. Unrolling the recurrence gives an equivalent convolution. The same model can then be read by its local update, by its lag weights, or by the matrix structure used to generate those weights.
+
+This fixed model then faces two linked requirements. Its state coordinates should summarise the past in a controlled way, and its state matrix should allow long kernels to be computed without repeated dense multiplication. One construction gives the coordinates meaning by projecting the history onto a basis that can be updated online. A separate algebraic problem remains: the matrix produced by that memory construction is dense, so efficient kernel generation depends on finding hidden structure in its resolvent. A diagonal model is the limiting case in which only independent modes are kept.
+
+Input-dependent dynamics relax the time-invariance assumption. The coefficient at a given lag need not be the same at every position, because the current token can influence the update rule. The recurrence remains the carrier of memory, but the fixed convolution view gives way to structured scans and products of position-dependent updates.
+
+
+The central object throughout is the finite-dimensional state: what it stores, how it evolves, how it is read, and which algebraic structures make that evolution useful on long sequences.

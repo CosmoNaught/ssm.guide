@@ -1,0 +1,83 @@
+% Figure 2.1: the state as a fixed-size bottleneck. A token sequence is processed
+% left to right; the oldest cell drops out once the state box is full.
+% For chapters/02-foundations/01-state-as-memory.qmd
+\documentclass[border=10pt]{standalone}
+\input{ssmtikz.tex}
+
+% per-token hues from the book's categorical palette, one colour per token reused
+% wherever it appears. "Hello" (orange) is first to drop out, freeing the orange
+% accent for the final prediction.
+\definecolor{tokA}{HTML}{E37C47}   % Hello -> orange
+\definecolor{tokB}{HTML}{4A5C79}   % !     -> blue
+\definecolor{tokC}{HTML}{5E9C6E}   % My    -> green
+\definecolor{tokD}{HTML}{8E78A8}   % name  -> plum
+\definecolor{tokE}{HTML}{D6849A}   % is    -> rose
+
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \def\sp{3.0}                          % column (time-step) spacing
+  \tikzset{
+    flow/.style={->, ssmgrey, line width=1.0pt, line cap=round,
+                 shorten >=1pt, shorten <=1pt},
+    hstate/.style={rounded corners=4pt, draw=ssmbluedark, fill=ssmblue!12,
+                   line width=1.3pt},
+  }
+
+  % a fixed-size state box centred at (#1,0) holding the comma list of cell
+  % colours #2 (left-aligned, order = oldest .. newest).
+  \newcommand{\statebox}[2]{%
+    \draw[hstate] (#1-1.0,-0.36) rectangle (#1+1.0,0.36);
+    \foreach \cc [count=\i from 0] in {#2}
+      \fill[\cc] (#1-0.86+\i*0.40,-0.16) rectangle ++(0.32,0.32);
+  }
+  % a light token box: tint fill + coloured rule + ink text, centred at (#1,#2).
+  \newcommand{\tokbox}[4]{% #1 x  #2 y  #3 colour  #4 text
+    \node[rounded corners=3pt, draw=#3, fill=#3!20, line width=1pt, text=ink,
+          minimum width=15mm, minimum height=7mm, font=\small\sffamily]
+         at (#1,#2) {#4};
+  }
+
+  % the five fixed-size state boxes
+  \statebox{0}{tokA}
+  \statebox{\sp}{tokA,tokB}
+  \statebox{2*\sp}{tokA,tokB,tokC}
+  \statebox{3*\sp}{tokA,tokB,tokC,tokD}
+  \statebox{4*\sp}{tokB,tokC,tokD,tokE}   % box full: the oldest cell drops out
+
+  % state-to-state flow
+  \foreach \i in {0,1,2,3}
+    \draw[flow] ({\i*\sp+1.0},0) -- ({(\i+1)*\sp-1.0},0);
+
+  % input tokens below, each with an arrow up into the state
+  \def\yin{-2.05}
+  \tokbox{0}{\yin}{tokA}{Hello}
+  \tokbox{\sp}{\yin}{tokB}{!}
+  \tokbox{2*\sp}{\yin}{tokC}{My}
+  \tokbox{3*\sp}{\yin}{tokD}{name}
+  \tokbox{4*\sp}{\yin}{tokE}{is}
+  \foreach \i in {0,1,2,3,4} {
+    \draw[flow] ({\i*\sp},\yin+0.35) -- ({\i*\sp},-0.42);
+    \node[ssmgrey, font=\scriptsize\sffamily] at ({\i*\sp},\yin-0.60)
+         {\the\numexpr\i+1\relax};
+  }
+
+  % predicted tokens above, read from the state
+  \def\yout{2.05}
+  \tokbox{0}{\yout}{tokB}{!}
+  \tokbox{\sp}{\yout}{tokC}{My}
+  \tokbox{2*\sp}{\yout}{tokD}{name}
+  \tokbox{3*\sp}{\yout}{tokE}{is}
+  % the final prediction, in the orange accent
+  \node[rounded corners=3pt, draw=ssmorangedark, fill=ssmorange, line width=1.2pt,
+        text=white, minimum width=15mm, minimum height=7mm, font=\small\sffamily]
+       at ({4*\sp},\yout) {Cosmo};
+  \foreach \i in {0,1,2,3,4}
+    \draw[flow] ({\i*\sp},0.42) -- ({\i*\sp},\yout-0.35);
+
+  % annotation: the state is a compressed view of the history
+  \node[ssmgrey, font=\footnotesize\sffamily, align=center] (cv) at (1.5,-1.08)
+       {compressed view\\(state $x_k\!\in\!\mathbb{R}^{N}$)};
+  \draw[->, ssmgrey, line width=0.8pt, shorten >=1pt] ([xshift=-7mm]cv.north) -- (0,-0.44);
+  \draw[->, ssmgrey, line width=0.8pt, shorten >=1pt] ([xshift=7mm]cv.north) -- (\sp,-0.44);
+\end{tikzpicture}
+\end{document}

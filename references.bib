@@ -1,0 +1,230 @@
+% Bibliography for the State Space Models book.
+% Metadata verified 2026-06 against arXiv, the official proceedings, and
+% publisher / DOI pages. Two groups:
+%   1. the model lineage cited in the released chapters (HiPPO -> S4 -> S4D);
+%   2. a small set of standard mathematical-background sources, cited from the
+%      per-chapter "Notes and references" sections rather than inline.
+% The Mamba / Mamba-2 / Mamba-3 entries are kept ready for the upcoming
+% chapters; they are not yet cited, so they do not appear on the References
+% page until those chapters are written.
+
+% ---------------------------------------------------------------------------
+% Model lineage
+% ---------------------------------------------------------------------------
+
+@inproceedings{gu2020hippo,
+  author        = {Gu, Albert and Dao, Tri and Ermon, Stefano and Rudra, Atri and R{\'e}, Christopher},
+  title         = {{HiPPO}: Recurrent Memory with Optimal Polynomial Projections},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume        = {33},
+  year          = {2020},
+  eprint        = {2008.07669},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{gu2021lssl,
+  author        = {Gu, Albert and Johnson, Isys and Goel, Karan and Saab, Khaled and Dao, Tri and Rudra, Atri and R{\'e}, Christopher},
+  title         = {Combining Recurrent, Convolutional, and Continuous-time Models with Linear State-Space Layers},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume        = {34},
+  pages         = {572--585},
+  year          = {2021},
+  eprint        = {2110.13985},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{gu2022s4,
+  author        = {Gu, Albert and Goel, Karan and R{\'e}, Christopher},
+  title         = {Efficiently Modeling Long Sequences with Structured State Spaces},
+  booktitle     = {International Conference on Learning Representations (ICLR)},
+  year          = {2022},
+  eprint        = {2111.00396},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{gupta2022dss,
+  author        = {Gupta, Ankit and Gu, Albert and Berant, Jonathan},
+  title         = {Diagonal State Spaces are as Effective as Structured State Spaces},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume        = {35},
+  year          = {2022},
+  eprint        = {2203.14343},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{gu2022s4d,
+  author        = {Gu, Albert and Gupta, Ankit and Goel, Karan and R{\'e}, Christopher},
+  title         = {On the Parameterization and Initialization of Diagonal State Space Models},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume        = {35},
+  year          = {2022},
+  eprint        = {2206.11893},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{smith2023s5,
+  author        = {Smith, Jimmy T.H. and Warrington, Andrew and Linderman, Scott W.},
+  title         = {Simplified State Space Layers for Sequence Modeling},
+  booktitle     = {International Conference on Learning Representations (ICLR)},
+  year          = {2023},
+  eprint        = {2208.04933},
+  archivePrefix = {arXiv}
+}
+
+% Kept for the upcoming Selective / Duality / Frontier chapters (not yet cited).
+@inproceedings{gu2023mamba,
+  author        = {Gu, Albert and Dao, Tri},
+  title         = {Mamba: Linear-Time Sequence Modeling with Selective State Spaces},
+  booktitle     = {Conference on Language Modeling (COLM)},
+  year          = {2024},
+  eprint        = {2312.00752},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{dao2024mamba2,
+  author        = {Dao, Tri and Gu, Albert},
+  title         = {Transformers are {SSMs}: Generalized Models and Efficient Algorithms Through Structured State Space Duality},
+  booktitle     = {International Conference on Machine Learning (ICML)},
+  series        = {PMLR},
+  volume        = {235},
+  pages         = {10041--10071},
+  year          = {2024},
+  eprint        = {2405.21060},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{mamba3,
+  author        = {Lahoti, Aakash and Li, Kevin Y. and Chen, Berlin and Wang, Caitlin and Bick, Aviv and Kolter, J. Zico and Dao, Tri and Gu, Albert},
+  title         = {Mamba-3: Improved Sequence Modeling using State Space Principles},
+  booktitle     = {International Conference on Learning Representations (ICLR)},
+  year          = {2026},
+  note          = {OpenReview HwCvaJOiCj}
+}
+
+% ---------------------------------------------------------------------------
+% Comparison: attention / Transformers
+% ---------------------------------------------------------------------------
+
+@inproceedings{vaswani2017attention,
+  author        = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  title         = {Attention Is All You Need},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume        = {30},
+  pages         = {5998--6008},
+  year          = {2017},
+  eprint        = {1706.03762},
+  archivePrefix = {arXiv}
+}
+
+% ---------------------------------------------------------------------------
+% Hybrid and bidirectional architectures (cited from Notes and references)
+% Metadata verified 2026-06 against arXiv, the NeurIPS proceedings, and the
+% NVIDIA technical report.
+% ---------------------------------------------------------------------------
+
+@misc{lieber2024jamba,
+  author        = {Lieber, Opher and Lenz, Barak and others},
+  title         = {Jamba: A Hybrid Transformer-Mamba Language Model},
+  year          = {2024},
+  eprint        = {2403.19887},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{hwang2024hydra,
+  author        = {Hwang, Sukjun and Lahoti, Aakash and Puduppully, Ratish and Dao, Tri and Gu, Albert},
+  title         = {Hydra: Bidirectional State Space Models Through Generalized Matrix Mixers},
+  booktitle     = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume        = {37},
+  year          = {2024},
+  eprint        = {2407.09941},
+  archivePrefix = {arXiv}
+}
+
+@misc{nvidia2026nemotron3,
+  author        = {{NVIDIA}},
+  title         = {Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning},
+  year          = {2026},
+  eprint        = {2604.12374},
+  archivePrefix = {arXiv}
+}
+
+% ---------------------------------------------------------------------------
+% Standard mathematical background (cited from Notes and references sections)
+% ---------------------------------------------------------------------------
+
+@book{kailath1980,
+  author    = {Kailath, Thomas},
+  title     = {Linear Systems},
+  publisher = {Prentice-Hall},
+  address   = {Englewood Cliffs, NJ},
+  year      = {1980}
+}
+
+@book{oppenheim1999dtsp,
+  author    = {Oppenheim, Alan V. and Schafer, Ronald W. and Buck, John R.},
+  title     = {Discrete-Time Signal Processing},
+  edition   = {2nd},
+  publisher = {Prentice Hall},
+  address   = {Upper Saddle River, NJ},
+  year      = {1999}
+}
+
+@article{tustin1947,
+  author  = {Tustin, A.},
+  title   = {A Method of Analysing the Behaviour of Linear Systems in Terms of Time Series},
+  journal = {Journal of the Institution of Electrical Engineers},
+  volume  = {94},
+  number  = {1},
+  pages   = {130--142},
+  year    = {1947},
+  doi     = {10.1049/ji-2a.1947.0020}
+}
+
+@article{cooley1965fft,
+  author  = {Cooley, James W. and Tukey, John W.},
+  title   = {An Algorithm for the Machine Calculation of Complex {Fourier} Series},
+  journal = {Mathematics of Computation},
+  volume  = {19},
+  number  = {90},
+  pages   = {297--301},
+  year    = {1965},
+  doi     = {10.1090/S0025-5718-1965-0178586-1}
+}
+
+@book{szego1939,
+  author    = {Szeg{\H{o}}, G{\'a}bor},
+  title     = {Orthogonal Polynomials},
+  series    = {American Mathematical Society Colloquium Publications},
+  volume    = {23},
+  publisher = {American Mathematical Society},
+  year      = {1939},
+  doi       = {10.1090/coll/023}
+}
+
+@article{hager1989,
+  author  = {Hager, William W.},
+  title   = {Updating the Inverse of a Matrix},
+  journal = {SIAM Review},
+  volume  = {31},
+  number  = {2},
+  pages   = {221--239},
+  year    = {1989},
+  doi     = {10.1137/1031049}
+}
+
+@book{pan2001,
+  author    = {Pan, Victor Y.},
+  title     = {Structured Matrices and Polynomials: Unified Superfast Algorithms},
+  publisher = {Birkh{\"a}user},
+  address   = {Boston, MA},
+  year      = {2001},
+  doi       = {10.1007/978-1-4612-0129-8}
+}
+
+@techreport{blelloch1990,
+  author      = {Blelloch, Guy E.},
+  title       = {Prefix Sums and Their Applications},
+  institution = {School of Computer Science, Carnegie Mellon University},
+  number      = {CMU-CS-90-190},
+  year        = {1990}
+}

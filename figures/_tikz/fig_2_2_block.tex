@@ -1,0 +1,60 @@
+% Figure 2.2: the state equation as a continuous LTI state-space block diagram.
+% For chapters/02-foundations/01-state-as-memory.qmd.
+\documentclass[border=10pt]{standalone}
+\input{ssmtikz.tex}
+
+% A summing junction: a small open circle with a centred + sign.
+\tikzset{
+  sumdot/.style={circle, draw=ssmbluedark, fill=white, line width=1.1pt,
+                 inner sep=0pt, minimum size=6mm},
+  fwdbox/.style={rounded corners=3pt, draw=ssmbluedark, fill=ssmgreyfill,
+                 line width=1.2pt, text=ink, minimum height=11mm,
+                 minimum width=11mm, align=center},
+  intbox/.style={rounded corners=4pt, draw=ssmorangedark, fill=ssmorange,
+                 line width=1.4pt, text=white, minimum height=13mm,
+                 minimum width=13mm, align=center},
+  sig/.style={text=ssmgrey, font=\small\sffamily, inner sep=2pt},
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1mm, y=1mm]
+
+  % main left-to-right chain
+  \node (u)    at (  0, 0) {\large $u(t)$};
+  \node[fwdbox]  (B)  at ( 28, 0) {$B$};
+  \node[sumdot]  (s1) at ( 52, 0) {};
+  \node[intbox]  (I)  at ( 78, 0) {\large $\displaystyle\int$};
+  \node[fwdbox]  (C)  at (112, 0) {$C$};
+  \node[sumdot]  (s2) at (136, 0) {};
+  \node (y)    at (158, 0) {\large $y(t)$};
+
+  % + signs inside the summing junctions
+  \node[font=\footnotesize, text=ssmbluedark] at (s1) {$+$};
+  \node[font=\footnotesize, text=ssmbluedark] at (s2) {$+$};
+
+  % forward signal flow
+  \draw[arrow] (u)      -- (B.west);
+  \draw[arrow] (B.east) -- (s1.west);
+  \draw[arrow] (s1.east) -- node[sig, above=1pt] {$\dot{x}(t)$} (I.west);
+  \draw[arrow] (I.east)  -- node[sig, above=1pt, pos=0.30] {$x(t)$} (C.west);
+  \draw[arrow] (C.east) -- (s2.west);
+  \draw[arrow] (s2.east) -- (y);
+
+  % branch point on the integral->C wire, feeding the A feedback
+  \coordinate (br) at (98, 0);
+  \fill[ssmbluedark] (br) circle (0.9mm);
+
+  % A: internal dynamics, fed back below the chain (state flows into A, A feeds the sum)
+  \node[fwdbox] (A) at (75, -26) {$A$};
+  \draw[arrow]  (br) -- (98, -26) -- (A.east);
+  \draw[arrow]  (A.west) -- (52, -26) -- (s1.south);
+
+  % D: optional feedthrough, above the chain (input flows into D, D feeds the sum)
+  \coordinate (du) at (14, 0);          % tap the u->B wire
+  \fill[ssmbluedark] (du) circle (0.9mm);
+  \node[fwdbox] (D) at (74, 26) {$D$};
+  \draw[arrow]  (du) -- (14, 26) -- (D.west);
+  \draw[arrow]  (D.east) -- (136, 26) -- (s2.north);
+
+\end{tikzpicture}
+\end{document}

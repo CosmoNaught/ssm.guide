@@ -1,0 +1,29 @@
+% Figure 3.2: convolution as input decomposition, system, superposition.
+% For chapters/02-foundations/02-continuous-time.qmd, sec 3.2.
+\documentclass[border=10pt]{standalone}
+\input{ssmtikz.tex}
+
+\tikzset{
+  sysbox/.style={rounded corners=5pt, draw=ssmbluedark, fill=ssmblue!10,
+                 line width=1.3pt, align=center, inner sep=8pt, text=ink},
+  flow/.style={->, ssmgrey, line width=1.5pt, line cap=round,
+               shorten >=1.5pt, shorten <=1.5pt},
+  caplab/.style={text=ssmgrey, font=\footnotesize\sffamily},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \node (uin)
+        {$\textcolor{ssmgreendark}{u(t)}=\displaystyle\int_0^{t} u(s)\,\textcolor{ssmrosedark}{\delta(t-s)}\,\mathrm{d}s$};
+  \node[sysbox, right=15mm of uin] (sys)
+        {state-space model\\[3pt]$\textcolor{ssmrosedark}{\delta(t-s)}\ \mapsto\ \textcolor{ssmorangedark}{h(t-s)}$};
+  \node[right=15mm of sys] (yout)
+        {$\textcolor{ssmplumdark}{y(t)}=\displaystyle\int_0^{t} u(s)\,\textcolor{ssmorangedark}{h(t-s)}\,\mathrm{d}s$};
+
+  \draw[flow] (uin.east) -- (sys.west);
+  \draw[flow] (sys.east) -- (yout.west);
+
+  \node[caplab, above=2.5pt of uin]  {input: a superposition of impulses};
+  \node[caplab, above=2.5pt of yout] {output: the matching superposition};
+\end{tikzpicture}
+\end{document}

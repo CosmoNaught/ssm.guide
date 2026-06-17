@@ -1,0 +1,103 @@
+---
+pagetitle: "State Space Models — a guide to structured memory and complex dynamics in deep learning"
+description: "A focused mathematical monograph on neural state-space sequence models, from first principles to Mamba-3."
+page-layout: full
+toc: false
+anchor-sections: false
+---
+
+```{=html}
+<section class="ssm-landing">
+
+  <div class="ssm-hero">
+
+    <div class="ssm-cover-frame">
+      <img class="ssm-cover-img"
+           src="cover/front_cover_web.png"
+           alt="Front cover of the book State Space Models: the title in orange above an abstract spiral motif."
+           width="460" height="599" />
+    </div>
+
+    <div class="ssm-hero-text">
+      <div class="ssm-title" role="heading" aria-level="1">State Space Models</div>
+      <p class="ssm-subtitle">A guide to structured memory and complex dynamics in deep learning</p>
+      <p class="ssm-edition">Open Edition &middot; 2026</p>
+
+      <div class="ssm-actions">
+        <a class="ssm-btn ssm-btn-primary" href="chapters/01-introduction/index.html">Start reading</a>
+        <a class="ssm-btn ssm-btn-ghost" href="https://github.com/CosmoNaught/ssm-book" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="ssm-section ssm-changelog-section" aria-labelledby="ssm-changelog-heading">
+    <h2 class="ssm-section-heading" id="ssm-changelog-heading">Changelog</h2>
+    <ul class="ssm-changelog">
+      <li class="ssm-changelog-item">
+        <span class="ssm-changelog-date">[Jun 2026]</span>
+        <span class="ssm-changelog-body">First public preview. Foundations and Structured State Spaces &amp; S4 chapters available.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="ssm-section ssm-authors-section" aria-labelledby="ssm-authors-heading">
+    <h2 class="ssm-section-heading ssm-section-heading-orange" id="ssm-authors-heading">Authors</h2>
+    <div class="ssm-authors">
+      <div class="ssm-author">
+        <a class="ssm-author-photo-link"
+           href="https://cosmonaught.github.io/cosmosantoni/"
+           target="_blank" rel="noopener"
+           aria-label="Cosmo Santoni — personal website">
+          <img class="ssm-author-photo" src="misc/cosmo.jpeg" alt="Headshot of Cosmo Santoni." width="96" height="96" />
+        </a>
+        <div class="ssm-author-meta">
+          <a class="ssm-author-name" href="https://cosmonaught.github.io/cosmosantoni/" target="_blank" rel="noopener">Cosmo Santoni</a>
+          <span class="ssm-author-affiliation">Imperial College London</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ssm-section" aria-labelledby="ssm-cite-heading">
+    <h2 class="ssm-section-heading" id="ssm-cite-heading">Cite this book</h2>
+    <pre class="ssm-bibtex"><code>@book{santoni2026ssm,
+  author = {Santoni, Cosmo},
+  title  = {State Space Models: A guide to structured memory and complex dynamics in deep learning},
+  year   = {2026},
+  note   = {Open Edition},
+  url    = {https://CosmoNaught.github.io/ssm-book}
+}</code></pre>
+  </section>
+
+  <section class="ssm-section" aria-labelledby="ssm-toc-heading">
+    <h2 class="ssm-section-heading" id="ssm-toc-heading">Table of contents</h2>
+    <div class="ssm-toc">
+      <ul class="ssm-toc-front">
+        <li><a href="chapters/00-front/preface.html">Preface</a></li>
+        <li><a href="chapters/00-front/acknowledgements.html">Acknowledgements</a></li>
+        <li><a href="chapters/00-front/reader-guide.html">Reader&rsquo;s Guide</a></li>
+        <li><a href="chapters/00-front/notation.html">Notation &amp; Preliminaries</a></li>
+        <li><a href="chapters/00-front/roadmap.html">Roadmap &amp; Contributing</a></li>
+      </ul>
+      <ul class="ssm-toc-chapters">
+        <li class="ssm-toc-ch"><a href="chapters/01-introduction/index.html"><span class="ssm-toc-num">1</span> Introduction</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/02-foundations/01-state-as-memory.html"><span class="ssm-toc-num">2</span> State as Memory</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/02-foundations/02-continuous-time.html"><span class="ssm-toc-num">3</span> Continuous-Time Linear State Spaces</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/02-foundations/03-discretisation.html"><span class="ssm-toc-num">4</span> Discretisation</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/02-foundations/04-recurrence-convolution-toeplitz.html"><span class="ssm-toc-num">5</span> Recurrence, Convolution, and Toeplitz Maps</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/02-foundations/05-transfer-functions.html"><span class="ssm-toc-num">6</span> Transfer Functions and Kernel Generation</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/03-s4/06-memory-problem.html"><span class="ssm-toc-num">7</span> The Memory Problem</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/03-s4/07-hippo.html"><span class="ssm-toc-num">8</span> HiPPO</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/03-s4/08-structured-state-matrices.html"><span class="ssm-toc-num">9</span> Structured State Matrices</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/03-s4/09-s4-kernel-algorithm.html"><span class="ssm-toc-num">10</span> The S4 Kernel Algorithm</a></li>
+        <li class="ssm-toc-ch"><a href="chapters/03-s4/10-diagonal-state-spaces.html"><span class="ssm-toc-num">11</span> Diagonal State Spaces: DSS, S4D, and S5</a></li>
+      </ul>
+      <ul class="ssm-toc-back">
+        <li><a href="chapters/references.html">References</a></li>
+      </ul>
+    </div>
+  </section>
+
+</section>
+```

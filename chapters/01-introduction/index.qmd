@@ -1,0 +1,167 @@
+---
+title: "1 Introduction"
+suppress-bibliography: true
+link-citations: false
+---
+
+A sequence model needs a way for earlier inputs to affect later outputs. The obstruction is that the past grows with the sequence, while the representation carried between positions must usually remain bounded. State space models address this by passing information through a finite-dimensional state. The same linear time-invariant model can then be read three ways: as a recurrence that carries the state forward, as a convolution that weights past inputs by lag, and as a structured computation whose cost depends on the matrix used for the state dynamics.
+
+## 1.1 Sequences and memory {#sec-1-1}
+
+Many learning problems present data as an ordered record. A sentence, a waveform, a stream of events, and a sequence of measurements are records in which position carries information. The position of an element changes what it can mean, because the information available before it changes.
+
+At position $k$, a model receives a new input $u_k$. The output at that position may depend on $u_k$, on nearby inputs, or on values that occurred much earlier. The model therefore needs some mechanism by which earlier information can continue to affect later computation.
+
+One solution is to keep the whole past. Keeping every previous input preserves all information, but the representation grows with sequence length, and a rule is still needed for which stored values influence the current output.
+
+A **state** gives a compressed alternative. It is a finite-dimensional vector that is updated as the sequence is read. The state is not the stored history itself. It is the variable through which the history continues to act. A **state space model** specifies how this state is updated and how the output is read from it.
+
+The Structured State Space sequence model (S4) was demonstrated on sequences long enough to strain fixed-window models: an image read one pixel at a time, over sixteen thousand positions in order, and speech classified from raw audio samples rather than from extracted features [@gu2022s4]. Selective models such as Mamba were applied to genomic sequences, to raw audio waveforms, and to language modelling [@gu2023mamba].
+
+These sequences run to tens of thousands of positions. At that length, keeping the history in full is too expensive, because the stored representation grows with the sequence, and a fixed window discards whatever falls outside it. A state of fixed size avoids both costs: the work at each position stays constant as the sequence grows, provided the state update is cheap to compute and the state still carries information across many steps.
+
+## 1.2 Recurrence, convolution, and attention {#sec-1-2}
+
+Sequence layers differ in how information moves from one position to another.
+
+A **recurrent model** carries information forward through an update
+
+$$
+x_{k+1}=f(x_k,u_k).
+$$
+
+After the update at position $k$, later positions can depend on $u_k$ only through the new state.
+
+A **convolutional model** assigns weights by distance into the past. In a causal convolution,
+
+$$
+y_k=\sum_{m=0}^k K_m u_{k-m}.
+$$
+
+The sequence $K$ is the **kernel**. The distance $m$ is called the **lag**. A fixed coefficient $K_m$ is used whenever an input is $m$ steps before the output, independent of the content at those positions. Because the same coefficient applies at every position, the map is called time-invariant. The convolution is causal because the output at position $k$ uses only inputs at or before $k$.
+
+An **attention layer** computes interactions from the sequence itself. The weight relating two positions depends on their representations [@vaswani2017attention]. Direct pairwise comparison gives content-dependent mixing without carrying information through a finite state.
+
+These three families trade off cost in different ways. A recurrent model carries a state of fixed size, so it costs $\bigO(1)$ work per step at inference, but the update at position $k$ needs the state from position $k-1$, which makes training sequential across positions. A convolution with a fixed window trains in parallel across positions, because every output is an independent weighted sum, but a window of length $w$ forgets any input more than $w$ steps in the past. An attention layer compares every position with every other, so its cost grows as $\bigO(L^2)$ in the sequence length $L$.
+
+Linear time-invariant state space models connect recurrence and convolution.[^intro-provenance] They can be run by updating a state from left to right. After the state has been eliminated, the same input-output map is a convolution. The recurrence gives the local computation, while the kernel gives the global map from the input sequence to the output sequence.
+
+## 1.3 One model in three forms {#sec-1-3}
+
+The state space form used here first appears in continuous time. The state is written as a function $x(t)$, and its evolution is governed by
+
+$$
+x'(t)=Ax(t)+Bu(t),
+\qquad
+y(t)=Cx(t).
+$$
+
+The matrix $A$ controls the internal evolution of the state. The matrix $B$ controls how the input enters the state. The matrix $C$ controls how the output is read from the state.
+
+Solving the equation with zero initial state expresses the output as a causal convolution,
+
+$$
+y(t)=\int_0^t h(t-s)u(s)\,\dd s,
+\qquad
+h(\tau)=Ce^{A\tau}B.
+$$
+
+The function $h$ is the **impulse response**. It records how an input at one time continues to affect outputs at later times.
+
+To use the model on a sampled sequence, the continuous dynamics are discretised into the recurrence
+
+$$
+x_{k+1}=\bar A x_k+\bar B u_k,
+\qquad
+y_k=Cx_{k+1}.
+$$
+
+The matrices $\bar A$ and $\bar B$ are built from $A$ and $B$ and a chosen step size. The output is read after the current input has entered the state, which is why $x_{k+1}$ appears, so that the current input contributes through $\bar K_0=C\bar B$.
+
+Unrolling the recurrence eliminates the state and gives a discrete convolution,
+
+$$
+y_k=\sum_{m=0}^k \bar K_m u_{k-m},
+\qquad
+\bar K_m=C\bar A^m\bar B.
+$$
+
+Each coefficient $\bar K_m$ is an input injected by $\bar B$, carried forward $m$ steps by $\bar A$, and read out by $C$.
+
+The differential equation describes continuous evolution. The recurrence describes sampled computation. The convolution kernel describes the full input-output map. These are not three separate models, but three descriptions of the same one.
+
+## 1.4 Why structure is needed {#sec-1-4}
+
+The equations allow arbitrary learned matrices $A$, $B$, and $C$. Such matrices define a valid state space model, but validity alone does not give a useful long-sequence layer.
+
+The first difficulty is memory. If $A$ is an arbitrary dense matrix, the coordinates of the state have no prescribed role. The kernel entries $C\bar A^m\bar B$ grow or decay geometrically with the eigenvalue magnitudes of $\bar A$, so the influence of an input at lag $m$ typically explodes or vanishes within a few steps. Nothing in a random initialisation prescribes which past inputs the state retains. The model may still learn useful features, but the state does not come with a controlled interpretation as a summary of the past.
+
+The second difficulty is computation. A length-$L$ convolution kernel requires the coefficients
+
+$$
+\bar K_m=C\bar A^m\bar B,
+\qquad
+m=0,1,\dots,L-1.
+$$
+
+For a dense state matrix, each multiplication by $\bar A$ costs $\bigO(N^2)$. Generating the kernel by repeated multiplication therefore costs $\bigO(LN^2)$, which is too expensive when both the sequence length $L$ and the state dimension $N$ are large.
+
+A **structured state matrix** is restricted enough to make these computations tractable, but not so restricted that the state loses its ability to carry useful memory. The structure should give the coordinates an interpretation as approximations to the past, represent powers through a generating function, and permit the recurrence to be applied as a convolution, a scan, or a structured matrix product.
+
+A useful layer is obtained by designing memory, structure, and computation together. S4 [@gu2022s4] keeps a fixed linear time-invariant state space model and gives its dense matrix a structured kernel algorithm. Mamba [@gu2023mamba] changes the recurrence by allowing parts of the state update to depend on the input.
+
+## 1.5 State space layers and attention {#sec-1-5}
+
+State space layers and attention express different input-output maps. A network can use either alone or interleave the two. In a hybrid layer stack, most layers carry information through a state at a cost linear in the sequence length, while a smaller number of attention layers compare positions directly. Confining attention to a few layers limits the quadratic growth of its computation with sequence length while keeping exact pairwise comparison where that operation is needed. Models built this way include Jamba [@lieber2024jamba] and Nemotron 3 [@nvidia2026nemotron3]. A separate line of work alters the state space layer itself instead of adding attention; Hydra [@hwang2024hydra], for example, runs the recurrence in both directions to give a bidirectional layer.
+
+
+[^intro-provenance]: Recurrent and convolutional sequence models are standard sequence-modelling objects, and the attention layer is due to Vaswani et al. [@vaswani2017attention]. The continuous-time formulation, discretisation, and convolutional view are standard facts of linear systems and signal processing. Neural sequence layers based on continuous-time state spaces begin with the Structured State Space sequence model [@gu2022s4] and include selective models such as Mamba [@gu2023mamba].
+
+
+## Summary {.unnumbered}
+
+A sequence model needs a mechanism by which earlier inputs can affect later outputs. Attention stores interactions explicitly across positions; convolution fixes weights by lag; recurrence carries a state. Linear time-invariant state space models connect the last two views. The recurrence gives the step-by-step computation, while eliminating the state gives a convolution kernel for the same input-output map.
+
+The matrix $A$ controls the internal dynamics of the state. The matrices $B$ and $C$ determine how inputs enter and how outputs are read. Useful state space layers need structure in these matrices: enough freedom to represent memory, but enough algebra to generate long kernels and run the layer cheaply.
+
+## Exercises {.unnumbered}
+
+1. The state is described as the variable through which the history continues to act, not as the stored history itself. Explain how a model can still depend on the entire past while keeping only a fixed-size state.
+
+   ::: {.callout-tip collapse="true"}
+   ## Solution
+
+   Every update folds the current input into the state, so the state at position $k$ is a compressed function of all inputs up to $k$. The past reaches the output only through this running summary. No individual past input is kept, yet each one has left its mark on the state.
+   :::
+
+2. The causal convolution $y_k=\sum_m K_m u_{k-m}$ is called time-invariant. What property of the coefficients $K_m$ gives it that name, and what behaviour does it exclude?
+
+   ::: {.callout-tip collapse="true"}
+   ## Solution
+
+   The coefficient $K_m$ depends only on the lag $m$, the distance between an input and the output it affects, and not on the absolute position $k$. The same weight applies to an input $m$ steps back wherever it occurs in the sequence. This excludes any layer whose weighting changes with position, or with the content at those positions.
+   :::
+
+3. A differential equation, a discrete recurrence, and a convolution kernel can describe the same state space model. What does each description make explicit?
+
+   ::: {.callout-tip collapse="true"}
+   ## Solution
+
+   They describe one linear input-output map. The differential equation gives its continuous evolution in time, the recurrence gives the step-by-step computation on a sampled sequence, and the kernel gives the global map from the whole input to the whole output. Moving between them changes the representation, not the model.
+   :::
+
+4. An arbitrary dense matrix $A$ already defines a valid state space model. Why is that not enough to give a useful long-sequence layer?
+
+   ::: {.callout-tip collapse="true"}
+   ## Solution
+
+   The kernel entries $C\bar A^m\bar B$ scale with the eigenvalue magnitudes of $\bar A$, so the influence of an input at lag $m$ generically explodes or vanishes within a few steps. Nothing in an arbitrary $A$ prescribes which parts of the past the state retains. A model can therefore be valid without its state being a controlled summary of the history.
+   :::
+
+5. Structure is introduced to address two difficulties at once. Name both, and explain why they pull in opposite directions.
+
+   ::: {.callout-tip collapse="true"}
+   ## Solution
+
+   The first is memory. The state should carry an interpretable summary of the past rather than an arbitrary mixture. The second is computation. The length-$L$ kernel must be generated in less than the $\bigO(LN^2)$ that a dense matrix costs. They pull against each other because the simplest way to make the computation cheap is to restrict $A$ heavily, while too much restriction removes the freedom the state needs to hold useful memory. A structured state matrix is the compromise that keeps both.
+   :::

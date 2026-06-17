@@ -1,0 +1,16 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Cosmo Santoni
+
+The PROSE, FIGURES, and EQUATIONS of this book (everything except source code)
+are licensed under the Creative Commons Attribution 4.0 International License.
+
+You are free to share and adapt this material for any purpose, even
+commercially, provided you give appropriate credit.
+
+  - Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+  - Full legal code:        https://creativecommons.org/licenses/by/4.0/legalcode
+
+Source code in this repository (the `src/` directory and the executable code
+cells embedded in the chapters) is licensed separately under Apache-2.0; see
+LICENSE-CODE.

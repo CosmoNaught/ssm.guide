@@ -1,0 +1,19 @@
+# Acknowledgements {.unnumbered}
+
+This book would not have been possible without the help, advice, and example of many people.
+
+I am especially grateful to Thomas S. Churcher and Oliver J. Watson, my PhD supervisors at Imperial College London, for teaching me how much research depends on synthesis, communication, and choosing the right level of abstraction. Much of my work began in software, but they helped me see software as one part of a larger scientific argument.
+
+Sotos Generalis at Aston University gave me my first role in academia while I was still an undergraduate, and gave me the space and encouragement to begin learning mathematics and research seriously. I am also grateful to Sebastian Vollmer for helping me take my first steps into software engineering and machine learning research.
+
+I thank my friends, colleagues, and collaborators at Imperial College London, especially Elizaveta Semenova, Anmol Thapar, Timothy Hitge, Giovanni Charles, Marc Baguelin, Mantra Kusumgar, and the Research Software for Infectious Disease Epidemiology team, for their collaboration, conversations, guidance on using model implementations in applied epidemiological workflows, computing resources, and support.
+
+I am also grateful to Jiyoun Ha, James Chapman, Skye Wanderman-Milne, Carlos Araya, and the wider Google JAX numerical computing library team for technical guidance, implementation review, validation, and support while I worked on running state space model implementations written in JAX on Google Cloud Tensor Processing Units (TPUs). Some of this research was supported in part with Cloud TPUs from Google’s TPU Research Cloud.
+
+The exposition has been shaped by works of technical writing, especially *Dive into Deep Learning*, *Deep Learning*, *Understanding Deep Learning*, and Sebastian Raschka’s books. Each influenced how I think about notation, examples, and the relationship between mathematical objects and the computations that realise them.
+
+Most of all, the manuscript is indebted to the research it explains. It is centred on the line of work around structured state space models, selective state space models, and Mamba, developed in papers by Albert Gu, Tri Dao, Christopher Ré’s Hazy Research group at Stanford, and many collaborators across academia and industry. Any errors or misinterpretations are my own.
+
+Finally, I thank my cat and dog, Sven and Olaf, for their quiet company.
+
+*Unless explicitly stated otherwise, the individuals and organisations named above are not affiliated with this book, and their inclusion reflects my gratitude and the influence of their work rather than their endorsement of its contents.*

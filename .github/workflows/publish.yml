@@ -1,0 +1,39 @@
+name: Render and Publish
+
+# Deploys the book to GitHub Pages on every push to main.
+# One-time setup: run `quarto publish gh-pages` locally once to create the
+# gh-pages branch and point Pages at it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write        # quarto-actions/publish pushes to the gh-pages branch
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install render dependencies
+        run: pip install -r requirements.txt
+
+      # _freeze/ is committed (execute: freeze: auto), so CI renders without
+      # re-executing cells; no GPU/torch/jax needed. Re-render locally and
+      # commit _freeze/ whenever you change a code cell.
+      - name: Render and publish to GitHub Pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

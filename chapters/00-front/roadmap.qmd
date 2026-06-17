@@ -1,0 +1,37 @@
+---
+suppress-bibliography: true
+---
+
+# Beyond Fixed Kernels {.unnumbered}
+
+A fixed, linear, time-invariant state space model uses the same update rule at every position. The consequence is stronger than recurrence alone: the weight from position $j$ to a later position $i$ depends only on the lag $i-j$. Equal lags have equal coefficients, so the input-output map is a convolution.
+
+Several sequence models keep the finite state but remove this equality. The update, readout, or discretisation step may vary from one position to the next, sometimes as a function of the current input. The state still carries information forward, but the sequence map is no longer determined by one kernel shared across all positions.
+
+## Assumptions beyond the fixed kernel
+
+### Input-dependent state updates
+
+A fixed state space model applies the same matrices at every position. If those matrices depend on the current input, the input has two roles. It contributes to the state, and it also changes the rule by which the state is updated. The recurrence is no longer a fixed convolution, because two equal lags can receive different weights at different positions.
+
+The affine form of the update is still useful. Each position applies a state transition followed by an input contribution, and consecutive transitions can be composed. This composition is associative, so the recurrent computation can be reorganised as a scan rather than carried out strictly one step at a time, which is how Mamba trains an input-dependent recurrence as efficiently as a convolution [@gu2023mamba].
+
+### Position-dependent input-output matrices
+
+For a fixed convolution kernel, the input-output matrix has constant diagonals: all entries with the same value of $i-j$ are equal. Input-dependent updates break this constant-diagonal structure. The matrix remains causal, so entries above the diagonal are zero, but each lower-triangular entry now depends on the transitions between its source position and its target position.
+
+The finite state still imposes structure. Information passing from position $j$ to position $i$ must travel through the state coordinates between those positions. Thus the entry connecting $j$ to $i$ factors through a low-dimensional state transition rather than through an arbitrary scalar weight. Matrix views of selective recurrences exploit this factorisation when they materialise or chunk the computation, the duality that Mamba-2 draws between a recurrence and an attention-like matrix [@dao2024mamba2].
+
+### Discretisation as a learned design choice
+
+The discretisation step controls how continuous time is attached to sequence position. If the step size is fixed, one token step always corresponds to the same amount of model time. If the step size is learned or input-dependent, the model can contract or dilate the effect of a transition at each position.
+
+Other design choices change what the state can carry. Complex modes allow oscillatory memory. Multi-input multi-output state spaces let several channels write into and read from a shared state. State tracking asks the recurrence to preserve information more explicitly than a purely decaying summary. In a full neural architecture, these choices may be surrounded by projections, gates, normalisation, and residual paths, but the state space model itself is still the recurrence that updates and reads the finite state. Mamba-3 gathers step size, complex modes, multiple channels, and state tracking into a single layer [@mamba3].
+
+## Combining state space layers with attention
+
+A separate direction leaves the state space layer in place and sets it alongside attention. Jamba and Nemotron 3 interleave the two within one network [@lieber2024jamba; @nvidia2026nemotron3], and Hydra runs the recurrence in both directions [@hwang2024hydra]. Later chapters take up these hybrids and the principles for combining the two well, rather than cataloguing every variant.
+
+## Corrections and implementations
+
+The source for this book can be found on GitHub at [github.com/CosmoNaught/ssm-book](https://github.com/CosmoNaught/ssm-book). Corrections, clearer derivations, worked examples, and implementation contributions are welcome. An issue or pull request is the most useful way to report a missing step or an unclear calculation. Feel free to also drop me an [email](mailto:santonicosmo@gmail.com) too.
