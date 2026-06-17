@@ -1117,10 +1117,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link active" data-scroll-target="#mathematical-background">Mathematical Background</a>
+  <li><a href="#readers-guide" id="toc-readers-guide" class="nav-link active" data-scroll-target="#readers-guide">Reader’s Guide</a>
   <ul class="collapse">
-  <li><a href="#basic-tools" id="toc-basic-tools" class="nav-link" data-scroll-target="#basic-tools">Basic tools</a></li>
-  <li><a href="#mathematical-notation" id="toc-mathematical-notation" class="nav-link" data-scroll-target="#mathematical-notation">Mathematical notation</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
+  <li><a href="#machine-learning-background" id="toc-machine-learning-background" class="nav-link" data-scroll-target="#machine-learning-background">Machine-learning background</a></li>
+  <li><a href="#notational-conventions" id="toc-notational-conventions" class="nav-link" data-scroll-target="#notational-conventions">Notational conventions</a></li>
+  <li><a href="#reading-the-chapters" id="toc-reading-the-chapters" class="nav-link" data-scroll-target="#reading-the-chapters">Reading the chapters</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1132,26 +1134,34 @@ window.Quarto = {
 
 
 
-<section id="mathematical-background" class="level1 unnumbered">
-<h1 class="unnumbered">Mathematical Background</h1>
-<p>State space models are written here in the language of linear systems. The state is a vector, matrices update and read it, and matrix powers describe how information from earlier inputs survives to later positions. The calculations use matrix multiplication, eigenvalues, inverses, change of basis, ordinary differential equations, and generating functions.</p>
-<p>The same linear system can be read in several equivalent ways. The continuous-time equation gives the local evolution of the state. After discretisation, the update becomes a recurrence. Unrolling the recurrence gives a convolution kernel, whose coefficient at lag <span class="math inline">\(m\)</span> measures the effect of an input <span class="math inline">\(m\)</span> steps in the past. Packaging those coefficients into a generating function gives the transfer-function view.</p>
-<p>The main computational difficulty is concentrated in the state matrix. Dense matrices can mix coordinates and give the state nontrivial memory, but long kernels require many powers of the same matrix. Much of the algebra concerns representations that preserve the memory behaviour while making those powers, or the corresponding generating functions, cheaper to evaluate.</p>
-<section id="basic-tools" class="level2">
-<h2 class="anchored" data-anchor-id="basic-tools">Basic tools</h2>
-<p>Working familiarity with vectors and matrices is assumed. Matrix multiplication, transposes, inverses when they exist, eigenvalues at the level of a first linear algebra course, and the interpretation of a matrix as a linear map are used throughout.</p>
-<p>Basic single-variable calculus is also assumed. Derivatives and integrals appear from the beginning. Ordinary differential equations first enter through the scalar equation</p>
+<section id="readers-guide" class="level1 unnumbered">
+<h1 class="unnumbered">Reader’s Guide</h1>
+<p>This book assumes comfort with a few standard mathematical tools, but it does not assume prior study of state space models. The first chapter introduces the state, the continuous-time equation, the discrete recurrence, and the convolution kernel. Later chapters reuse those objects rather than reintroducing them from scratch.</p>
+<section id="mathematical-background" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h2>
+<p>You should be able to multiply matrices and vectors, keep track of their shapes, and read a matrix as a linear map. Transposes and inverses are used when they exist. Eigenvalues appear because repeated updates are controlled by the modes of the update matrix: applying the same matrix many times can grow, decay, or rotate different components of a state.</p>
+<p>Single-variable calculus is used throughout. Derivatives, integrals, exponentials, and first-order ordinary differential equations appear early. The starting example is the scalar equation</p>
 <p><span class="math display">\[
-x'(t)=ax(t)+bu(t).
+x'(t)=a x(t)+b u(t).
 \]</span></p>
-<p>This scalar equation already contains the main roles. The coefficient <span class="math inline">\(a\)</span> governs the internal evolution of the state, while <span class="math inline">\(b\)</span> determines how the input enters.</p>
-<p>Some deep learning vocabulary is assumed: neural network layers, learned parameters, gradients, and sequences of token representations. No prior knowledge of state space models, the Structured State Space sequence model (S4), Mamba, control theory, signal processing, or numerical analysis is needed.</p>
-<p>Free references for repairing this background are collected under <a href="../../chapters/00-front/notation.html#background-and-further-reading">Background and further reading</a>.</p>
+<p>Here <span class="math inline">\(x(t)\)</span> is the quantity being updated, <span class="math inline">\(u(t)\)</span> is the input, <span class="math inline">\(a\)</span> sets how <span class="math inline">\(x(t)\)</span> changes when no input is present, and <span class="math inline">\(b\)</span> sets how strongly the input changes it. In the vector equations later in the book, <span class="math inline">\(x(t)\)</span> has several coordinates instead of one. Calling it a state just means that it is the variable carried forward by the model.</p>
+<p>Complex numbers appear when matrices have complex eigenvalues and when Fourier or transfer-function calculations are used. They are a calculation tool, not a separate modelling assumption. In this setting, complex eigenvalues mainly represent decay together with oscillation.</p>
+<p>Generating functions appear as a compact way to represent a whole sequence of kernel coefficients. The relevant idea is that coefficients <span class="math inline">\(K_0,K_1,K_2,\dots\)</span> can be packaged into a power series, so that algebra on the series can replace algebra on each coefficient separately.</p>
 </section>
-<section id="mathematical-notation" class="level2">
-<h2 class="anchored" data-anchor-id="mathematical-notation">Mathematical notation</h2>
-<p>The notation distinguishes continuous and sampled time. A trajectory written as <span class="math inline">\(x(t)\)</span> evolves over continuous time, while a sequence written as <span class="math inline">\(x_k\)</span> is indexed by discrete positions. The notation also distinguishes single-input and multi-input systems. A vector <span class="math inline">\(B\in\mathbb R^{N\times 1}\)</span> injects one input coordinate into an <span class="math inline">\(N\)</span>-dimensional state, while a matrix <span class="math inline">\(B\in\mathbb R^{N\times p}\)</span> injects <span class="math inline">\(p\)</span> input coordinates.</p>
-<p>Global symbols keep their roles whenever possible. The state dimension is <span class="math inline">\(N\)</span>, the sequence length is <span class="math inline">\(L\)</span>, and the model dimension is <span class="math inline">\(\dmodel\)</span>. Local symbols are introduced where a calculation needs them, then released.</p>
+<section id="machine-learning-background" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning-background">Machine-learning background</h2>
+<p>The required neural-network background is limited. The book assumes that you know what a layer is, that parameters are learned by gradient-based training, and that a sequence model processes representations indexed by position. Attention, convolution, recurrence, S4, HiPPO, Mamba, and control-theory terminology are introduced when they are needed.</p>
+</section>
+<section id="notational-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="notational-conventions">Notational conventions</h2>
+<p>Continuous time is written with parentheses, as in <span class="math inline">\(x(t)\)</span>. Discrete sequence positions are written with subscripts, as in <span class="math inline">\(x_k\)</span>. Matrices with bars, such as <span class="math inline">\(\bar A\)</span> and <span class="math inline">\(\bar B\)</span>, are discretised versions of continuous-time matrices. The state dimension is <span class="math inline">\(N\)</span>, the sequence length is <span class="math inline">\(L\)</span>, and the neural representation width is <span class="math inline">\(\dmodel\)</span>.</p>
+<p>Most calculations begin with one scalar input and one scalar output. This keeps the formulas short. Multi-input and multi-output versions use the same equations with wider input and output matrices. When the distinction matters, the shapes are stated explicitly.</p>
+<p>The notation page collects the recurring symbols. It is meant as a reference while reading, not as a chapter to memorise before starting.</p>
+</section>
+<section id="reading-the-chapters" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-chapters">Reading the chapters</h2>
+<p>The chapters are ordered so that each representation of a state space model is derived from the previous one: continuous-time equation, sampled recurrence, convolution kernel, transfer function, memory construction, and structured algorithms for S4 and diagonal models. A symbol should either be introduced in the local discussion or be listed on the notation page.</p>
+<p>The code examples are reference implementations. They show the same calculation in NumPy, PyTorch, and JAX after the mathematics has been stated.</p>
 
 
 </section>
