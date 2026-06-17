@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Roadmap
-    url: https://CosmoNaught.github.io/ssm-book/chapters/00-front/roadmap.html
+    url: https://ssm.guide/chapters/00-front/roadmap.html
     about: What is written, and what is planned next.

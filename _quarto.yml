@@ -31,7 +31,7 @@ website:
     search: false
     right:
       - icon: github
-        href: "https://github.com/CosmoNaught/ssm-book"
+        href: "https://github.com/CosmoNaught/ssm.guide"
         aria-label: GitHub
   sidebar:
     style: docked

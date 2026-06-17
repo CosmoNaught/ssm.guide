@@ -1,13 +1,14 @@
 cff-version: 1.2.0
 title: "State Space Models: A guide to structured memory and complex dynamics in deep learning"
 message: "If you use this resource, please cite it."
-type: book
+type: software
 authors:
   - family-names: "Santoni"
     given-names: "Cosmo"
     email: santonicosmo@gmail.com
-url: "https://CosmoNaught.github.io/ssm-book"
-repository-code: "https://github.com/CosmoNaught/ssm-book"
+url: "https://ssm.guide"
+repository-code: "https://github.com/CosmoNaught/ssm.guide"
+doi: "10.5281/zenodo.XXXXXXX"
 version: "0.1.0"
 date-released: "2026-06-01"
 license:

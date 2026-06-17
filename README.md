@@ -3,9 +3,13 @@
 *A guide to structured memory and complex dynamics in deep learning.*
 
 <p align="center">
-  <a href="https://CosmoNaught.github.io/ssm-book">
+  <a href="https://ssm.guide">
     <img src="cover/front_cover_web.png" alt="State Space Models — cover" width="340">
   </a>
+</p>
+
+<p align="center">
+  <a href="https://zenodo.org/badge/latestdoi/1256467769"><img src="https://zenodo.org/badge/1256467769.svg" alt="DOI"></a>
 </p>
 
 A mathematical text on the S4–Mamba line of neural state space sequence models.
@@ -13,7 +17,7 @@ It begins with a continuous-time state space model, discretises it for sampled
 sequences, gives the state a structured memory, and follows that construction
 through to selective and matrix-view models.
 
-Read it at <https://CosmoNaught.github.io/ssm-book>.
+Read it at <https://ssm.guide>.
 
 ## Roadmap
 
@@ -35,7 +39,8 @@ Corrections, clearer explanations, and worked examples are welcome. See
   title  = {State Space Models: A guide to structured memory and complex dynamics in deep learning},
   year   = {2026},
   note   = {Open Edition},
-  url    = {https://CosmoNaught.github.io/ssm-book}
+  doi    = {10.5281/zenodo.XXXXXXX},
+  url    = {https://ssm.guide}
 }
 ```
 

@@ -34,4 +34,4 @@ A separate direction leaves the state space layer in place and sets it alongside
 
 ## Corrections and implementations
 
-The source for this book can be found on GitHub at [github.com/CosmoNaught/ssm-book](https://github.com/CosmoNaught/ssm-book). Corrections, clearer derivations, worked examples, and implementation contributions are welcome. An issue or pull request is the most useful way to report a missing step or an unclear calculation. Feel free to also drop me an [email](mailto:santonicosmo@gmail.com) too.
+The source for this book can be found on GitHub at [github.com/CosmoNaught/ssm.guide](https://github.com/CosmoNaught/ssm.guide). Corrections, clearer derivations, worked examples, and implementation contributions are welcome. An issue or pull request is the most useful way to report a missing step or an unclear calculation. Feel free to also drop me an [email](mailto:santonicosmo@gmail.com) too.
