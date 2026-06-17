@@ -1,1 +1,1 @@
-Sitemap: https://CosmoNaught.github.io/ssm-book/sitemap.xml
+Sitemap: https://ssm.guide/sitemap.xml

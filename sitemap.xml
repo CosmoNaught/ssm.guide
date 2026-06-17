@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/03-s4/08-structured-state-matrices.html</loc>
-    <lastmod>2026-06-17T15:55:47.211Z</lastmod>
+    <loc>https://ssm.guide/chapters/03-s4/08-structured-state-matrices.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/03-s4/06-memory-problem.html</loc>
-    <lastmod>2026-06-17T15:55:47.210Z</lastmod>
+    <loc>https://ssm.guide/chapters/03-s4/06-memory-problem.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/03-s4/10-diagonal-state-spaces.html</loc>
-    <lastmod>2026-06-17T15:55:47.211Z</lastmod>
+    <loc>https://ssm.guide/chapters/03-s4/10-diagonal-state-spaces.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/02-foundations/02-continuous-time.html</loc>
-    <lastmod>2026-06-17T15:55:47.210Z</lastmod>
+    <loc>https://ssm.guide/chapters/02-foundations/02-continuous-time.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/02-foundations/03-discretisation.html</loc>
-    <lastmod>2026-06-17T15:55:47.210Z</lastmod>
+    <loc>https://ssm.guide/chapters/02-foundations/03-discretisation.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/01-introduction/index.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/01-introduction/index.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/00-front/notation.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/00-front/notation.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/00-front/acknowledgements.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/00-front/acknowledgements.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/references.html</loc>
-    <lastmod>2026-06-17T15:55:47.211Z</lastmod>
+    <loc>https://ssm.guide/chapters/references.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/index.html</loc>
-    <lastmod>2026-06-17T15:55:47.237Z</lastmod>
+    <loc>https://ssm.guide/index.html</loc>
+    <lastmod>2026-06-17T16:22:10.380Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/00-front/preface.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/00-front/preface.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/00-front/reader-guide.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/00-front/reader-guide.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/00-front/roadmap.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/00-front/roadmap.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/02-foundations/05-transfer-functions.html</loc>
-    <lastmod>2026-06-17T15:55:47.210Z</lastmod>
+    <loc>https://ssm.guide/chapters/02-foundations/05-transfer-functions.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/02-foundations/01-state-as-memory.html</loc>
-    <lastmod>2026-06-17T15:55:47.209Z</lastmod>
+    <loc>https://ssm.guide/chapters/02-foundations/01-state-as-memory.html</loc>
+    <lastmod>2026-06-17T16:22:10.350Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/02-foundations/04-recurrence-convolution-toeplitz.html</loc>
-    <lastmod>2026-06-17T15:55:47.210Z</lastmod>
+    <loc>https://ssm.guide/chapters/02-foundations/04-recurrence-convolution-toeplitz.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/03-s4/07-hippo.html</loc>
-    <lastmod>2026-06-17T15:55:47.211Z</lastmod>
+    <loc>https://ssm.guide/chapters/03-s4/07-hippo.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
   <url>
-    <loc>https://CosmoNaught.github.io/ssm-book/chapters/03-s4/09-s4-kernel-algorithm.html</loc>
-    <lastmod>2026-06-17T15:55:47.211Z</lastmod>
+    <loc>https://ssm.guide/chapters/03-s4/09-s4-kernel-algorithm.html</loc>
+    <lastmod>2026-06-17T16:22:10.351Z</lastmod>
   </url>
 </urlset>
