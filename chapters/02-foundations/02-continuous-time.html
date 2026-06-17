@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/02-foundations/02-continuous-time.qmd#sec-3-1" rel="next">
-<link href="../../chapters/02-foundations/01-state-as-memory.qmd#sec-2-5" rel="prev">
+<link href="../../chapters/02-foundations/01-state-as-memory.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1169,7 +1155,6 @@ window.Quarto = {
   <li><a href="#sec-3-5" id="toc-sec-3-5" class="nav-link" data-scroll-target="#sec-3-5">3.5 Linearity and time-invariance</a></li>
   <li><a href="#sec-3-6" id="toc-sec-3-6" class="nav-link" data-scroll-target="#sec-3-6">3.6 From a scalar input to model dimension <span class="math inline">\(\dmodel\)</span></a></li>
   <li><a href="#sec-3-7" id="toc-sec-3-7" class="nav-link" data-scroll-target="#sec-3-7">3.7 Notation</a></li>
-  <li><a href="#sec-3-8" id="toc-sec-3-8" class="nav-link" data-scroll-target="#sec-3-8">3.8 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1198,7 +1183,7 @@ window.Quarto = {
 </header>
 
 
-<p>The state equation is local in time, but memory is not. To see what the state contains at time <span class="math inline">\(t\)</span>, the differential equation has to be solved. The solution turns the local update into an integral over the past, with the matrix exponential giving the weight assigned to each lag.</p>
+<p>The state equation is local in time, but memory is not. The derivative only describes the next instant; the state at time <span class="math inline">\(t\)</span> contains the accumulated effect of all earlier inputs. Solving the differential equation turns the local update into an integral over the past, with the matrix exponential giving the weight assigned to each lag.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <section id="sec-3-1" class="level2">
 <h2 class="anchored" data-anchor-id="sec-3-1">3.1 Solving the differential equation</h2>
 <p>The equation</p>
@@ -1230,7 +1215,7 @@ x'(t)=ax(t),
 x(t)=e^{at}x(0).
 \]</span></p>
 <p>Thus <span class="math inline">\(a\)</span> controls the natural behaviour of the state. If <span class="math inline">\(a&lt;0\)</span>, the state decays. If <span class="math inline">\(a&gt;0\)</span>, the state grows. If <span class="math inline">\(a=0\)</span>, the state remains constant when no input is present.</p>
-<p>Now include the input. Rewrite</p>
+<p>Include the input. Rewrite</p>
 <p><span class="math display">\[
 x'(t)-ax(t)=bu(t).
 \]</span></p>
@@ -1303,7 +1288,7 @@ Cx(t)
 =
 \int_0^t Ce^{A(t-s)}Bu(s)\dd s.
 \]</span></p>
-<p>The state equation and the convolution now describe the same input-output map. The differential equation carries memory through <span class="math inline">\(x(t)\)</span>; the integral removes the state and shows the weight assigned to every past time.</p>
+<p>The state equation and the convolution describe the same input-output map. The differential equation carries memory through <span class="math inline">\(x(t)\)</span>; the integral removes the state and shows the weight assigned to every past time.</p>
 <p>The convolution formula specifies how the past is compressed into the state and read out. The input at time <span class="math inline">\(s\)</span> first enters through <span class="math inline">\(B\)</span>, then evolves for elapsed time <span class="math inline">\(t-s\)</span> through <span class="math inline">\(e^{A(t-s)}\)</span>, and is finally read out through <span class="math inline">\(C\)</span>.</p>
 <p>In the MIMO case, the same expression holds with <span class="math inline">\(u(s)\in\R^p\)</span> and <span class="math inline">\(y(t)\in\R^q\)</span>. The product</p>
 <p><span class="math display">\[
@@ -1358,7 +1343,7 @@ h(\tau)\in\R^{q\times p}.
 \]</span></p>
 <p>Each lag has an input-output matrix rather than a single scalar weight.</p>
 <p>On a grid of lags, <span class="math inline">\(h(\tau)=Ce^{A\tau}B\)</span> separates a scalar decay from a decayed rotation. The scalar system <span class="math inline">\(A=[-1]\)</span> gives a single exponential. The <span class="math inline">\(2\times2\)</span> rotating system changes sign as it decays.</p>
-<div id="fb28f2ff" class="cell" data-execution_count="1">
+<div id="e0cecfe8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.continuous <span class="im">import</span> impulse_response</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1489,8 +1474,8 @@ e^{(\Real\lambda_i)\tau_{1/2}}=\frac12.
 }
 \]</span></p>
 <p>The half-life translates an eigenvalue into a memory length in continuous time.</p>
-<p>The matrix <span class="math inline">\(A\)</span> is central because its eigenvalues determine the memory modes available to the state.</p>
-<p>The eigenvalues just used were complex, while the matrices in this book are usually real. Complex eigenvalues appear naturally when a real matrix contains rotations.</p>
+<p>The state matrix supplies the available memory modes through these eigenvalues.</p>
+<p>The eigenvalues just used were complex, although the state matrix itself was real. Complex eigenvalues appear naturally when a real matrix contains rotations.</p>
 <p>If <span class="math inline">\(A\)</span> is real and <span class="math inline">\(\lambda=-\alpha+i\omega\)</span> is an eigenvalue, then its complex conjugate <span class="math inline">\(\bar\lambda=-\alpha-i\omega\)</span> is also an eigenvalue. The corresponding complex modes combine to produce real sine and cosine terms. Thus complex eigenvalues do not force the state or output to become complex. They are often a compact way of describing a real two-dimensional rotation.</p>
 <p>The simplest real rotation already appears in two dimensions. The matrix</p>
 <p><span class="math display">\[
@@ -1643,6 +1628,7 @@ e^{-\gamma\tau}
 \]</span></p>
 <p>The eigenvalues match the general interpretation. The real part <span class="math inline">\(-\gamma\)</span> gives decay, and the imaginary parts <span class="math inline">\(\pm\omega\)</span> give oscillation.</p>
 <p>A state space model can represent more than a fading average. By combining decaying and oscillating modes, a finite-dimensional state can encode both slowly varying and phase-like summaries of the input history.</p>
+<p>The modes describe what the state can remember. They do not by themselves give a fixed convolution kernel. A fixed kernel appears only when the input-output map is both linear and time-invariant.</p>
 </section>
 </section>
 <section id="sec-3-5" class="level2">
@@ -1690,7 +1676,7 @@ y(t)=\int_0^t h(t-s)u(s)\dd s.
 </section>
 <section id="sec-3-6" class="level2">
 <h2 class="anchored" data-anchor-id="sec-3-6">3.6 From a scalar input to model dimension <span class="math inline">\(\dmodel\)</span></h2>
-<p>So far the input has been scalar. Neural sequence models usually store a vector at each position. If the model dimension is <span class="math inline">\(\dmodel\)</span>, then the input at time <span class="math inline">\(t\)</span> has the form</p>
+<p>A scalar input gives one stream. Neural sequence models usually store a vector at each position. If the model dimension is <span class="math inline">\(\dmodel\)</span>, then the input at time <span class="math inline">\(t\)</span> has the form</p>
 <p><span class="math display">\[
 u(t)\in\R^{\dmodel}.
 \]</span></p>
@@ -1713,9 +1699,9 @@ y_d(t)=C_d x_d(t),
 d=1,\dots,\dmodel.
 \]</span></p>
 <p>There is no mixing between coordinates inside these SISO state space models. The alternative would be one MIMO system with <span class="math inline">\(p=q=\dmodel\)</span>, which has a <span class="math inline">\(\dmodel\times\dmodel\)</span> matrix-valued impulse response at every lag and couples all coordinates through one shared state. The coordinate-wise layer instead gives <span class="math inline">\(\dmodel\)</span> scalar kernels, each with its own state of dimension <span class="math inline">\(N\)</span>, for <span class="math inline">\(O(\dmodel N)\)</span> total state against the coupled alternative. The independent layout is cheaper and keeps each coordinate readable on its own.</p>
-<p>Any mixing across the model dimension is therefore performed outside this coordinate-wise state space operation. That mixing lives in the position-wise linear maps between layers, which are treated when the full architecture is assembled.</p>
+<p>Any mixing across the model dimension is therefore performed outside this coordinate-wise state space operation, usually by position-wise linear maps surrounding the state space model.</p>
 <p>The word “channel” is sometimes used in the literature for one coordinate of the model dimension. The term <strong>coordinate</strong> is used here unless quoting that terminology from a specific source.</p>
-<p>Each coordinate now requires its own scalar kernel <span class="math inline">\(Ce^{A\tau}B\)</span>. After discretisation, these kernels must be generated at a cost compatible with long sequences.</p>
+<p>Each coordinate requires its own scalar kernel <span class="math inline">\(Ce^{A\tau}B\)</span>. After discretisation, these kernels must be generated at a cost compatible with long sequences.</p>
 </section>
 <section id="sec-3-7" class="level2">
 <h2 class="anchored" data-anchor-id="sec-3-7">3.7 Notation</h2>
@@ -1750,15 +1736,6 @@ d=1,\dots,\dmodel.
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-3-8" class="level2">
-<h2 class="anchored" data-anchor-id="sec-3-8">3.8 Notes and references</h2>
-<p>The continuous-time linear state space model, its solution by the matrix exponential, and the impulse response are standard in linear systems theory. The integrating-factor solution <span class="math inline">\(x(t)=e^{At}x(0)+\int_0^t e^{A(t-s)}Bu(s)\dd s\)</span>, the eigenvalue decomposition of <span class="math inline">\(e^{A\tau}\)</span>, and the Jordan-form correction are treated in any account of linear systems <span class="citation" data-cites="kailath1980">(<a href="#ref-kailath1980" role="doc-biblioref">Kailath 1980</a>)</span>.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-kailath1980" class="csl-entry" role="listitem">
-Kailath, Thomas. 1980. <em>Linear Systems</em>. Prentice-Hall.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1909,12 +1886,15 @@ x(t)
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>The continuous-time linear state space model, its solution by the matrix exponential, and the impulse response are standard in linear systems theory. The integrating-factor solution <span class="math inline">\(x(t)=e^{At}x(0)+\int_0^t e^{A(t-s)}Bu(s)\dd s\)</span>, the eigenvalue decomposition of <span class="math inline">\(e^{A\tau}\)</span>, and the Jordan-form correction are treated in standard accounts of linear systems <span class="citation" data-cites="kailath1980">(Kailath 1980)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1933,14 +1913,12 @@ x(t)
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2384,8 +2362,8 @@ x(t)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="pagination-link" aria-label="2.5 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2.5 Notes and references</span>
+      <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

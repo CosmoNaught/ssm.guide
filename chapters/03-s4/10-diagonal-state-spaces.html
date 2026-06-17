@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/03-s4/10-diagonal-state-spaces.qmd#sec-11-1" rel="next">
-<link href="../../chapters/03-s4/09-s4-kernel-algorithm.qmd#sec-10-8" rel="prev">
+<link href="../../chapters/03-s4/09-s4-kernel-algorithm.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1168,7 +1154,6 @@ window.Quarto = {
   <li><a href="#sec-11-8" id="toc-sec-11-8" class="nav-link" data-scroll-target="#sec-11-8">11.8 Shared state and the parallel scan</a></li>
   <li><a href="#sec-11-9" id="toc-sec-11-9" class="nav-link" data-scroll-target="#sec-11-9">11.9 What the diagonal model preserves</a></li>
   <li><a href="#sec-11-10" id="toc-sec-11-10" class="nav-link" data-scroll-target="#sec-11-10">11.10 Notation</a></li>
-  <li><a href="#sec-11-11" id="toc-sec-11-11" class="nav-link" data-scroll-target="#sec-11-11">11.11 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1197,15 +1182,15 @@ window.Quarto = {
 </header>
 
 
-<p>The diagonal models ask how much of S4 remains after the low-rank correction is removed. With a diagonal state matrix, each coordinate contributes one damped oscillatory mode, and the kernel is a learned mixture of those modes. The main design problem becomes the placement and parameterisation of the eigenvalues.</p>
+<p>The diagonal models ask how much of S4 remains after the low-rank correction is removed. With a diagonal state matrix, each coordinate contributes one damped oscillatory mode, and the kernel is a learned mixture of those modes. The low-rank algebra disappears; the main design problem becomes the placement and parameterisation of the eigenvalues.</p>
 <section id="sec-11-1" class="level2">
 <h2 class="anchored" data-anchor-id="sec-11-1">11.1 Removing the correction</h2>
 <p>The full S4 construction keeps a low-rank correction because the HiPPO matrix requires it. After diagonalising the normal part, the state matrix has the form <span class="math display">\[
 A=\Lambda-PQ^*.
 \]</span></p>
 <p>That correction is not free. Generating the length-<span class="math inline">\(L\)</span> kernel from the diagonal-plus-low-rank form runs the resolvent through a kernel generating function, a Cauchy evaluation of many rational terms, a Woodbury correction for the rank-one term, and an inverse fast Fourier transform back to the time domain. Each stage carries its own constants and its own numerical care. The low-rank correction is useful only if its exact reconstruction of the HiPPO matrix matters more than the cost and complexity it adds. A diagonal model tests the alternative: keep the eigenvalue placement and remove the correction.</p>
-<p>The empirical result came first. A model that keeps only a complex diagonal state matrix, with no normal part and no low-rank term, and computes the length-<span class="math inline">\(L\)</span> kernel from its eigenvalues, is called a <strong>Diagonal State Space</strong> (<strong>DSS</strong>) model <span class="citation" data-cites="gupta2022dss">(<a href="#ref-gupta2022dss" role="doc-biblioref">Gupta et al. 2022</a>)</span>. When its diagonal entries were initialised from the eigenvalues of the HiPPO-derived matrix, the diagonal model matched the full S4 construction on long-range tasks. The low-rank correction, which reproduces the HiPPO matrix exactly, is not needed for performance once the eigenvalues are placed well.</p>
-<p>Taking that finding at face value, a simpler model removes the low-rank term and keeps only <span class="math display">\[
+<p>A model that keeps only a complex diagonal state matrix, with no normal part and no low-rank term, and computes the length-<span class="math inline">\(L\)</span> kernel from its eigenvalues, is called a <strong>Diagonal State Space</strong> (<strong>DSS</strong>) model <span class="citation" data-cites="gupta2022dss">(Gupta et al. 2022)</span>. When its diagonal entries were initialised from the eigenvalues of the HiPPO-derived matrix, the diagonal model matched the full S4 construction on long-range tasks. The low-rank correction, which reproduces the HiPPO matrix exactly, is not needed for performance once the eigenvalues are placed well.</p>
+<p>That finding suggests a simpler state matrix: <span class="math display">\[
 A=\Lambda.
 \]</span></p>
 <p>The result is a <strong>diagonal state space model</strong>.</p>
@@ -1215,11 +1200,11 @@ x'(t)=Ax(t)+Bu(t),
 y(t)=Cx(t).
 \]</span></p>
 <p>The simplification is entirely in the structure of <span class="math inline">\(A\)</span>.</p>
-<p>The diagonal S4 family is called <strong>S4D</strong> <span class="citation" data-cites="gu2022s4d">(<a href="#ref-gu2022s4d" role="doc-biblioref">Gu, Gupta, et al. 2022</a>)</span>. The letter “D” refers to the diagonal state matrix. Where DSS shows that a purely diagonal model can work, S4D explains which part of the structured construction it keeps. It traces the working diagonal back to the normal part of the HiPPO matrix and studies how to parameterise and initialise it.</p>
+<p>The diagonal S4 family is called <strong>S4D</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The letter “D” refers to the diagonal state matrix. Where DSS shows that a purely diagonal model can work, S4D explains which part of the structured construction it keeps. It traces the working diagonal back to the normal part of the HiPPO matrix and studies how to parameterise and initialise it.</p>
 </section>
 <section id="sec-11-2" class="level2">
 <h2 class="anchored" data-anchor-id="sec-11-2">11.2 The continuous-time diagonal kernel</h2>
-<p>Discarding the correction makes the kernel explicit. A diagonal <span class="math inline">\(A\)</span> gives an impulse response that can be written explicitly. Let <span class="math display">\[
+<p>A diagonal <span class="math inline">\(A\)</span> gives an impulse response in closed form. Let <span class="math display">\[
 A=\diag(\lambda_0,\dots,\lambda_{N-1}),
 \qquad
 B\in\C^N,
@@ -1253,7 +1238,7 @@ e^{-\alpha_nt}
 \right).
 \]</span></p>
 <p>The real part <span class="math inline">\(-\alpha_n\)</span> sets the decay rate. The imaginary part <span class="math inline">\(\omega_n\)</span> sets the oscillation frequency.</p>
-<p>Each mode is therefore a damped complex sinusoid with timescale <span class="math inline">\(1/\alpha_n\)</span> and oscillation period <span class="math inline">\(2\pi/\omega_n\)</span>. The boxed kernel sums these modes, so the diagonal state space model is a bank of fading memories held at chosen timescales, in the sense of the fading-memory weights of the continuous-time chapter. Take <span class="math inline">\(\alpha=0.5\)</span> and <span class="math inline">\(\omega=\pi\)</span> as one worked mode. Its envelope <span class="math inline">\(e^{-0.5t}\)</span> has half-life <span class="math inline">\(\log 2/0.5\approx 1.4\)</span> time units, and its oscillation completes one period every <span class="math inline">\(2\pi/\pi=2\)</span> time units, so this mode fades by half over a little more than one oscillation.</p>
+<p>Each mode is therefore a damped complex sinusoid with timescale <span class="math inline">\(1/\alpha_n\)</span> and oscillation period <span class="math inline">\(2\pi/\omega_n\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The boxed kernel sums these modes, so the diagonal state space model is a bank of fading memories held at chosen timescales, matching the fading-memory weights of <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-4">Section 3.4</a>. Take <span class="math inline">\(\alpha=0.5\)</span> and <span class="math inline">\(\omega=\pi\)</span> as one worked mode. Its envelope <span class="math inline">\(e^{-0.5t}\)</span> has half-life <span class="math inline">\(\log 2/0.5\approx 1.4\)</span> time units, and its oscillation completes one period every <span class="math inline">\(2\pi/\pi=2\)</span> time units, so this mode fades by half over a little more than one oscillation.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../figures/fig-11-1-modes.svg" class="img-fluid figure-img" style="width:80.0%" alt="Faint individual decaying modes and their bold sum versus lag."></p>
@@ -1263,7 +1248,7 @@ e^{-\alpha_nt}
 </section>
 <section id="sec-11-3" class="level2">
 <h2 class="anchored" data-anchor-id="sec-11-3">11.3 The discrete-time kernel and its Vandermonde form</h2>
-<p>The sequence model runs on samples, so the continuous modes are discretised before the discrete kernel is read off. Each continuous eigenvalue <span class="math inline">\(\lambda_n\)</span> becomes a discrete eigenvalue <span class="math inline">\(\bar\lambda_n\)</span>, the per-mode form of the discrete eigenvalue <span class="math inline">\(\mu\)</span> used in earlier chapters. Under zero-order hold, <span class="math display">\[
+<p>The sequence model runs on samples, so the continuous modes are discretised before the discrete kernel is read off. Each continuous eigenvalue <span class="math inline">\(\lambda_n\)</span> becomes a discrete eigenvalue <span class="math inline">\(\bar\lambda_n\)</span>, the per-mode form of the discrete eigenvalue <span class="math inline">\(\mu\)</span>. Under zero-order hold, <span class="math display">\[
 \bar\lambda_n=e^{\Delta\lambda_n},
 \]</span></p>
 <p>and <span class="math display">\[
@@ -1298,14 +1283,14 @@ C\Abar^m\Bbar
 }
 \]</span></p>
 <p>for suitable weights <span class="math inline">\(w_n\)</span>.</p>
-<p>Thus each state coordinate contributes one geometric sequence in discrete time. Collecting those geometric sequences into a single object exposes the structure of the kernel computation. For a length-<span class="math inline">\(L\)</span> kernel, form the matrix <span class="math display">\[
+<p>Thus each state coordinate contributes one geometric sequence in discrete time. For a length-<span class="math inline">\(L\)</span> kernel, collect these sequences into the matrix <span class="math display">\[
 V_{nm}=\bar\lambda_n^m,
 \qquad
 0\le n&lt;N,
 \quad
 0\le m&lt;L.
 \]</span></p>
-<p>The matrix <span class="math inline">\(V\)</span> is a <strong>Vandermonde matrix</strong> because each row is generated by repeated powers of one scalar.</p>
+<p>The matrix <span class="math inline">\(V\)</span> is a <strong>Vandermonde matrix</strong> because each row is generated by repeated powers of one scalar.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>The diagonal kernel can be written as <span class="math display">\[
 \Kbar_m
 =
@@ -1316,9 +1301,9 @@ V_{nm}=\bar\lambda_n^m,
 =
 w^\top V.
 \]</span></p>
-<p>Forming the kernel from <span class="math inline">\(w^\top V\)</span> costs <span class="math inline">\(O(NL)\)</span> operations, with no Cauchy evaluation, no Woodbury correction, and no generating-function inversion, against the multi-stage DPLR pipeline of the structured state spaces chapter. There is no Woodbury correction, no low-rank term, and no coupling between state coordinates inside the state space model. Kernel generation becomes a structured multiplication by powers of the diagonal eigenvalues.</p>
+<p>Forming the kernel from <span class="math inline">\(w^\top V\)</span> costs <span class="math inline">\(O(NL)\)</span> operations. The Cauchy evaluation, Woodbury correction, and generating-function inversion are no longer needed, because there is no low-rank term and no coupling between state coordinates inside the state space model. Kernel generation becomes a structured multiplication by powers of the diagonal eigenvalues.</p>
 <p>The recurrence and the Vandermonde kernel are the same map computed in two orders, so they agree on any input. Take four diagonal modes with linearly spaced frequencies, using the S4D-Lin initialisation of <a href="#sec-11-6" class="quarto-xref">Section&nbsp;6</a> discretised under zero-order hold to <span class="math inline">\(\bar\lambda_n=e^{\Delta\lambda_n}\)</span>. The diagonal recurrence then matches the convolution with the kernel <span class="math inline">\(\bar K_m=\sum_n w_n\bar\lambda_n^m\)</span>, where <span class="math inline">\(w_n=C_n\bar B_n\)</span>.</p>
-<div id="42ae39cf" class="cell" data-execution_count="1">
+<div id="a7d79077" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: four S4D-Lin modes, discretised at dt = 0.1</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.diagonal <span class="im">import</span> s4d_lin_init</span>
@@ -1334,7 +1319,7 @@ w^\top V.
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="f70c8421" class="cell" data-execution_count="2">
+<div id="c7e9e477" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.diagonal <span class="im">import</span> diagonal_kernel, diagonal_recurrence</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.kernels <span class="im">import</span> causal_conv</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1348,7 +1333,7 @@ w^\top V.
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="7f0b03cd" class="cell" data-execution_count="3">
+<div id="da3ff62f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.diagonal <span class="im">import</span> (</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    diagonal_kernel <span class="im">as</span> ker_t, diagonal_recurrence <span class="im">as</span> rec_t)</span>
@@ -1364,7 +1349,7 @@ w^\top V.
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="49a8e52d" class="cell" data-execution_count="4">
+<div id="86e21826" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.diagonal <span class="im">import</span> (</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    diagonal_kernel <span class="im">as</span> ker_j, diagonal_recurrence <span class="im">as</span> rec_j)</span>
@@ -1416,7 +1401,7 @@ A=V\Lambda V^{-1},
 1,\bar\lambda_n,\bar\lambda_n^2,\dots.
 \]</span></p>
 <p>If the eigenvalues are poorly placed, the dictionary may not cover the memory scales needed by the task. Eigenvalues with strongly negative real parts give <span class="math inline">\(|\bar\lambda_n|=e^{\Delta\Real(\lambda_n)}\)</span> near zero, so each <span class="math inline">\(\bar\lambda_n^m\)</span> collapses within a few steps and the kernel becomes short range. No placement of the weights <span class="math inline">\(w_n\)</span> can rebuild long-range memory from modes that have already decayed.</p>
-<p>The lesson of S4D is that the diagonal restriction can work, but the initialisation is part of the construction.</p>
+<p>S4D therefore treats the diagonal restriction and the initialisation as one construction: the model is simple only after the eigenvalues have been placed carefully.</p>
 </section>
 <section id="sec-11-6" class="level2">
 <h2 class="anchored" data-anchor-id="sec-11-6">11.6 Structured diagonal initialisations</h2>
@@ -1437,7 +1422,7 @@ A_D=\Lambda.
 n=0,1,\dots,M-1.
 }
 \]</span></p>
-<p>The real part is fixed at <span class="math inline">\(-\frac12\)</span>, giving uniform damping. The imaginary parts are linearly spaced, giving Fourier-like frequencies. The initialisation is commonly called <strong>S4D-Lin</strong>.</p>
+<p>The real part is fixed at <span class="math inline">\(-\frac12\)</span>, giving uniform damping. The imaginary parts are linearly spaced, giving Fourier-like frequencies. The initialisation is commonly called <strong>S4D-Lin</strong> <span class="citation" data-cites="gu2022s4d">(Gu, Gupta, et al. 2022)</span>.</p>
 <p>An inverse-spaced initialisation is <span class="math display">\[
 \boxed{
 \lambda_n
@@ -1452,13 +1437,13 @@ i\frac{M}{\pi}
 n=0,1,\dots,M-1.
 }
 \]</span></p>
-<p>The imaginary parts follow an inverse law inspired by the asymptotic spectrum of the HiPPO-derived construction. The initialisation is commonly called <strong>S4D-Inv</strong>.</p>
-<p>The constants depend on the normalisation of the time interval, step size, and complex-state convention. What distinguishes the schemes is the distribution of frequencies. S4D-Lin spaces them linearly, while S4D-Inv concentrates them according to an inverse law. The original S4D work also studies a quadratic law, S4D-Quad, and a milder inverse law, S4D-Inv2, which sit at the two extremes of how the frequencies crowd together.</p>
+<p>The imaginary parts follow an inverse law inspired by the asymptotic spectrum of the HiPPO-derived construction. The initialisation is commonly called <strong>S4D-Inv</strong> <span class="citation" data-cites="gu2022s4d">(Gu, Gupta, et al. 2022)</span>.</p>
+<p>The constants depend on the normalisation of the time interval, step size, and complex-state convention. What distinguishes the schemes is the distribution of frequencies. S4D-Lin spaces them linearly, while S4D-Inv concentrates them according to an inverse law. The original S4D work <span class="citation" data-cites="gu2022s4d">(Gu, Gupta, et al. 2022)</span> also studies a quadratic law, S4D-Quad, and a milder inverse law, S4D-Inv2, which sit at the two extremes of how the frequencies crowd together.</p>
 <p>Both closed forms are structured initialisations. Neither is a random diagonal matrix.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../../figures/fig-11-2-s4d-init.svg" class="img-fluid figure-img" style="width:86.0%" alt="Line plot of imaginary part (mode frequency) against eigenvalue index, sorted from highest to lowest, for five S4D initialisations. S4D-Quad places more frequencies at the high end. S4D-Inv and S4D-LegS crowd frequencies near zero. S4D-Inv2 sits between them. S4D-Lin spaces frequencies uniformly."></p>
-<figcaption>Figure 11.2. The S4D family of initialisations. Every scheme fixes the decay rate at <span class="math inline">\(\operatorname{Re}\lambda=-\tfrac12\)</span> and differs only in the mode frequencies (the imaginary parts). The horizontal axis indexes the eigenvalues from the highest frequency (<span class="math inline">\(n=0\)</span>) to the lowest, so each curve traces how that scheme spaces its frequencies. S4D-Inv and the true HiPPO-LegS spectrum crowd the frequencies near zero, so their frequency curves drop fastest. S4D-Quad crowds them at the high end, so its curve drops slowest. S4D-Inv2 is a milder inverse law in between. S4D-Lin spaces frequencies uniformly. The exact top frequency depends on the normalisation and the number of modes. S4D-Lin and S4D-Inv have the closed forms given by the equations. The other curves come from the broader family in the original S4D work.</figcaption>
+<figcaption>Figure 11.2. The S4D family of initialisations. Every scheme fixes the decay rate at <span class="math inline">\(\operatorname{Re}\lambda=-\tfrac12\)</span> and differs only in the mode frequencies (the imaginary parts). The horizontal axis sorts the eigenvalues from the highest frequency to the lowest, so each curve traces how that scheme spaces its frequencies. S4D-Inv and the true HiPPO-LegS spectrum crowd the frequencies near zero, so their frequency curves drop fastest. S4D-Quad crowds them at the high end, so its curve drops slowest. S4D-Inv2 is a milder inverse law in between. S4D-Lin spaces frequencies uniformly. The exact top frequency depends on the normalisation and the number of modes. S4D-Lin and S4D-Inv have the closed forms given by the equations. The other curves come from the broader family in the original S4D work.</figcaption>
 </figure>
 </div>
 </section>
@@ -1480,7 +1465,7 @@ n=0,1,\dots,M-1.
 </section>
 <section id="sec-11-8" class="level2">
 <h2 class="anchored" data-anchor-id="sec-11-8">11.8 Shared state and the parallel scan</h2>
-<p>The diagonal models so far run one scalar state space model on each coordinate of the representation. With <span class="math inline">\(H\)</span> such coordinates (the model dimension <span class="math inline">\(\dmodel\)</span> of earlier chapters) this is <span class="math inline">\(H\)</span> independent scalar filters, so nothing mixes information across input coordinates inside the state space layer, and the parameter count grows with <span class="math inline">\(H\)</span> separate models. Another option keeps a single state and lets several input coordinates write into it and several output coordinates read from it. With <span class="math inline">\(H\)</span> input coordinates and <span class="math inline">\(H\)</span> output coordinates sharing one <span class="math inline">\(N\)</span>-dimensional diagonal state, the discretised input matrix is <span class="math inline">\(\Bbar\in\C^{N\times H}\)</span> and the output matrix is <span class="math inline">\(C\in\C^{H\times N}\)</span>, while the state matrix stays diagonal. The shared-state diagonal form is used by <strong>S5</strong>, a parallel-scan state space sequence model <span class="citation" data-cites="smith2023s5">(<a href="#ref-smith2023s5" role="doc-biblioref">Smith et al. 2023</a>)</span>.</p>
+<p>A coordinate-wise diagonal layer runs one scalar state space model on each coordinate of the representation. With <span class="math inline">\(H\)</span> such coordinates, often <span class="math inline">\(H=\dmodel\)</span>, this is <span class="math inline">\(H\)</span> independent scalar filters. Nothing mixes information across input coordinates inside the state space layer, and the parameter count grows with <span class="math inline">\(H\)</span> separate models. Another option keeps a single state and lets several input coordinates write into it and several output coordinates read from it. With <span class="math inline">\(H\)</span> input coordinates and <span class="math inline">\(H\)</span> output coordinates sharing one <span class="math inline">\(N\)</span>-dimensional diagonal state, the discretised input matrix is <span class="math inline">\(\Bbar\in\C^{N\times H}\)</span> and the output matrix is <span class="math inline">\(C\in\C^{H\times N}\)</span>, while the state matrix stays diagonal. The shared-state diagonal form is used by <strong>S5</strong>, a parallel-scan state space sequence model.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>Sharing the state changes how the model is best computed. A fixed kernel would need a separate convolution for each output coordinate. The recurrence avoids the kernel, but its direct left-to-right evaluation has a dependency chain of length <span class="math inline">\(L\)</span>. A third option is available because the recurrence is linear.</p>
 <p>Consider one mode. Its update is an affine map of a scalar state,</p>
 <p><span class="math display">\[
@@ -1507,7 +1492,7 @@ x\mapsto a(a'x+c')+c=(aa')x+(ac'+c).
 \quad\dots
 \]</span></p>
 <p>in <span class="math inline">\(O(\log L)\)</span> sequential rounds using <span class="math inline">\(O(L)\)</span> work. Each combined pair, applied to the zero initial state, returns one state, and reading through <span class="math inline">\(C\)</span> returns the output.</p>
-<p>For the fixed diagonal model the multiplier never changes, <span class="math inline">\(a_k=\bar\lambda_n\)</span> at every step, so the accumulated multiplier is <span class="math inline">\(\bar\lambda_n^{\,k}\)</span> and the scan rebuilds the convolution kernel. Here the scan is only a third way to apply one fixed map. What it never uses is the multipliers being equal. If <span class="math inline">\(a_k\)</span> were allowed to change from one step to the next, the convolution kernel would no longer exist, but the affine composition would still be associative, and the scan would still return the state sequence.</p>
+<p>For the fixed diagonal model the multiplier never changes, <span class="math inline">\(a_k=\bar\lambda_n\)</span> at every step, so the accumulated multiplier is <span class="math inline">\(\bar\lambda_n^{\,k}\)</span> and the scan rebuilds the convolution kernel. For a fixed diagonal model, the scan is only a third way to apply one fixed map. The associative composition never uses the multipliers being equal. If <span class="math inline">\(a_k\)</span> were allowed to change from one step to the next, the convolution kernel would no longer exist, but the affine composition would still be associative, and the scan would still return the state sequence.</p>
 </section>
 <section id="sec-11-9" class="level2">
 <h2 class="anchored" data-anchor-id="sec-11-9">11.9 What the diagonal model preserves</h2>
@@ -1524,7 +1509,7 @@ x\mapsto a(a'x+c')+c=(aa')x+(ac'+c).
 <p>After the structural simplifications, the model is a bank of stable decaying and oscillating filters combined by a learned output map. That bank is shared across the sequence. S4 and S4D are still linear time-invariant state space models, so once the parameters are fixed, the same kernel is used for every input sequence: <span class="math display">\[
 \Kbar_m=C\Abar^m\Bbar.
 \]</span></p>
-<p>Their cost advantage comes from the fixed kernel. It is generated once for a given layer and sequence length, at <span class="math inline">\(O(NL)\)</span> for the Vandermonde sum, then applied by fast Fourier transform convolution at <span class="math inline">\(O(L\log L)\)</span> per sequence.</p>
+<p>Their cost advantage comes from the fixed kernel. It is generated once for a given layer and sequence length, at <span class="math inline">\(O(NL)\)</span> for the Vandermonde sum, then applied by fast Fourier transform convolution at <span class="math inline">\(O(L\log L)\)</span> per sequence.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>The same fixed kernel is also a limitation. It treats lag <span class="math inline">\(m\)</span> the same way regardless of the content of the sequence. The model can learn a wide bank of filters, but the filters themselves do not change from one input token to another.</p>
 <p>The kernel is no longer arbitrary and need not be generated by dense powers. HiPPO gives the state a memory interpretation. S4 gives the corresponding kernel a structured computation. S4D keeps much of this behaviour with a carefully initialised diagonal state matrix.</p>
 <p>The recurrence, the convolution, and the scan all apply one fixed linear map, chosen before the sequence is read. The map does not depend on the content of the sequence. Allowing the matrices to depend on the input being processed would remove the fixed convolution kernel, leaving the recurrence and the scan. A state space model whose parameters are functions of the current input is called a <strong>selective state space model</strong>.</p>
@@ -1612,46 +1597,6 @@ x\mapsto a(a'x+c')+c=(aa')x+(ac'+c).
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-11-11" class="level2">
-<h2 class="anchored" data-anchor-id="sec-11-11">11.11 Notes and references</h2>
-<p>The construction was assembled over a short sequence of papers. Linear state-space layers first used a continuous-time state space model as a sequence layer <span class="citation" data-cites="gu2021lssl">(<a href="#ref-gu2021lssl" role="doc-biblioref">Gu et al. 2021</a>)</span>. HiPPO gave the state matrix its memory interpretation through online polynomial projection <span class="citation" data-cites="gu2020hippo">(<a href="#ref-gu2020hippo" role="doc-biblioref">Gu et al. 2020</a>)</span>. S4 rewrote the resulting dense matrix in a structured form whose kernel can be generated without repeated dense multiplication <span class="citation" data-cites="gu2022s4">(<a href="#ref-gu2022s4" role="doc-biblioref">Gu, Goel, et al. 2022</a>)</span>. The diagonal papers then asked how much of that structure is needed: DSS kept only a diagonal state matrix <span class="citation" data-cites="gupta2022dss">(<a href="#ref-gupta2022dss" role="doc-biblioref">Gupta et al. 2022</a>)</span>, and S4D made the diagonal initialisation precise <span class="citation" data-cites="gu2022s4d">(<a href="#ref-gu2022s4d" role="doc-biblioref">Gu, Gupta, et al. 2022</a>)</span>. S5 kept a single diagonal state shared across coordinates and evaluated it with a parallel scan <span class="citation" data-cites="smith2023s5">(<a href="#ref-smith2023s5" role="doc-biblioref">Smith et al. 2023</a>)</span>.</p>
-<p>The mathematical tools used along the way are standard. The polynomial-projection view of memory rests on the classical theory of orthogonal polynomials, in particular the Legendre basis <span class="citation" data-cites="szego1939">(<a href="#ref-szego1939" role="doc-biblioref">Szegő 1939</a>)</span>. The structured kernel computation uses the Woodbury identity for the low-rank resolvent correction <span class="citation" data-cites="hager1989">(<a href="#ref-hager1989" role="doc-biblioref">Hager 1989</a>)</span>, Cauchy and Vandermonde structure for evaluating many rational terms at once <span class="citation" data-cites="pan2001">(<a href="#ref-pan2001" role="doc-biblioref">Pan 2001</a>)</span>, and the fast Fourier transform to move between frequency samples and the time-domain kernel <span class="citation" data-cites="cooley1965fft">(<a href="#ref-cooley1965fft" role="doc-biblioref">Cooley and Tukey 1965</a>)</span>. Here these objects serve the single purpose of making the S4 resolvent cheap to evaluate. The associative, or parallel prefix, scan used to evaluate a linear recurrence in parallel is a standard primitive of parallel computing <span class="citation" data-cites="blelloch1990">(<a href="#ref-blelloch1990" role="doc-biblioref">Blelloch 1990</a>)</span>.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-blelloch1990" class="csl-entry" role="listitem">
-Blelloch, Guy E. 1990. <em>Prefix Sums and Their Applications</em>. CMU-CS-90-190. School of Computer Science, Carnegie Mellon University.
-</div>
-<div id="ref-cooley1965fft" class="csl-entry" role="listitem">
-Cooley, James W., and John W. Tukey. 1965. <span>“An Algorithm for the Machine Calculation of Complex <span>Fourier</span> Series.”</span> <em>Mathematics of Computation</em> 19 (90): 297–301. <a href="https://doi.org/10.1090/S0025-5718-1965-0178586-1">https://doi.org/10.1090/S0025-5718-1965-0178586-1</a>.
-</div>
-<div id="ref-gu2020hippo" class="csl-entry" role="listitem">
-Gu, Albert, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Ré. 2020. <span>“<span>HiPPO</span>: Recurrent Memory with Optimal Polynomial Projections.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em> 33. <a href="https://arxiv.org/abs/2008.07669">https://arxiv.org/abs/2008.07669</a>.
-</div>
-<div id="ref-gu2022s4" class="csl-entry" role="listitem">
-Gu, Albert, Karan Goel, and Christopher Ré. 2022. <span>“Efficiently Modeling Long Sequences with Structured State Spaces.”</span> <em>International Conference on Learning Representations (ICLR)</em>. <a href="https://arxiv.org/abs/2111.00396">https://arxiv.org/abs/2111.00396</a>.
-</div>
-<div id="ref-gu2022s4d" class="csl-entry" role="listitem">
-Gu, Albert, Ankit Gupta, Karan Goel, and Christopher Ré. 2022. <span>“On the Parameterization and Initialization of Diagonal State Space Models.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em> 35. <a href="https://arxiv.org/abs/2206.11893">https://arxiv.org/abs/2206.11893</a>.
-</div>
-<div id="ref-gu2021lssl" class="csl-entry" role="listitem">
-Gu, Albert, Isys Johnson, Karan Goel, et al. 2021. <span>“Combining Recurrent, Convolutional, and Continuous-Time Models with Linear State-Space Layers.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em> 34: 572–85. <a href="https://arxiv.org/abs/2110.13985">https://arxiv.org/abs/2110.13985</a>.
-</div>
-<div id="ref-gupta2022dss" class="csl-entry" role="listitem">
-Gupta, Ankit, Albert Gu, and Jonathan Berant. 2022. <span>“Diagonal State Spaces Are as Effective as Structured State Spaces.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em> 35. <a href="https://arxiv.org/abs/2203.14343">https://arxiv.org/abs/2203.14343</a>.
-</div>
-<div id="ref-hager1989" class="csl-entry" role="listitem">
-Hager, William W. 1989. <span>“Updating the Inverse of a Matrix.”</span> <em>SIAM Review</em> 31 (2): 221–39. <a href="https://doi.org/10.1137/1031049">https://doi.org/10.1137/1031049</a>.
-</div>
-<div id="ref-pan2001" class="csl-entry" role="listitem">
-Pan, Victor Y. 2001. <em>Structured Matrices and Polynomials: Unified Superfast Algorithms</em>. Birkh<span>ä</span>user. <a href="https://doi.org/10.1007/978-1-4612-0129-8">https://doi.org/10.1007/978-1-4612-0129-8</a>.
-</div>
-<div id="ref-smith2023s5" class="csl-entry" role="listitem">
-Smith, Jimmy T. H., Andrew Warrington, and Scott W. Linderman. 2023. <span>“Simplified State Space Layers for Sequence Modeling.”</span> <em>International Conference on Learning Representations (ICLR)</em>. <a href="https://arxiv.org/abs/2208.04933">https://arxiv.org/abs/2208.04933</a>.
-</div>
-<div id="ref-szego1939" class="csl-entry" role="listitem">
-Szegő, Gábor. 1939. <em>Orthogonal Polynomials</em>. Vol. 23. American Mathematical Society Colloquium Publications. American Mathematical Society. <a href="https://doi.org/10.1090/coll/023">https://doi.org/10.1090/coll/023</a>.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1813,12 +1758,19 @@ A=\operatorname{diag}(\lambda_0,\dots,\lambda_{N-1}).
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>Linear state-space layers first used a continuous-time state space model as a sequence layer <span class="citation" data-cites="gu2021lssl">(Gu et al. 2021)</span>. HiPPO gave the state matrix its memory interpretation through online polynomial projection <span class="citation" data-cites="gu2020hippo">(Gu et al. 2020)</span>. S4 rewrote the resulting dense matrix in a structured form whose kernel can be generated without repeated dense multiplication <span class="citation" data-cites="gu2022s4">(Gu, Goel, et al. 2022)</span>. DSS kept only a diagonal state matrix <span class="citation" data-cites="gupta2022dss">(Gupta et al. 2022)</span>, and S4D made the diagonal initialisation precise <span class="citation" data-cites="gu2022s4d">(Gu, Gupta, et al. 2022)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A real-valued layer can use complex arithmetic internally and return the real part, or it can pair conjugate modes so that the resulting kernel is real. The complex notation keeps the decay and oscillation parameters explicit.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Vandermonde structure is one of the standard structured-matrix forms used to evaluate many powers or rational terms at once <span class="citation" data-cites="pan2001">(Pan 2001)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>S5 keeps a single diagonal state shared across coordinates and evaluates the recurrence with a parallel scan <span class="citation" data-cites="smith2023s5">(Smith et al. 2023)</span>. Associative, or parallel-prefix, scan is a standard primitive of parallel computing <span class="citation" data-cites="blelloch1990">(Blelloch 1990)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The fast Fourier transform moves between frequency samples and time-domain convolution coefficients <span class="citation" data-cites="cooley1965fft">(Cooley and Tukey 1965)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1837,14 +1789,12 @@ A=\operatorname{diag}(\lambda_0,\dots,\lambda_{N-1}).
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2288,8 +2238,8 @@ A=\operatorname{diag}(\lambda_0,\dots,\lambda_{N-1}).
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="pagination-link" aria-label="10.8 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">10.8 Notes and references</span>
+      <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

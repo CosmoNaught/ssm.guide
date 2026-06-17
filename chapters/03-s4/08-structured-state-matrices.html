@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/03-s4/08-structured-state-matrices.qmd#sec-9-1" rel="next">
-<link href="../../chapters/03-s4/07-hippo.qmd#sec-8-8" rel="prev">
+<link href="../../chapters/03-s4/07-hippo.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1165,7 +1151,6 @@ window.Quarto = {
   <li><a href="#sec-9-5" id="toc-sec-9-5" class="nav-link" data-scroll-target="#sec-9-5">9.5 Why the DPLR form is useful</a></li>
   <li><a href="#sec-9-6" id="toc-sec-9-6" class="nav-link" data-scroll-target="#sec-9-6">9.6 Complex coordinates</a></li>
   <li><a href="#sec-9-7" id="toc-sec-9-7" class="nav-link" data-scroll-target="#sec-9-7">9.7 Notation</a></li>
-  <li><a href="#sec-9-8" id="toc-sec-9-8" class="nav-link" data-scroll-target="#sec-9-8">9.8 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1194,7 +1179,7 @@ window.Quarto = {
 </header>
 
 
-<p>The HiPPO matrix gives the state a memory interpretation, but its dense form is too expensive for long kernels. Direct diagonalisation is algebraically possible and numerically poor. The S4 construction uses a nearby normal matrix plus a low-rank correction, preserving the useful spectrum while making the resolvent cheap to evaluate.</p>
+<p>The HiPPO matrix gives the state a memory interpretation, but its dense form is too expensive for long kernels. Direct diagonalisation would make powers and resolvents cheap, but the eigenvector basis is numerically ill conditioned. The S4 construction uses a nearby normal matrix plus a low-rank correction, preserving the useful spectrum while making the resolvent cheap to evaluate.</p>
 <section id="sec-9-1" class="level2">
 <h2 class="anchored" data-anchor-id="sec-9-1">9.1 The cost of density</h2>
 <p>The HiPPO construction gives a state matrix with a memory interpretation:</p>
@@ -1250,8 +1235,8 @@ e^{At}
 A=V\Lambda V^{-1},
 \]</span></p>
 <p>one can also work in eigenvector coordinates. But this is useful only if the change of coordinates is well conditioned. If <span class="math inline">\(V\)</span> is nearly singular, the diagonal representation may be numerically unstable even though it is algebraically correct.</p>
-<p>The HiPPO matrix has this conditioning problem. In exact arithmetic <span class="math inline">\(A_{\HiPPO}\)</span> is diagonalisable, so a matrix <span class="math inline">\(V\)</span> of eigenvectors exists. The entries of that <span class="math inline">\(V\)</span> grow exponentially with the state dimension <span class="math inline">\(N\)</span>, so <span class="math inline">\(V\)</span> becomes severely ill-conditioned even at moderate <span class="math inline">\(N\)</span>. The diagonal representation is algebraically correct but numerically unusable, and forming the kernel through it loses most of its significant digits. The obstruction is not diagonalisation in principle; it is the floating-point conditioning of the change of coordinates. S4 avoids this by diagonalising a nearby normal matrix whose eigenvectors are well behaved.</p>
-<p>The Structured State Space sequence model (S4) construction rests on a more favourable fact. The dense HiPPO matrix is close to a matrix that is diagonalisable by a unitary change of coordinates, and differs from it only by a small-rank correction.</p>
+<p>The HiPPO matrix has this conditioning problem. In exact arithmetic <span class="math inline">\(A_{\HiPPO}\)</span> is diagonalisable, so a matrix <span class="math inline">\(V\)</span> of eigenvectors exists. The entries of that <span class="math inline">\(V\)</span> grow exponentially with the state dimension <span class="math inline">\(N\)</span>, so <span class="math inline">\(V\)</span> becomes severely ill-conditioned even at moderate <span class="math inline">\(N\)</span>. The diagonal representation is algebraically correct but numerically unusable, and forming the kernel through it loses most of its significant digits. The obstruction is not diagonalisation in principle; it is the floating-point conditioning of the change of coordinates. S4 avoids this by diagonalising a nearby normal matrix whose eigenvectors are well behaved.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The S4 construction uses a more favourable fact. The dense HiPPO matrix is close to a matrix that is diagonalisable by a unitary change of coordinates, and differs from it only by a small-rank correction.</p>
 </section>
 <section id="sec-9-3" class="level2">
 <h2 class="anchored" data-anchor-id="sec-9-3">9.3 Stable diagonalisation and cheap corrections</h2>
@@ -1294,8 +1279,7 @@ PQ^*v=P(Q^*v).
 <p><span class="math display">\[
 A=M-PQ^*
 \]</span></p>
-<p>with <span class="math inline">\(M\)</span> normal and <span class="math inline">\(P,Q\)</span> low-rank factors is called <strong>normal plus low rank</strong> (<strong>NPLR</strong>).</p>
-<p>The sign is conventional. The mathematical content is that <span class="math inline">\(A\)</span> differs from a normal matrix by a small-rank term.</p>
+<p>with <span class="math inline">\(M\)</span> normal and <span class="math inline">\(P,Q\)</span> low-rank factors is called <strong>normal plus low rank</strong> (<strong>NPLR</strong>).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 <section id="sec-9-4" class="level2">
 <h2 class="anchored" data-anchor-id="sec-9-4">9.4 The HiPPO matrix is normal plus rank one</h2>
@@ -1315,11 +1299,11 @@ p=(p_0,\dots,p_{N-1})^\top,
 \qquad
 q=(q_0,\dots,q_{N-1})^\top.
 \]</span></p>
-<p>Now form</p>
+<p>Form</p>
 <p><span class="math display">\[
 S=A_{\HiPPO}+pq^\top.
 \]</span></p>
-<p>To see that this combination is well structured, recall the entries of the HiPPO matrix from the previous chapter. With <span class="math inline">\(A_{\HiPPO}=-H_N\)</span>,</p>
+<p>To see that this combination is well structured, use the entries of the HiPPO matrix. With <span class="math inline">\(A_{\HiPPO}=-H_N\)</span>,</p>
 <p><span class="math display">\[
 (A_{\HiPPO})_{nk}
 =
@@ -1329,7 +1313,7 @@ S=A_{\HiPPO}+pq^\top.
 0, &amp; n&lt;k,
 \end{cases}
 \]</span></p>
-<p>and the correction has entries <span class="math inline">\((pq^\top)_{nk}=p_nq_k=\tfrac12\sqrt{(2n+1)(2k+1)}\)</span>. Adding the two gives the entries of <span class="math inline">\(S\)</span>. For <span class="math inline">\(n&gt;k\)</span> the entry is <span class="math inline">\(-\tfrac12\sqrt{(2n+1)(2k+1)}\)</span>, for <span class="math inline">\(n&lt;k\)</span> it is <span class="math inline">\(+\tfrac12\sqrt{(2n+1)(2k+1)}\)</span>, and on the diagonal it is <span class="math inline">\(-(n+1)+\tfrac12(2n+1)=-\tfrac12\)</span>. Now read <span class="math inline">\(S+S^\top\)</span> entry by entry. Off the diagonal the pair <span class="math inline">\(S_{nk}+S_{kn}\)</span> adds <span class="math inline">\(-\tfrac12\sqrt{(2n+1)(2k+1)}\)</span> to its mirror <span class="math inline">\(+\tfrac12\sqrt{(2n+1)(2k+1)}\)</span> and cancels. On the diagonal the two equal entries sum to <span class="math inline">\(-1\)</span>. So</p>
+<p>and the correction has entries <span class="math inline">\((pq^\top)_{nk}=p_nq_k=\tfrac12\sqrt{(2n+1)(2k+1)}\)</span>. Adding the two gives the entries of <span class="math inline">\(S\)</span>. For <span class="math inline">\(n&gt;k\)</span> the entry is <span class="math inline">\(-\tfrac12\sqrt{(2n+1)(2k+1)}\)</span>, for <span class="math inline">\(n&lt;k\)</span> it is <span class="math inline">\(+\tfrac12\sqrt{(2n+1)(2k+1)}\)</span>, and on the diagonal it is <span class="math inline">\(-(n+1)+\tfrac12(2n+1)=-\tfrac12\)</span>. Read <span class="math inline">\(S+S^\top\)</span> entry by entry. Off the diagonal the pair <span class="math inline">\(S_{nk}+S_{kn}\)</span> adds <span class="math inline">\(-\tfrac12\sqrt{(2n+1)(2k+1)}\)</span> to its mirror <span class="math inline">\(+\tfrac12\sqrt{(2n+1)(2k+1)}\)</span> and cancels. On the diagonal the two equal entries sum to <span class="math inline">\(-1\)</span>. So</p>
 <p><span class="math display">\[
 S+S^\top=-I.
 \]</span></p>
@@ -1408,21 +1392,21 @@ y(t)=\widetilde C z(t).
 <p><span class="math display">\[
 \Lambda-\widetilde p\widetilde q^*
 \]</span></p>
-<p>is <strong>diagonal plus low rank</strong> (<strong>DPLR</strong>).</p>
+<p>is <strong>diagonal plus low rank</strong> (<strong>DPLR</strong>).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>The input-output map has not changed. Only the coordinates of the state have changed.</p>
 </section>
 <section id="sec-9-5" class="level2">
 <h2 class="anchored" data-anchor-id="sec-9-5">9.5 Why the DPLR form is useful</h2>
-<p>A diagonal matrix is easy to invert, exponentiate, and evaluate through a resolvent. A low-rank correction is also manageable inside an inverse, because a low-rank modification of a diagonal matrix can be inverted using a small matrix inverse.</p>
-<p>The kernel-generation problem is best approached through the generating function. Instead of forming</p>
+<p>A diagonal matrix is easy to invert, exponentiate, and evaluate through a resolvent. A low-rank correction is also manageable inside an inverse, because a low-rank modification of a diagonal matrix can be inverted using a small matrix inverse.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>The kernel comes from the generating function. Instead of forming</p>
 <p><span class="math display">\[
 C\Abar^m\Bbar
 \]</span></p>
-<p>one lag at a time, the generating function of the transfer-functions chapter,</p>
+<p>one lag at a time, the generating function of <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-3">Section 6.3</a>,</p>
 <p><span class="math display">\[
 G(z)=C(I-z\Abar)^{-1}\Bbar,
 \]</span></p>
-<p>packages all lags into a single resolvent. The same diagonal-plus-low-rank structure serves both this discrete resolvent <span class="math inline">\((I-z\Abar)^{-1}\)</span> and the continuous resolvent <span class="math inline">\((sI-A)^{-1}\)</span>, so the calculation below works with the continuous form and applies unchanged to the discrete one.</p>
+<p>packages all lags into a single resolvent. The same diagonal-plus-low-rank structure serves both this discrete resolvent <span class="math inline">\((I-z\Abar)^{-1}\)</span> and the continuous resolvent <span class="math inline">\((sI-A)^{-1}\)</span>. It is therefore enough to derive the continuous resolvent and then substitute the bilinear map for the discrete case.</p>
 <p>The DPLR form is designed for these resolvents. If</p>
 <p><span class="math display">\[
 A=\Lambda-PQ^*,
@@ -1453,7 +1437,7 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 \]</span></p>
 <p>Read the right-hand side as an application cost. The diagonal inverse <span class="math inline">\(D^{-1}\)</span> is <span class="math inline">\(N\)</span> scalar reciprocals, and the scalar <span class="math inline">\(1+q^*D^{-1}p\)</span> is one inner product. Applying <span class="math inline">\((D+pq^*)^{-1}\)</span> to a vector, or evaluating a scalar transfer function such as <span class="math inline">\(C(D+pq^*)^{-1}B\)</span>, costs <span class="math inline">\(\bigO(N)\)</span> for rank one. For rank <span class="math inline">\(r\)</span>, the corresponding cost is <span class="math inline">\(\bigO(Nr^2+r^3)\)</span> once the inner <span class="math inline">\(r\times r\)</span> solve is included. Materialising the full <span class="math inline">\(N\times N\)</span> inverse would still require <span class="math inline">\(\bigO(N^2)\)</span> storage and work because the correction contains an outer product. The structured algorithm uses the inverse through applications and scalar transfer-function evaluations, not by forming the dense inverse.</p>
 <p>For a numerical check, fix a diagonal-plus-rank-one matrix <span class="math inline">\(A=\diag(\Lambda)-pq^*\)</span> and a test point <span class="math inline">\(s\)</span> off its spectrum. The same data are reused across the NumPy, PyTorch, and JAX implementations.</p>
-<div id="362f278d" class="cell" data-execution_count="1">
+<div id="ca907944" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: a diagonal-plus-rank-one system A = diag(Lambda) - P Q*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1469,7 +1453,7 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="b334fd07" class="cell" data-execution_count="2">
+<div id="e72d0f49" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.structured_matrices <span class="im">import</span> (</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    make_dplr, woodbury_resolvent)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1484,7 +1468,7 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="be27c408" class="cell" data-execution_count="3">
+<div id="2432814b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.structured_matrices <span class="im">import</span> (</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    make_dplr <span class="im">as</span> dplr_t, woodbury_resolvent <span class="im">as</span> wood_t)</span>
@@ -1500,7 +1484,7 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="bc18322a" class="cell" data-execution_count="4">
+<div id="d52612f8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.structured_matrices <span class="im">import</span> (</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    make_dplr <span class="im">as</span> dplr_j, woodbury_resolvent <span class="im">as</span> wood_j)</span>
@@ -1532,11 +1516,11 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 <p><span class="math display">\[
 A=
 \begin{pmatrix}
-0 &amp; -\omega\\
-\omega &amp; 0
+0 &amp; \omega\\
+-\omega &amp; 0
 \end{pmatrix},
 \]</span></p>
-<p>whose eigenvalues are the conjugate pair <span class="math inline">\(\pm i\omega\)</span>. The real dynamics are two-dimensional, while the eigenvalue description uses two complex modes. Its eigenvectors are <span class="math inline">\(v_\pm=(1,\mp i)^\top\)</span>, which are orthonormal after normalisation, so <span class="math inline">\(A\)</span> is diagonalisable by a unitary change of coordinates with <span class="math inline">\(\Lambda=\diag(i\omega,-i\omega)\)</span>. In these coordinates the kernel <span class="math inline">\(Ce^{At}B\)</span> splits into the two scalar terms <span class="math inline">\(\widetilde C_n e^{\lambda_n t}\widetilde B_n\)</span>. Because <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are real, the entries for the second mode are the complex conjugates of those for the first, so the two terms are conjugates of each other and their sum is real. Nothing imaginary survives in the output.</p>
+<p>whose eigenvalues are the conjugate pair <span class="math inline">\(\pm i\omega\)</span>. The real dynamics are two-dimensional, while the eigenvalue description uses two complex modes. Its eigenvectors are <span class="math inline">\(v_\pm=(1,\pm i)^\top\)</span>, which are orthonormal after normalisation, so <span class="math inline">\(A\)</span> is diagonalisable by a unitary change of coordinates with <span class="math inline">\(\Lambda=\diag(i\omega,-i\omega)\)</span>. In these coordinates the kernel <span class="math inline">\(Ce^{At}B\)</span> splits into the two scalar terms <span class="math inline">\(\widetilde C_n e^{\lambda_n t}\widetilde B_n\)</span>. Because <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are real, the entries for the second mode are the complex conjugates of those for the first, so the two terms are conjugates of each other and their sum is real. Nothing imaginary survives in the output.</p>
 <p>The same pairing makes the kernel real in general. List the eigenvalues so that each complex <span class="math inline">\(\lambda_n\)</span> is matched with its conjugate <span class="math inline">\(\overline{\lambda_n}\)</span>, and let the transformed parameters satisfy <span class="math inline">\(\widetilde B_{\bar n}=\overline{\widetilde B_n}\)</span> and <span class="math inline">\(\widetilde C_{\bar n}=\overline{\widetilde C_n}\)</span> on the paired indices. Each paired contribution has the form <span class="math inline">\(z+\overline z=2\operatorname{Re} z\)</span>, so the imaginary parts cancel and the sum is real. Diagonal implementations can therefore store one mode from each conjugate pair and recover the real kernel by doubling its real part.</p>
 </section>
 <section id="sec-9-7" class="level2">
@@ -1592,18 +1576,6 @@ A=
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-9-8" class="level2">
-<h2 class="anchored" data-anchor-id="sec-9-8">9.8 Notes and references</h2>
-<p>The normal-plus-low-rank decomposition of the HiPPO matrix and its use in a structured kernel algorithm were introduced with S4 <span class="citation" data-cites="gu2022s4">(<a href="#ref-gu2022s4" role="doc-biblioref">Gu et al. 2022</a>)</span>. The same work observes that the eigenvector matrix of <span class="math inline">\(A_{\HiPPO}\)</span> is ill-conditioned, with entries growing exponentially in the state dimension, which is why a naive diagonalisation is numerically unusable and the normal-plus-low-rank route is taken instead <span class="citation" data-cites="gu2022s4">(<a href="#ref-gu2022s4" role="doc-biblioref">Gu et al. 2022</a>)</span>. The mathematical tools used here are standard. The resolvent of a diagonal-plus-low-rank matrix is evaluated through the Woodbury identity for updating a matrix inverse under a low-rank correction <span class="citation" data-cites="hager1989">(<a href="#ref-hager1989" role="doc-biblioref">Hager 1989</a>)</span>. In the structured kernel calculation it turns the inverse of <span class="math inline">\(sI-A\)</span> into a diagonal inverse plus a small <span class="math inline">\(r\times r\)</span> solve.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-gu2022s4" class="csl-entry" role="listitem">
-Gu, Albert, Karan Goel, and Christopher Ré. 2022. <span>“Efficiently Modeling Long Sequences with Structured State Spaces.”</span> <em>International Conference on Learning Representations (ICLR)</em>. <a href="https://arxiv.org/abs/2111.00396">https://arxiv.org/abs/2111.00396</a>.
-</div>
-<div id="ref-hager1989" class="csl-entry" role="listitem">
-Hager, William W. 1989. <span>“Updating the Inverse of a Matrix.”</span> <em>SIAM Review</em> 31 (2): 221–39. <a href="https://doi.org/10.1137/1031049">https://doi.org/10.1137/1031049</a>.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1720,12 +1692,18 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>The normal-plus-low-rank decomposition of the HiPPO matrix and its use in a structured kernel algorithm were introduced with S4 <span class="citation" data-cites="gu2022s4">(Gu et al. 2022)</span>. The same work observes that the eigenvector matrix of <span class="math inline">\(A_{\HiPPO}\)</span> is ill-conditioned, with entries growing exponentially in the state dimension, which is why a naive diagonalisation is numerically unusable and the normal-plus-low-rank route is taken instead <span class="citation" data-cites="gu2022s4">(Gu et al. 2022)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The sign is conventional. The mathematical content is that <span class="math inline">\(A\)</span> differs from a normal matrix by a small-rank term.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>As with NPLR, the word “plus” refers to the presence of a low-rank correction, not to the displayed sign. Some presentations absorb the sign into one of the low-rank factors.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The resolvent of a diagonal-plus-low-rank matrix is evaluated through the Woodbury identity for updating a matrix inverse under a low-rank correction <span class="citation" data-cites="hager1989">(Hager 1989)</span>. In the structured kernel calculation it turns the inverse of <span class="math inline">\(sI-A\)</span> into a diagonal inverse plus a small <span class="math inline">\(r\times r\)</span> solve.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1744,14 +1722,12 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2195,8 +2171,8 @@ D^{-1}-\frac{D^{-1}p\,q^*D^{-1}}{1+q^*D^{-1}p}.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="pagination-link" aria-label="8.8 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">8.8 Notes and references</span>
+      <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

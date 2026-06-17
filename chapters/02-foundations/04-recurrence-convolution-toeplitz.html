@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-1" rel="next">
-<link href="../../chapters/02-foundations/03-discretisation.qmd#sec-4-8" rel="prev">
+<link href="../../chapters/02-foundations/03-discretisation.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1167,7 +1153,6 @@ window.Quarto = {
   <li><a href="#sec-5-7" id="toc-sec-5-7" class="nav-link" data-scroll-target="#sec-5-7">5.7 The kernel-generation problem</a></li>
   <li><a href="#sec-5-8" id="toc-sec-5-8" class="nav-link" data-scroll-target="#sec-5-8">5.8 Same model, two algorithms</a></li>
   <li><a href="#sec-5-9" id="toc-sec-5-9" class="nav-link" data-scroll-target="#sec-5-9">5.9 Notation</a></li>
-  <li><a href="#sec-5-10" id="toc-sec-5-10" class="nav-link" data-scroll-target="#sec-5-10">5.10 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1196,7 +1181,7 @@ window.Quarto = {
 </header>
 
 
-<p>After discretisation, the model can be run left to right as a recurrence. If the matrices do not change with position, the same input-output map can also be written as a convolution. The kernel records the effect of each input after each lag; the Toeplitz matrix records the same map on a finite sequence.</p>
+<p>After discretisation, the model can be run left to right as a recurrence. If the matrices do not change with position, the same input-output map can also be written as a convolution.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The kernel records the effect of each input after each lag, and the Toeplitz matrix records the same map on a finite sequence. The obstruction is no longer whether the kernel exists, but whether it can be generated and applied cheaply.</p>
 <section id="sec-5-1" class="level2">
 <h2 class="anchored" data-anchor-id="sec-5-1">5.1 The question after discretisation</h2>
 <p>After discretisation, the state space model becomes the recurrence</p>
@@ -1207,7 +1192,7 @@ x_{k+1}
 \qquad
 y_k=Cx_{k+1}.
 \]</span></p>
-<p>At first, the equations look like a recurrent computation. Start from <span class="math inline">\(x_0\)</span>, read the sequence from left to right, and update the state one step at a time.</p>
+<p>The displayed equations give a recurrent computation. Starting from <span class="math inline">\(x_0\)</span>, the sequence is read from left to right, and the state is updated one step at a time.</p>
 <p>Because the matrices <span class="math inline">\(\bar A\)</span>, <span class="math inline">\(\bar B\)</span>, and <span class="math inline">\(C\)</span> are fixed across time, the same model can also be written as a convolution. Instead of carrying the state explicitly, one precomputes a kernel that records how much an input affects the output after <span class="math inline">\(0\)</span> steps, <span class="math inline">\(1\)</span> step, <span class="math inline">\(2\)</span> steps, and so on.</p>
 <p>The same input-output map has two computational forms:</p>
 <p><span class="math display">\[
@@ -1236,7 +1221,7 @@ y_k=\sum_{m=0}^k \bar K_m u_{k-m}.
 <p><span class="math display">\[
 u_0,u_1,\dots,u_{L-1}.
 \]</span></p>
-<p>For now each <span class="math inline">\(u_k\)</span> is scalar. A <span class="math inline">\(\dmodel\)</span>-dimensional representation is handled by applying one scalar state space model to each coordinate, unless a MIMO state space model is explicitly used.</p>
+<p>Each <span class="math inline">\(u_k\)</span> is scalar. A <span class="math inline">\(\dmodel\)</span>-dimensional representation is handled by applying one scalar state space model to each coordinate, unless a MIMO state space model is explicitly used.</p>
 <p>The recurrence is</p>
 <p><span class="math display">\[
 x_{k+1}
@@ -1385,7 +1370,7 @@ A=
 \qquad
 \text{as }m\to\infty.
 \]</span></p>
-<p>A kernel that fades to zero is fading memory written in discrete form. Distant inputs receive vanishing weight, the same fading as the continuous half-life described in the continuous-time chapter, now read off the discrete lags <span class="math inline">\(m\Delta\)</span>.</p>
+<p>A kernel that fades to zero is fading memory written in discrete form. Distant inputs receive vanishing weight, the same fading measured by the continuous half-life of <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-3">Section 3.3</a>, now read off the discrete lags <span class="math inline">\(m\Delta\)</span>.</p>
 </section>
 <section id="sec-5-4" class="level2">
 <h2 class="anchored" data-anchor-id="sec-5-4">5.4 The convolution matrix</h2>
@@ -1424,7 +1409,7 @@ T=
 \end{pmatrix}.
 \]</span></p>
 <p>The matrix is lower triangular because the model is causal. Entries above the diagonal would mean that an output depends on future inputs, and those entries are zero.</p>
-<p>The matrix is <strong>Toeplitz</strong> because each diagonal is constant. Equal lags have equal weights. Time-invariance appears in matrix form as constant diagonals.</p>
+<p>The matrix is <strong>Toeplitz</strong> because each diagonal is constant.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Equal lags have equal weights. Time-invariance appears in matrix form as constant diagonals.</p>
 <p>In the MIMO case, the same object is a block lower-triangular Toeplitz matrix. Each scalar entry <span class="math inline">\(\bar K_m\)</span> is replaced by a <span class="math inline">\(q\times p\)</span> block.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1509,7 +1494,7 @@ y_k
 <p><span class="math display">\[
 O(L^2).
 \]</span></p>
-<p>Direct convolution is not the useful algorithmic form. Convolution can be computed by the <strong>fast Fourier transform</strong> (<strong>FFT</strong>).</p>
+<p>Direct convolution is not the useful algorithmic form. Convolution can be computed by the <strong>fast Fourier transform</strong> (<strong>FFT</strong>).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>For two finite sequences, linear convolution is computed by zero-padding both sequences, taking Fourier transforms, multiplying pointwise in frequency space, and applying the inverse Fourier transform. The zero-padding matters because the Fourier transform computes circular convolution. Padding to length at least <span class="math inline">\(2L-1\)</span> makes the circular result agree with the linear one.</p>
 <p>The FFT computes these transforms in roughly</p>
 <p><span class="math display">\[
@@ -1520,7 +1505,7 @@ O(L\log L)
 </section>
 <section id="sec-5-7" class="level2">
 <h2 class="anchored" data-anchor-id="sec-5-7">5.7 The kernel-generation problem</h2>
-<p>The phrase “once the kernel is available” hides an important cost. The kernel is</p>
+<p>The convolution has only moved the expensive object. The kernel itself must still be generated. The kernel is</p>
 <p><span class="math display">\[
 \bar K_m=C\bar A^m\bar B,
 \qquad
@@ -1546,7 +1531,7 @@ O(LN).
 \]</span></p>
 <p>A dense matrix couples all <span class="math inline">\(N\)</span> state coordinates but costs <span class="math inline">\(O(LN^2)\)</span> to generate the kernel. A diagonal matrix costs <span class="math inline">\(O(LN)\)</span> but evolves each coordinate independently, so it cannot mix them.</p>
 <p>The gap between the two is the factor <span class="math inline">\(N\)</span>. At representative sizes, with <span class="math inline">\(N=64\)</span> and <span class="math inline">\(L=4096\)</span>, dense kernel generation needs about <span class="math inline">\(4096\times 64^2\approx 1.7\times 10^7\)</span> multiply-adds, while diagonal generation needs about <span class="math inline">\(4096\times 64\approx 2.6\times 10^5\)</span>. The dense form does <span class="math inline">\(N=64\)</span> times the work.</p>
-<p>The diagonal form is cheap for a structural reason. Powers of a diagonal matrix act coordinate-wise, raising each diagonal entry to the same power, so every mode evolves on its own and never exchanges information with the others. These are exactly the independent eigenvalue modes of the continuous-time chapter, now frozen onto the coordinate axes. A diagonal <span class="math inline">\(\bar A\)</span> keeps each mode but loses any coupling between them.</p>
+<p>The diagonal form is cheap for a structural reason. Powers of a diagonal matrix act coordinate-wise, raising each diagonal entry to the same power, so every mode evolves on its own and never exchanges information with the others. These are the independent eigenvalue modes of <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-3">Section 3.3</a>, now frozen onto the coordinate axes. A diagonal <span class="math inline">\(\bar A\)</span> keeps each mode but loses any coupling between them.</p>
 <p>Structured state space models try to keep the memory behaviour of a dense-like <span class="math inline">\(A\)</span>, where modes can interact, while generating the kernel at a cost near the diagonal <span class="math inline">\(O(LN)\)</span> rather than the dense <span class="math inline">\(O(LN^2)\)</span>. The matrix <span class="math inline">\(A\)</span> must therefore be expressive enough for memory and structured enough for kernel generation.</p>
 </section>
 <section id="sec-5-8" class="level2">
@@ -1566,7 +1551,7 @@ y_k
 \bar K_m u_{k-m}.
 \]</span></p>
 <p>The state still exists mathematically. The convolution has summed over all the ways past inputs would have entered and evolved through the state.</p>
-<p>The recurrence-convolution equivalence is one reason state space models are useful. They can behave like recurrent models when processing one step at a time, and like convolutional models when processing a full sequence. Which form to use depends on the task.</p>
+<p>The recurrence-convolution equivalence gives two algorithms for one map. The recurrent algorithm is local in time and keeps only the current state. The convolutional algorithm removes the state and exposes all lag weights at once. Which form to use depends on the computation required.</p>
 <p>For streaming or generation, the recurrence is natural. The model stores a state, receives the next input, updates the state, and produces the next output. It does not need to store the whole input history.</p>
 <p>For full-sequence training, the convolution form can be preferable. If the kernel can be generated in time close to <span class="math inline">\(O(LN)\)</span>, the whole sequence can be processed with <span class="math inline">\(O(L\log L)\)</span> FFT-based convolution.</p>
 <p>The trade-off is therefore:</p>
@@ -1577,7 +1562,7 @@ y_k
 </ul>
 <p>The choice of the state matrix matters because <span class="math inline">\(A\)</span> determines both the memory modes and the cost of kernel generation. A useful <span class="math inline">\(A\)</span> must carry memory while keeping the associated computations cheap.</p>
 <p>The recurrence and the convolution compute the same output. For a small two-dimensional system, running it as a recurrence and convolving the input with its kernel agree up to floating-point error. The NumPy, PyTorch, and JAX implementations all reproduce the same comparison.</p>
-<div id="ed132800" class="cell" data-execution_count="1">
+<div id="0042237a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: a small two-dimensional system, discretised once</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.discretisation <span class="im">import</span> zoh_discretise</span>
@@ -1593,7 +1578,7 @@ y_k
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="88cc08c1" class="cell" data-execution_count="2">
+<div id="795292e5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.kernels <span class="im">import</span> ssm_recurrence, ssm_kernel, causal_conv</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y_rec <span class="op">=</span> ssm_recurrence(Abar, Bbar, C, u)</span>
@@ -1606,7 +1591,7 @@ y_k
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="b653fbd9" class="cell" data-execution_count="3">
+<div id="520251c0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.kernels <span class="im">import</span> (</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    ssm_recurrence <span class="im">as</span> rec_t, ssm_kernel <span class="im">as</span> ker_t, causal_conv <span class="im">as</span> conv_t)</span>
@@ -1621,7 +1606,7 @@ y_k
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="7e2f7dd2" class="cell" data-execution_count="4">
+<div id="70b36fd5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.kernels <span class="im">import</span> (</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    ssm_recurrence <span class="im">as</span> rec_j, ssm_kernel <span class="im">as</span> ker_j, causal_conv <span class="im">as</span> conv_j)</span>
@@ -1691,18 +1676,6 @@ y_k
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-5-10" class="level2">
-<h2 class="anchored" data-anchor-id="sec-5-10">5.10 Notes and references</h2>
-<p>The recurrence and convolution forms are standard in discrete-time signal processing and follow directly from unrolling the recurrence. The lower-triangular Toeplitz structure of a causal, time-invariant convolution, and the kernel interpretation of the impulse response, are treated in any account of discrete-time signal processing <span class="citation" data-cites="oppenheim1999dtsp">(<a href="#ref-oppenheim1999dtsp" role="doc-biblioref">Oppenheim et al. 1999</a>)</span>. The observation that a convolution can be evaluated through the fast Fourier transform, which makes the convolution form cheaper than the direct <span class="math inline">\(O(L^2)\)</span> sum, goes back to Cooley and Tukey <span class="citation" data-cites="cooley1965fft">(<a href="#ref-cooley1965fft" role="doc-biblioref">Cooley and Tukey 1965</a>)</span>.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-cooley1965fft" class="csl-entry" role="listitem">
-Cooley, James W., and John W. Tukey. 1965. <span>“An Algorithm for the Machine Calculation of Complex <span>Fourier</span> Series.”</span> <em>Mathematics of Computation</em> 19 (90): 297–301. <a href="https://doi.org/10.1090/S0025-5718-1965-0178586-1">https://doi.org/10.1090/S0025-5718-1965-0178586-1</a>.
-</div>
-<div id="ref-oppenheim1999dtsp" class="csl-entry" role="listitem">
-Oppenheim, Alan V., Ronald W. Schafer, and John R. Buck. 1999. <em>Discrete-Time Signal Processing</em>. 2nd ed. Prentice Hall.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1850,12 +1823,17 @@ T=
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>The recurrence and convolution forms are standard in discrete-time signal processing and follow directly from unrolling the recurrence. The lower-triangular Toeplitz structure of a causal, time-invariant convolution, and the kernel interpretation of the impulse response, are treated in standard accounts of discrete-time signal processing <span class="citation" data-cites="oppenheim1999dtsp">(Oppenheim et al. 1999)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Some texts place the same lag pattern in an upper-triangular matrix, depending on whether signals are written as row or column vectors and on the indexing convention for convolution. The invariant property is that equal lags lie on equal diagonals.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The observation that convolution can be evaluated through the fast Fourier transform, which makes the convolution form cheaper than the direct <span class="math inline">\(O(L^2)\)</span> sum, goes back to Cooley and Tukey <span class="citation" data-cites="cooley1965fft">(Cooley and Tukey 1965)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1874,14 +1852,12 @@ T=
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2325,8 +2301,8 @@ T=
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="pagination-link" aria-label="4.8 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4.8 Notes and references</span>
+      <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

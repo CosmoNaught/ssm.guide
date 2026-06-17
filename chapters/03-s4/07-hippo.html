@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/03-s4/07-hippo.qmd#sec-8-1" rel="next">
-<link href="../../chapters/03-s4/06-memory-problem.qmd#sec-7-7" rel="prev">
+<link href="../../chapters/03-s4/06-memory-problem.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1165,7 +1151,6 @@ window.Quarto = {
   <li><a href="#sec-8-5" id="toc-sec-8-5" class="nav-link" data-scroll-target="#sec-8-5">8.5 What the state contains</a></li>
   <li><a href="#sec-8-6" id="toc-sec-8-6" class="nav-link" data-scroll-target="#sec-8-6">8.6 The time factor</a></li>
   <li><a href="#sec-8-7" id="toc-sec-8-7" class="nav-link" data-scroll-target="#sec-8-7">8.7 Notation</a></li>
-  <li><a href="#sec-8-8" id="toc-sec-8-8" class="nav-link" data-scroll-target="#sec-8-8">8.8 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1194,14 +1179,14 @@ window.Quarto = {
 </header>
 
 
-<p>HiPPO turns the projection idea into a differential equation. For the shifted Legendre basis, the projection coefficients of the rescaled history have closed dynamics: their derivative depends only on the current coefficient vector and the current input. The fixed matrix inside those dynamics is the source of the HiPPO state matrix used by S4.</p>
+<p>Projection gives meaningful state coordinates, but not yet an online recurrence. For the shifted Legendre basis, the projection coefficients of the rescaled history have closed dynamics: their derivative depends only on the current coefficient vector and the current input. The High-order Polynomial Projection Operator, or HiPPO, is the operator that provides these dynamics, and the fixed matrix inside them is the source of the HiPPO state matrix used by S4.</p>
 <section id="sec-8-1" class="level2">
 <h2 class="anchored" data-anchor-id="sec-8-1">8.1 From projection to a state equation</h2>
 <p>The projection state stores coefficients of the rescaled history. At time <span class="math inline">\(t\)</span> the input history is rescaled onto the fixed interval <span class="math inline">\([0,1]\)</span> by</p>
 <p><span class="math display">\[
 f_t(r)=u(tr),
 \]</span></p>
-<p>with <span class="math inline">\(r=1\)</span> the present endpoint, and the state holds the first <span class="math inline">\(N\)</span> coefficients of <span class="math inline">\(f_t\)</span> in an orthonormal polynomial basis, the projection construction of the previous chapter. The <span class="math inline">\(n\)</span>th coefficient is</p>
+<p>with <span class="math inline">\(r=1\)</span> the present endpoint, and the state holds the first <span class="math inline">\(N\)</span> coefficients of <span class="math inline">\(f_t\)</span> in an orthonormal polynomial basis, the projection construction developed for the memory problem. The <span class="math inline">\(n\)</span>th coefficient is</p>
 <p><span class="math display">\[
 c_n(t)
 =
@@ -1212,7 +1197,7 @@ c_n(t)
 <p><span class="math display">\[
 c'(t)=A(t)c(t)+B(t)u(t).
 \]</span></p>
-<p>The matrices <span class="math inline">\(A(t)\)</span> and <span class="math inline">\(B(t)\)</span> depend on <span class="math inline">\(t\)</span> only through the shared scalar factor <span class="math inline">\(1/t\)</span>. The fixed matrix that remains after this factor is removed is the <strong>HiPPO-LegS</strong> matrix, the HiPPO operator of the memory problem chapter realised with the scaled Legendre basis. The suffix <strong>LegS</strong> denotes that construction. The history interval <span class="math inline">\([0,t]\)</span> is scaled to <span class="math inline">\([0,1]\)</span>, and the history is projected onto shifted Legendre polynomials.</p>
+<p>The matrices <span class="math inline">\(A(t)\)</span> and <span class="math inline">\(B(t)\)</span> depend on <span class="math inline">\(t\)</span> only through the shared scalar factor <span class="math inline">\(1/t\)</span>. After this factor is removed, the fixed matrix is the Legendre-scaled HiPPO matrix, written <strong>HiPPO-LegS</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The suffix <strong>LegS</strong> denotes the scaled-history construction with shifted Legendre polynomials on <span class="math inline">\([0,1]\)</span>.</p>
 </section>
 <section id="sec-8-2" class="level2">
 <h2 class="anchored" data-anchor-id="sec-8-2">8.2 The shifted Legendre basis</h2>
@@ -1234,14 +1219,14 @@ n=0,1,2,\dots.
 \end{cases}
 \]</span></p>
 <p>Thus the functions <span class="math inline">\(\phi_n\)</span> form an orthonormal polynomial basis for <span class="math inline">\(L^2([0,1])\)</span>.</p>
-<p>Orthonormality is what makes each coefficient an inner product. With it, <span class="math inline">\(c_n(t)=\int_0^1 f_t(r)\phi_n(r)\,\dd r\)</span> is the component of the history along <span class="math inline">\(\phi_n\)</span>, and it is what lets the basis expansion of <a href="#sec-8-3" class="quarto-xref">Section&nbsp;3</a> turn the integral back into a statement about the coefficients themselves.</p>
+<p>Orthonormality is what makes each coefficient an inner product. With it, <span class="math inline">\(c_n(t)=\int_0^1 f_t(r)\phi_n(r)\,\dd r\)</span> is the component of the history along <span class="math inline">\(\phi_n\)</span>. The same orthogonality later turns an integral against a polynomial into a linear combination of the existing coefficients.</p>
 <p>The endpoint values are simple. From <span class="math inline">\(P_n(1)=1\)</span> and <span class="math inline">\(P_n(-1)=(-1)^n\)</span>, the two endpoints are</p>
 <p><span class="math display">\[
 \phi_n(1)=\sqrt{2n+1},
 \qquad
 \phi_n(0)=(-1)^n\sqrt{2n+1}.
 \]</span></p>
-<p>The value at <span class="math inline">\(r=1\)</span> will become the input vector in the coefficient dynamics, because <span class="math inline">\(r=1\)</span> is the present endpoint of the rescaled history.</p>
+<p>The value at <span class="math inline">\(r=1\)</span> becomes the input vector in the coefficient dynamics, because <span class="math inline">\(r=1\)</span> is the present endpoint of the rescaled history.</p>
 </section>
 <section id="sec-8-3" class="level2">
 <h2 class="anchored" data-anchor-id="sec-8-3">8.3 Differentiating the coefficients</h2>
@@ -1275,7 +1260,7 @@ c_n'(t)
 \int_0^1
 r\frac{\dd}{\dd r}u(tr)\phi_n(r)\,\dd r.
 \]</span></p>
-<p>Now the integrand carries a derivative in <span class="math inline">\(r\)</span>, so integration by parts moves it onto the known factor <span class="math inline">\(r\phi_n(r)\)</span> and produces a boundary term that supplies the input. Integrating by parts,</p>
+<p>The integrand carries a derivative in <span class="math inline">\(r\)</span>, so integration by parts moves it onto the known factor <span class="math inline">\(r\phi_n(r)\)</span> and produces a boundary term that supplies the input. Integrating by parts,</p>
 <p><span class="math display">\[
 \begin{aligned}
 c_n'(t)
@@ -1326,7 +1311,7 @@ n+1, &amp; n=k,\\
 0, &amp; n&lt;k.
 \end{cases}
 \]</span></p>
-<p>The entries vanish for <span class="math inline">\(n&lt;k\)</span> because <span class="math inline">\(\frac{\dd}{\dd r}(r\phi_n)\)</span> has degree <span class="math inline">\(n\)</span> and is orthogonal to every higher-degree basis function. The diagonal <span class="math inline">\(n+1\)</span> comes from the leading coefficient of <span class="math inline">\(r\phi_n\)</span>. Exercise 2 derives the closed form.</p>
+<p>The entries vanish for <span class="math inline">\(n&lt;k\)</span> because <span class="math inline">\(\frac{\dd}{\dd r}(r\phi_n)\)</span> has degree <span class="math inline">\(n\)</span> and is orthogonal to every higher-degree basis function. The diagonal <span class="math inline">\(n+1\)</span> comes from the leading coefficient of <span class="math inline">\(r\phi_n\)</span>.</p>
 <p>Substituting the expansion into the integral gives</p>
 <p><span class="math display">\[
 \int_0^1
@@ -1396,7 +1381,7 @@ A_{\HiPPO}=-H_N.
 <p>Different sources place the sign differently. Here <span class="math inline">\(H_N\)</span> denotes the positive lower triangular matrix and <span class="math inline">\(A_{\HiPPO}=-H_N\)</span> the stable state matrix, so the eigenvalues of <span class="math inline">\(A_{\HiPPO}\)</span> have negative real part and the continuous-time dynamics are stable before learning changes the parameters.</p>
 <p>The matrix is lower triangular and dense below the diagonal. The diagonal terms give decay rates. The lower triangular terms describe how coefficients of lower-degree history components influence higher-degree components as the interval stretches.</p>
 <p>Because <span class="math inline">\(A_{\HiPPO}\)</span> is lower triangular, its eigenvalues are its diagonal entries <span class="math inline">\(-1,-2,\dots,-N\)</span>. The three backends build the same matrix for <span class="math inline">\(N=4\)</span>, so their sorted eigenvalues and entries agree to floating-point error.</p>
-<div id="9b0851c5" class="cell" data-execution_count="1">
+<div id="d4db7fcd" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: the stable HiPPO-LegS state matrix A_HiPPO = -H_N for N = 4</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.hippo <span class="im">import</span> legs_matrix</span>
@@ -1409,7 +1394,7 @@ A_{\HiPPO}=-H_N.
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="1b95655d" class="cell" data-execution_count="2">
+<div id="f4c855bc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> legs_matrix(N)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>eigs <span class="op">=</span> np.sort(np.linalg.eigvals(A).real)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(eigs)</span>
@@ -1422,7 +1407,7 @@ max |A - A_ref| = 0.0e+00</code></pre>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="8c2a4ba8" class="cell" data-execution_count="3">
+<div id="433220e4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.hippo <span class="im">import</span> legs_matrix <span class="im">as</span> legs_matrix_t</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1438,7 +1423,7 @@ max |A - A_ref| = 0.0e+00</code></pre>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="6d6ea359" class="cell" data-execution_count="4">
+<div id="851d4b81" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.hippo <span class="im">import</span> legs_matrix <span class="im">as</span> legs_matrix_j</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1468,7 +1453,7 @@ max |A - A_ref| = 0.0e+00</code></pre>
 <p><span class="math display">\[
 f_t(r)=u(tr).
 \]</span></p>
-<p>The contrast with a buffer is sharp. A length-<span class="math inline">\(N\)</span> buffer stores the last <span class="math inline">\(N\)</span> samples exactly and forgets everything older. The coefficient state <span class="math inline">\(c(t)\)</span> stores no individual sample exactly. It instead summarises every part of the history at degree-<span class="math inline">\(N\)</span> resolution, and what it forgets is the variation finer than a degree-<span class="math inline">\(N\)</span> polynomial can resolve.</p>
+<p>A length-<span class="math inline">\(N\)</span> buffer stores the last <span class="math inline">\(N\)</span> samples exactly and forgets everything older. The coefficient state <span class="math inline">\(c(t)\)</span> stores no individual sample exactly. It instead summarises every part of the history at degree-<span class="math inline">\(N\)</span> resolution, and what it forgets is the variation finer than a degree-<span class="math inline">\(N\)</span> polynomial can resolve.</p>
 <p>The coordinate <span class="math inline">\(c_0(t)\)</span> records the constant component of the history. The coordinate <span class="math inline">\(c_1(t)\)</span> records the linear component. The coordinate <span class="math inline">\(c_2(t)\)</span> records the quadratic component. In general, <span class="math inline">\(c_n(t)\)</span> records the degree-<span class="math inline">\(n\)</span> component after all lower-degree components have been separated by orthogonality.</p>
 <p>By orthonormality, the squared truncation error of the reconstruction <span class="math inline">\(\hat f_t=\sum_{n&lt;N}c_n\phi_n\)</span> is exactly the tail sum of discarded coefficients,</p>
 <p><span class="math display">\[
@@ -1490,11 +1475,11 @@ c'(t)
 <p>is not time-invariant, because of the factor <span class="math inline">\(1/t\)</span>.</p>
 <p>The factor has a direct interpretation. When <span class="math inline">\(t\)</span> is small, adding a short interval of new input changes the rescaled history substantially. When <span class="math inline">\(t\)</span> is large, adding the same amount of new time changes the rescaled history less. The update of the coefficients therefore slows down as the represented history grows.</p>
 <p>The time-varying system computes the projection exactly, but fixed convolution kernels require a time-invariant layer. S4 keeps the matrix for its spectrum and triangular structure and discards the <span class="math inline">\(1/t\)</span>. The state then no longer equals the exact projection coefficients, and the learned step size <span class="math inline">\(\Delta\)</span> sets the effective timescale.</p>
-<p>In the <strong>Structured State Space sequence model</strong> (<strong>S4</strong>) construction <span class="citation" data-cites="gu2022s4">(<a href="#ref-gu2022s4" role="doc-biblioref">Gu et al. 2022</a>)</span>, the fixed matrix</p>
+<p>The fixed matrix</p>
 <p><span class="math display">\[
 A_{\HiPPO}=-H_N
 \]</span></p>
-<p>is used as the starting point for a time-invariant state space layer:</p>
+<p>becomes the starting point for the time-invariant state space layer used in the Structured State Space sequence model, or S4 <span class="citation" data-cites="gu2022s4">(Gu et al. 2022)</span>:</p>
 <p><span class="math display">\[
 x'(t)=Ax(t)+Bu(t),
 \qquad
@@ -1556,21 +1541,6 @@ y(t)=Cx(t).
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-8-8" class="level2">
-<h2 class="anchored" data-anchor-id="sec-8-8">8.8 Notes and references</h2>
-<p>The online polynomial-projection construction and the HiPPO-LegS matrix were introduced by Gu, Dao, Ermon, Rudra, and Ré <span class="citation" data-cites="gu2020hippo">(<a href="#ref-gu2020hippo" role="doc-biblioref">Gu et al. 2020</a>)</span>. The resulting state matrix is used as the starting point for the structured state space layer of S4 <span class="citation" data-cites="gu2022s4">(<a href="#ref-gu2022s4" role="doc-biblioref">Gu et al. 2022</a>)</span>. The projection itself rests on the classical theory of orthogonal polynomials, in particular the shifted Legendre basis and its orthogonality and endpoint values, for which a standard reference is Szegő <span class="citation" data-cites="szego1939">(<a href="#ref-szego1939" role="doc-biblioref">Szegő 1939</a>)</span>. Those facts give the state coordinates an interpretable meaning as coefficients of an approximation to the input history.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-gu2020hippo" class="csl-entry" role="listitem">
-Gu, Albert, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Ré. 2020. <span>“<span>HiPPO</span>: Recurrent Memory with Optimal Polynomial Projections.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em> 33. <a href="https://arxiv.org/abs/2008.07669">https://arxiv.org/abs/2008.07669</a>.
-</div>
-<div id="ref-gu2022s4" class="csl-entry" role="listitem">
-Gu, Albert, Karan Goel, and Christopher Ré. 2022. <span>“Efficiently Modeling Long Sequences with Structured State Spaces.”</span> <em>International Conference on Learning Representations (ICLR)</em>. <a href="https://arxiv.org/abs/2111.00396">https://arxiv.org/abs/2111.00396</a>.
-</div>
-<div id="ref-szego1939" class="csl-entry" role="listitem">
-Szegő, Gábor. 1939. <em>Orthogonal Polynomials</em>. Vol. 23. American Mathematical Society Colloquium Publications. American Mathematical Society. <a href="https://doi.org/10.1090/coll/023">https://doi.org/10.1090/coll/023</a>.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1766,12 +1736,15 @@ N=32:\ 2.4\times10^{-5}.
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>The online polynomial-projection construction and the HiPPO-LegS matrix were introduced by Gu, Dao, Ermon, Rudra, and Ré <span class="citation" data-cites="gu2020hippo">(Gu et al. 2020)</span>. The resulting state matrix is used as the starting point for the structured state space layer of S4 <span class="citation" data-cites="gu2022s4">(Gu et al. 2022)</span>. The projection itself rests on the classical theory of orthogonal polynomials, in particular the shifted Legendre basis and its orthogonality and endpoint values; a standard reference is Szegő <span class="citation" data-cites="szego1939">(Szegő 1939)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1790,14 +1763,12 @@ N=32:\ 2.4\times10^{-5}.
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2241,8 +2212,8 @@ N=32:\ 2.4\times10^{-5}.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="pagination-link" aria-label="7.7 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">7.7 Notes and references</span>
+      <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

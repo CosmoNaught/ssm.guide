@@ -42,9 +42,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -61,11 +61,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -104,6 +103,35 @@ window.MathJax = {
 };
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -347,7 +375,7 @@ window.MathJax = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -392,7 +420,13 @@ window.MathJax = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -444,8 +478,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -509,8 +543,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -574,8 +608,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -651,8 +685,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -716,8 +750,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -775,8 +809,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -840,8 +874,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -905,8 +939,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -970,8 +1004,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1087,8 @@ window.MathJax = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1075,15 +1109,16 @@ window.MathJax = {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#roadmap-and-contributing" id="toc-roadmap-and-contributing" class="nav-link active" data-scroll-target="#roadmap-and-contributing">Roadmap and Contributing</a>
+  <li><a href="#beyond-fixed-kernels" id="toc-beyond-fixed-kernels" class="nav-link active" data-scroll-target="#beyond-fixed-kernels">Beyond Fixed Kernels</a>
   <ul class="collapse">
-  <li><a href="#upcoming-chapters" id="toc-upcoming-chapters" class="nav-link" data-scroll-target="#upcoming-chapters">Upcoming chapters</a>
+  <li><a href="#assumptions-beyond-the-fixed-kernel" id="toc-assumptions-beyond-the-fixed-kernel" class="nav-link" data-scroll-target="#assumptions-beyond-the-fixed-kernel">Assumptions beyond the fixed kernel</a>
   <ul class="collapse">
-  <li><a href="#selective-state-spaces" id="toc-selective-state-spaces" class="nav-link" data-scroll-target="#selective-state-spaces">Selective state spaces</a></li>
-  <li><a href="#matrix-views-and-state-space-duality" id="toc-matrix-views-and-state-space-duality" class="nav-link" data-scroll-target="#matrix-views-and-state-space-duality">Matrix views and state space duality</a></li>
-  <li><a href="#modern-refinements" id="toc-modern-refinements" class="nav-link" data-scroll-target="#modern-refinements">Modern refinements</a></li>
+  <li><a href="#input-dependent-state-updates" id="toc-input-dependent-state-updates" class="nav-link" data-scroll-target="#input-dependent-state-updates">Input-dependent state updates</a></li>
+  <li><a href="#position-dependent-input-output-matrices" id="toc-position-dependent-input-output-matrices" class="nav-link" data-scroll-target="#position-dependent-input-output-matrices">Position-dependent input-output matrices</a></li>
+  <li><a href="#discretisation-as-a-learned-design-choice" id="toc-discretisation-as-a-learned-design-choice" class="nav-link" data-scroll-target="#discretisation-as-a-learned-design-choice">Discretisation as a learned design choice</a></li>
   </ul></li>
-  <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
+  <li><a href="#combining-state-space-layers-with-attention" id="toc-combining-state-space-layers-with-attention" class="nav-link" data-scroll-target="#combining-state-space-layers-with-attention">Combining state space layers with attention</a></li>
+  <li><a href="#corrections-and-implementations" id="toc-corrections-and-implementations" class="nav-link" data-scroll-target="#corrections-and-implementations">Corrections and implementations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1095,39 +1130,43 @@ window.MathJax = {
 
 
 
-<section id="roadmap-and-contributing" class="level1 unnumbered">
-<h1 class="unnumbered">Roadmap and Contributing</h1>
-<p>The released chapters cover fixed, linear, time-invariant state space layers. The remaining outline follows the assumptions that selective and hybrid models relax.</p>
-<section id="upcoming-chapters" class="level2">
-<h2 class="anchored" data-anchor-id="upcoming-chapters">Upcoming chapters</h2>
-<section id="selective-state-spaces" class="level3">
-<h3 class="anchored" data-anchor-id="selective-state-spaces">Selective state spaces</h3>
-<p>The first chapters study state space models whose update rule is fixed while a sequence is processed. The same recurrence is applied at every position. Selective state spaces relax this restriction by allowing the state space parameters to depend on the current input. The resulting recurrence is no longer a fixed convolution, but it can still be computed in parallel by an associative scan.</p>
+<section id="beyond-fixed-kernels" class="level1 unnumbered">
+<h1 class="unnumbered">Beyond Fixed Kernels</h1>
+<p>A fixed, linear, time-invariant state space model uses the same update rule at every position. The consequence is stronger than recurrence alone: the weight from position <span class="math inline">\(j\)</span> to a later position <span class="math inline">\(i\)</span> depends only on the lag <span class="math inline">\(i-j\)</span>. Equal lags have equal coefficients, so the input-output map is a convolution.</p>
+<p>Several sequence models keep the finite state but remove this equality. The update, readout, or discretisation step may vary from one position to the next, sometimes as a function of the current input. The state still carries information forward, but the sequence map is no longer determined by one kernel shared across all positions.</p>
+<section id="assumptions-beyond-the-fixed-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions-beyond-the-fixed-kernel">Assumptions beyond the fixed kernel</h2>
+<section id="input-dependent-state-updates" class="level3">
+<h3 class="anchored" data-anchor-id="input-dependent-state-updates">Input-dependent state updates</h3>
+<p>A fixed state space model applies the same matrices at every position. If those matrices depend on the current input, the input has two roles. It contributes to the state, and it also changes the rule by which the state is updated. The recurrence is no longer a fixed convolution, because two equal lags can receive different weights at different positions.</p>
+<p>The affine form of the update is still useful. Each position applies a state transition followed by an input contribution, and consecutive transitions can be composed. This composition is associative, so the recurrent computation can be reorganised as a scan rather than carried out strictly one step at a time, which is how Mamba trains an input-dependent recurrence as efficiently as a convolution <span class="citation" data-cites="gu2023mamba">(Gu and Dao 2024)</span>.</p>
 </section>
-<section id="matrix-views-and-state-space-duality" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-views-and-state-space-duality">Matrix views and state space duality</h3>
-<p>Once the update rule depends on the input, the input-output map is no longer represented by a fixed constant-diagonal convolution matrix. The remaining structure is semiseparable: entries below the diagonal factor through low-dimensional state transitions. A selective layer can then be computed in a linear-cost recurrent form or materialised as a quadratic-cost attention-like matrix. The equivalence explains the chunked block algorithms and the Mamba-2 layout.</p>
+<section id="position-dependent-input-output-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="position-dependent-input-output-matrices">Position-dependent input-output matrices</h3>
+<p>For a fixed convolution kernel, the input-output matrix has constant diagonals: all entries with the same value of <span class="math inline">\(i-j\)</span> are equal. Input-dependent updates break this constant-diagonal structure. The matrix remains causal, so entries above the diagonal are zero, but each lower-triangular entry now depends on the transitions between its source position and its target position.</p>
+<p>The finite state still imposes structure. Information passing from position <span class="math inline">\(j\)</span> to position <span class="math inline">\(i\)</span> must travel through the state coordinates between those positions. Thus the entry connecting <span class="math inline">\(j\)</span> to <span class="math inline">\(i\)</span> factors through a low-dimensional state transition rather than through an arbitrary scalar weight. Matrix views of selective recurrences exploit this factorisation when they materialise or chunk the computation, the duality that Mamba-2 draws between a recurrence and an attention-like matrix <span class="citation" data-cites="dao2024mamba2">(Dao and Gu 2024)</span>.</p>
 </section>
-<section id="modern-refinements" class="level3">
-<h3 class="anchored" data-anchor-id="modern-refinements">Modern refinements</h3>
-<p>Discretisation, complex modes, state tracking, and multi-input multi-output state spaces return as architectural choices rather than preliminaries, with the Mamba-3 block as a synthesis point. The step size and the discretisation rule reopen as tunable parts of the layer rather than a fixed preprocessing step. Complex modes return because a single real decay cannot represent oscillation, so the state matrix is allowed complex eigenvalues again. State tracking asks the recurrence to carry more than a decaying summary, which constrains how the update may forget. The Mamba-3 block combines these choices into one layer and reads against the selective and matrix-view forms developed earlier.</p>
-<p>Reference implementations in NumPy, PyTorch, and JAX accompany the chapters and are collected in the companion <code>ssm_book</code> package.</p>
+<section id="discretisation-as-a-learned-design-choice" class="level3">
+<h3 class="anchored" data-anchor-id="discretisation-as-a-learned-design-choice">Discretisation as a learned design choice</h3>
+<p>The discretisation step controls how continuous time is attached to sequence position. If the step size is fixed, one token step always corresponds to the same amount of model time. If the step size is learned or input-dependent, the model can contract or dilate the effect of a transition at each position.</p>
+<p>Other design choices change what the state can carry. Complex modes allow oscillatory memory. Multi-input multi-output state spaces let several channels write into and read from a shared state. State tracking asks the recurrence to preserve information more explicitly than a purely decaying summary. In a full neural architecture, these choices may be surrounded by projections, gates, normalisation, and residual paths, but the state space model itself is still the recurrence that updates and reads the finite state. Mamba-3 gathers step size, complex modes, multiple channels, and state tracking into a single layer <span class="citation" data-cites="mamba3">(Lahoti et al. 2026)</span>.</p>
 </section>
 </section>
-<section id="contributing" class="level2">
-<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
-<p>The book is developed in the open at <a href="https://github.com/CosmoNaught/ssm-book">github.com/CosmoNaught/ssm-book</a>. Corrections, cleaner explanations, worked examples, and implementation contributions are all welcome. If a derivation is unclear or a step is missing, an issue or a pull request is the most useful way to help.</p>
+<section id="combining-state-space-layers-with-attention" class="level2">
+<h2 class="anchored" data-anchor-id="combining-state-space-layers-with-attention">Combining state space layers with attention</h2>
+<p>A separate direction leaves the state space layer in place and sets it alongside attention. Jamba and Nemotron 3 interleave the two within one network <span class="citation" data-cites="lieber2024jamba nvidia2026nemotron3">(<span class="nocase">Lieber et al.</span> 2024; NVIDIA 2026)</span>, and Hydra runs the recurrence in both directions <span class="citation" data-cites="hwang2024hydra">(Hwang et al. 2024)</span>. Later chapters take up these hybrids and the principles for combining the two well, rather than cataloguing every variant.</p>
+</section>
+<section id="corrections-and-implementations" class="level2">
+<h2 class="anchored" data-anchor-id="corrections-and-implementations">Corrections and implementations</h2>
+<p>The source for this book can be found on GitHub at <a href="https://github.com/CosmoNaught/ssm-book">github.com/CosmoNaught/ssm-book</a>. Corrections, clearer derivations, worked examples, and implementation contributions are welcome. An issue or pull request is the most useful way to report a missing step or an unclear calculation. Feel free to also drop me an <a href="mailto:santonicosmo@gmail.com">email</a> too.</p>
 
 
 </section>
 </section>
 
 </main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1146,14 +1185,12 @@ window.MathJax = {
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -1597,8 +1634,8 @@ window.MathJax = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/00-front/notation.html" class="pagination-link" aria-label="Notation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notation</span>
+      <a href="../../chapters/00-front/notation.html" class="pagination-link" aria-label="Notation &amp; Preliminaries">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notation &amp; Preliminaries</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

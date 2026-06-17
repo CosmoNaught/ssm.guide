@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/02-foundations/05-transfer-functions.qmd#sec-6-1" rel="next">
-<link href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#sec-5-10" rel="prev">
+<link href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1158,14 +1144,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#sec-6-1" id="toc-sec-6-1" class="nav-link active" data-scroll-target="#sec-6-1">6.1 Why another view is useful</a></li>
+  <li><a href="#sec-6-1" id="toc-sec-6-1" class="nav-link active" data-scroll-target="#sec-6-1">6.1 From powers to a resolvent</a></li>
   <li><a href="#sec-6-2" id="toc-sec-6-2" class="nav-link" data-scroll-target="#sec-6-2">6.2 The transfer function in diagonal coordinates</a></li>
   <li><a href="#sec-6-3" id="toc-sec-6-3" class="nav-link" data-scroll-target="#sec-6-3">6.3 The discrete generating function</a></li>
   <li><a href="#sec-6-4" id="toc-sec-6-4" class="nav-link" data-scroll-target="#sec-6-4">6.4 The discrete generating function in diagonal coordinates</a></li>
   <li><a href="#sec-6-5" id="toc-sec-6-5" class="nav-link" data-scroll-target="#sec-6-5">6.5 Finite kernels as polynomials</a></li>
   <li><a href="#sec-6-6" id="toc-sec-6-6" class="nav-link" data-scroll-target="#sec-6-6">6.6 What the resolvent changes</a></li>
   <li><a href="#sec-6-7" id="toc-sec-6-7" class="nav-link" data-scroll-target="#sec-6-7">6.7 Notation</a></li>
-  <li><a href="#sec-6-8" id="toc-sec-6-8" class="nav-link" data-scroll-target="#sec-6-8">6.8 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1196,7 +1181,7 @@ window.Quarto = {
 
 <p>The convolution kernel contains the powers <span class="math inline">\(C\bar A^m\bar B\)</span>. Generating those powers directly is expensive when <span class="math inline">\(\bar A\)</span> is dense. A generating function packages all coefficients into a single matrix inverse, <span class="math inline">\(C(I-z\bar A)^{-1}\bar B\)</span>, so the question becomes whether that inverse can be evaluated quickly at many points.</p>
 <section id="sec-6-1" class="level2">
-<h2 class="anchored" data-anchor-id="sec-6-1">6.1 Why another view is useful</h2>
+<h2 class="anchored" data-anchor-id="sec-6-1">6.1 From powers to a resolvent</h2>
 <p>The discrete kernel is</p>
 <p><span class="math display">\[
 \bar K_m=C\bar A^m\bar B,
@@ -1205,7 +1190,7 @@ m=0,\dots,L-1.
 \]</span></p>
 <p>The direct method forms these values one at a time. That procedure is clear, but it hides another structure. The whole kernel can be collected into a single function whose coefficients are the kernel values.</p>
 <p>A generating function turns a sequence into an analytic object. For state space models, the resulting function is a matrix inverse.</p>
-<p>The continuous-time version is called a transfer function. The discrete-time version is a generating function, or equivalently a <span class="math inline">\(z\)</span>-transform. In both cases, the dynamics of the state are encoded by a resolvent. The continuous case exposes the resolvent most directly. The same algebra then carries over to the discrete recurrence.</p>
+<p>The continuous-time version is called a transfer function. The discrete-time version is a generating function, or equivalently a <span class="math inline">\(z\)</span>-transform. In both cases, the dynamics of the state are encoded by a resolvent.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The continuous case exposes the resolvent most directly. The same algebra then carries over to the discrete recurrence.</p>
 <p>Start with the continuous-time single-input single-output (SISO) model</p>
 <p><span class="math display">\[
 x'(t)=Ax(t)+Bu(t),
@@ -1252,7 +1237,7 @@ Y(s)=C(sI-A)^{-1}BU(s).
 H(s)=C(sI-A)^{-1}B
 }
 \]</span></p>
-<p>is the <strong>transfer function</strong>. It tells us how the system acts after transforming time-domain convolution into multiplication in the complex variable <span class="math inline">\(s\)</span>:</p>
+<p>is the <strong>transfer function</strong>. In the complex variable <span class="math inline">\(s\)</span>, time-domain convolution becomes multiplication:</p>
 <p><span class="math display">\[
 Y(s)=H(s)U(s).
 \]</span></p>
@@ -1313,8 +1298,8 @@ H(s)
 \frac{\widetilde C_i\widetilde B_i}{s-\lambda_i}.
 \]</span></p>
 <p>Thus a diagonalisable state space model has a transfer function built from simple rational terms. Each eigenvalue contributes a denominator <span class="math inline">\(s-\lambda_i\)</span>, weighted by how strongly the corresponding mode is written by <span class="math inline">\(B\)</span> and read by <span class="math inline">\(C\)</span>.</p>
-<p>Each pole <span class="math inline">\(\lambda_i\)</span> is the same eigenvalue that produced the time-domain mode <span class="math inline">\(e^{\lambda_i t}\)</span> in the continuous-time chapter. Reading the partial-fraction sum back into time, the term <span class="math inline">\(\widetilde C_i\widetilde B_i/(s-\lambda_i)\)</span> is the Laplace transform of <span class="math inline">\(\widetilde C_i\widetilde B_i\,e^{\lambda_i t}\)</span>, so the rational form and the modal form are the same decomposition seen through the Laplace transform. A pole far into the left half-plane is a fast-decaying mode. A pole near the imaginary axis is a slowly decaying memory mode, since <span class="math inline">\(\Real\lambda_i\)</span> close to zero makes <span class="math inline">\(e^{\lambda_i t}\)</span> fade slowly.</p>
-<p>Take the damped rotation <span class="math inline">\(A=\begin{pmatrix}-0.8 &amp; 1\\ -1 &amp; -0.8\end{pmatrix}\)</span> shared with the kernel-generation example below. Its eigenvalues are <span class="math inline">\(\lambda_{1,2}=-0.8\pm i\)</span>, a single conjugate pair, so the SISO transfer function is the two-term sum</p>
+<p>Each pole <span class="math inline">\(\lambda_i\)</span> is the same eigenvalue that produced the time-domain mode <span class="math inline">\(e^{\lambda_i t}\)</span> in <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-3">Section 3.3</a>. Reading the partial-fraction sum back into time, the term <span class="math inline">\(\widetilde C_i\widetilde B_i/(s-\lambda_i)\)</span> is the Laplace transform of <span class="math inline">\(\widetilde C_i\widetilde B_i\,e^{\lambda_i t}\)</span>, so the rational form and the modal form are the same decomposition seen through the Laplace transform. A pole far into the left half-plane is a fast-decaying mode. A pole near the imaginary axis is a slowly decaying memory mode, since <span class="math inline">\(\Real\lambda_i\)</span> close to zero makes <span class="math inline">\(e^{\lambda_i t}\)</span> fade slowly.</p>
+<p>Take the damped rotation <span class="math inline">\(A=\begin{pmatrix}-0.8 &amp; 1\\ -1 &amp; -0.8\end{pmatrix}\)</span>. Its eigenvalues are <span class="math inline">\(\lambda_{1,2}=-0.8\pm i\)</span>, a single conjugate pair, so the SISO transfer function is the two-term sum</p>
 <p><span class="math display">\[
 H(s)
 =
@@ -1345,7 +1330,7 @@ G(z)
 =
 \sum_{m=0}^{\infty}\bar K_m z^m.
 \]</span></p>
-<p>The generating function is an ordinary power series whose coefficients are the kernel values.</p>
+<p>The generating function is an ordinary power series whose coefficients are the kernel values.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>Substituting the state space formula for <span class="math inline">\(\bar K_m\)</span> gives</p>
 <p><span class="math display">\[
 G(z)
@@ -1376,7 +1361,7 @@ G(z)=C(I-z\bar A)^{-1}\bar B.
 H(s)=C(sI-A)^{-1}B.
 \]</span></p>
 <p>The same pattern appears in both cases: the input map, the resolvent of the state matrix, and the output map.</p>
-<p>The phrase “whenever the series converges” has to be made precise, since the generating function is a power series with a region of convergence. The matrix series</p>
+<p>The generating function is a power series, so it has a region of convergence. The matrix series</p>
 <p><span class="math display">\[
 \sum_{m=0}^{\infty}(z\bar A)^m
 \]</span></p>
@@ -1459,8 +1444,8 @@ G(z)
 =
 \sum_{i=1}^N\widetilde C_i\widetilde B_i\mu_i^m.
 \]</span></p>
-<p>The diagonal discrete model therefore produces a kernel that is a sum of discrete exponential modes. Each mode contributes <span class="math inline">\(\widetilde C_i\widetilde B_i\mu_i^m\)</span>, so <span class="math inline">\(\mu_i^m\)</span> is a per-step decay factor and <span class="math inline">\(|\mu_i|\)</span> is the amount by which that mode shrinks at every step. The continuous and discrete poles measure decay in two different clocks. A continuous pole sits at <span class="math inline">\(s=\lambda_i\)</span> and sets the decay rate of <span class="math inline">\(e^{\lambda_i t}\)</span> in time. The matching discrete pole sits at <span class="math inline">\(z=1/\mu_i\)</span> and sets the decay <span class="math inline">\(|\mu_i|^m\)</span> per step. The two are linked through the discretisation map, which under the zero-order hold of the discretisation chapter sends <span class="math inline">\(\lambda_i\)</span> to <span class="math inline">\(\mu_i=e^{\lambda_i\Delta}\)</span>, so a slow continuous mode with <span class="math inline">\(\Real\lambda_i\)</span> near zero becomes a discrete mode with <span class="math inline">\(|\mu_i|\)</span> near one.</p>
-<p>For the shared damped rotation <span class="math inline">\(A=\begin{pmatrix}-0.8 &amp; 1\\ -1 &amp; -0.8\end{pmatrix}\)</span> with step size <span class="math inline">\(\Delta=0.5\)</span>, the discrete eigenvalues have modulus <span class="math inline">\(|\mu_1|=|\mu_2|=e^{-0.8\times 0.5}=e^{-0.4}=0.670\)</span>, so every kernel coefficient <span class="math inline">\(\bar K_m\)</span> is bounded by a constant times <span class="math inline">\(0.670^m\)</span> and the kernel fades by roughly a third each step. The limiting case sharpens the picture. As <span class="math inline">\(|\mu_i|\to 1\)</span> the factor <span class="math inline">\(\mu_i^m\)</span> barely shrinks with <span class="math inline">\(m\)</span>, so the mode’s kernel contribution decays slowly and the spectral radius approaches the edge of the convergence region of the previous section, where the geometric series only just sums.</p>
+<p>The diagonal discrete model therefore produces a kernel that is a sum of discrete exponential modes. Each mode contributes <span class="math inline">\(\widetilde C_i\widetilde B_i\mu_i^m\)</span>, so <span class="math inline">\(\mu_i^m\)</span> is a per-step decay factor and <span class="math inline">\(|\mu_i|\)</span> is the amount by which that mode shrinks at every step. The continuous and discrete poles measure decay in two different clocks. A continuous pole sits at <span class="math inline">\(s=\lambda_i\)</span> and sets the decay rate of <span class="math inline">\(e^{\lambda_i t}\)</span> in time. The matching discrete pole sits at <span class="math inline">\(z=1/\mu_i\)</span> and sets the decay <span class="math inline">\(|\mu_i|^m\)</span> per step. The two are linked through the zero-order-hold map of <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-3">Section 4.3</a>, which sends <span class="math inline">\(\lambda_i\)</span> to <span class="math inline">\(\mu_i=e^{\lambda_i\Delta}\)</span>, so a slow continuous mode with <span class="math inline">\(\Real\lambda_i\)</span> near zero becomes a discrete mode with <span class="math inline">\(|\mu_i|\)</span> near one.</p>
+<p>For the shared damped rotation <span class="math inline">\(A=\begin{pmatrix}-0.8 &amp; 1\\ -1 &amp; -0.8\end{pmatrix}\)</span> with step size <span class="math inline">\(\Delta=0.5\)</span>, the discrete eigenvalues have modulus <span class="math inline">\(|\mu_1|=|\mu_2|=e^{-0.8\times 0.5}=e^{-0.4}=0.670\)</span>, so every kernel coefficient <span class="math inline">\(\bar K_m\)</span> is bounded by a constant times <span class="math inline">\(0.670^m\)</span> and the kernel fades by roughly a third each step. As <span class="math inline">\(|\mu_i|\to 1\)</span> the factor <span class="math inline">\(\mu_i^m\)</span> barely shrinks with <span class="math inline">\(m\)</span>, so the mode’s kernel contribution decays slowly and the spectral radius approaches the boundary where the geometric series only just sums.</p>
 </section>
 <section id="sec-6-5" class="level2">
 <h2 class="anchored" data-anchor-id="sec-6-5">6.5 Finite kernels as polynomials</h2>
@@ -1487,7 +1472,7 @@ U_L(z)
 \widetilde K_m=\sum_{p\ge 0}\bar K_{m+pL}.
 \]</span></p>
 <p>The tail coefficients <span class="math inline">\(\bar K_{m+L},\bar K_{m+2L},\dots\)</span> fold into lag <span class="math inline">\(m\)</span>. For a strongly stable system the powers <span class="math inline">\(\bar A^m\)</span> decay quickly, so the folded tail may be negligible. Otherwise a finite-length correction is needed before the inverse FFT recovers the true first <span class="math inline">\(L\)</span> coefficients.</p>
-<div id="377120cd" class="cell" data-execution_count="1">
+<div id="fcb4719c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: a strongly damped two-dimensional system</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.discretisation <span class="im">import</span> zoh_discretise</span>
@@ -1503,7 +1488,7 @@ U_L(z)
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="561b8b83" class="cell" data-execution_count="2">
+<div id="610c9118" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.kernels <span class="im">import</span> ssm_kernel</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.transfer <span class="im">import</span> (</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    evaluate_on_roots_of_unity, recover_kernel_by_ifft)</span>
@@ -1518,7 +1503,7 @@ U_L(z)
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="e805fd58" class="cell" data-execution_count="3">
+<div id="e58c010c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.kernels <span class="im">import</span> ssm_kernel <span class="im">as</span> ker_t</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.transfer <span class="im">import</span> (</span>
@@ -1534,7 +1519,7 @@ U_L(z)
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="6521ff40" class="cell" data-execution_count="4">
+<div id="556424c4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.kernels <span class="im">import</span> ssm_kernel <span class="im">as</span> ker_j</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.transfer <span class="im">import</span> (</span>
@@ -1575,14 +1560,7 @@ G(z)=C(I-z\bar A)^{-1}\bar B.
 I+z\bar A+z^2\bar A^2+\cdots.
 \]</span></p>
 <p>The advantage of the resolvent form is that matrix structure can be exploited before expanding the series. If <span class="math inline">\(\bar A\)</span> is diagonal, the inverse separates into scalar denominators. If <span class="math inline">\(\bar A\)</span> is diagonal plus a low-rank correction, identities for low-rank matrix inverses become relevant. If <span class="math inline">\(\bar A\)</span> has another special form, the resolvent is often the place where that structure is most visible.</p>
-<p>The kernel-generation problem can therefore be stated in two equivalent ways:</p>
-<blockquote class="blockquote">
-<p>Compute the coefficients <span class="math inline">\(C\bar A^m\bar B\)</span> in fewer than <span class="math inline">\(O(LN^2)\)</span> operations.</p>
-</blockquote>
-<p>or</p>
-<blockquote class="blockquote">
-<p>Evaluate the resolvent expression <span class="math inline">\(C(I-z\bar A)^{-1}\bar B\)</span> at <span class="math inline">\(L\)</span> points in fewer than <span class="math inline">\(O(LN^2)\)</span> total operations and recover those coefficients by an inverse FFT.</p>
-</blockquote>
+<p>The kernel-generation problem can therefore be stated in two equivalent ways. In the time domain, the task is to compute the coefficients <span class="math inline">\(C\bar A^m\bar B\)</span> in fewer than <span class="math inline">\(O(LN^2)\)</span> operations. In the frequency domain, it is to evaluate the resolvent <span class="math inline">\(C(I-z\bar A)^{-1}\bar B\)</span> at <span class="math inline">\(L\)</span> points in fewer than <span class="math inline">\(O(LN^2)\)</span> total operations and recover those coefficients by an inverse FFT.</p>
 <p>A useful state matrix must therefore have both a memory interpretation and a resolvent that can be applied in fewer than <span class="math inline">\(O(N^2)\)</span> operations per sample point.</p>
 </section>
 <section id="sec-6-7" class="level2">
@@ -1648,24 +1626,6 @@ I+z\bar A+z^2\bar A^2+\cdots.
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-6-8" class="level2">
-<h2 class="anchored" data-anchor-id="sec-6-8">6.8 Notes and references</h2>
-<p>The transfer-function, generating-function, and FFT-based convolution objects are standard in linear systems theory and signal processing. The continuous-time state space model, its transfer function, and the resolvent are treated in any account of linear systems <span class="citation" data-cites="kailath1980">(<a href="#ref-kailath1980" role="doc-biblioref">Kailath 1980</a>)</span>. The discretisations are classical. The zero-order hold used here, the bilinear, or Tustin, transform <span class="citation" data-cites="tustin1947">(<a href="#ref-tustin1947" role="doc-biblioref">Tustin 1947</a>)</span>, the <span class="math inline">\(z\)</span>-transform, and the generating-function view are all standard material in discrete-time signal processing <span class="citation" data-cites="oppenheim1999dtsp">(<a href="#ref-oppenheim1999dtsp" role="doc-biblioref">Oppenheim et al. 1999</a>)</span>. The fact that a convolution can be evaluated through the fast Fourier transform goes back to Cooley and Tukey <span class="citation" data-cites="cooley1965fft">(<a href="#ref-cooley1965fft" role="doc-biblioref">Cooley and Tukey 1965</a>)</span>.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-cooley1965fft" class="csl-entry" role="listitem">
-Cooley, James W., and John W. Tukey. 1965. <span>“An Algorithm for the Machine Calculation of Complex <span>Fourier</span> Series.”</span> <em>Mathematics of Computation</em> 19 (90): 297–301. <a href="https://doi.org/10.1090/S0025-5718-1965-0178586-1">https://doi.org/10.1090/S0025-5718-1965-0178586-1</a>.
-</div>
-<div id="ref-kailath1980" class="csl-entry" role="listitem">
-Kailath, Thomas. 1980. <em>Linear Systems</em>. Prentice-Hall.
-</div>
-<div id="ref-oppenheim1999dtsp" class="csl-entry" role="listitem">
-Oppenheim, Alan V., Ronald W. Schafer, and John R. Buck. 1999. <em>Discrete-Time Signal Processing</em>. 2nd ed. Prentice Hall.
-</div>
-<div id="ref-tustin1947" class="csl-entry" role="listitem">
-Tustin, A. 1947. <span>“A Method of Analysing the Behaviour of Linear Systems in Terms of Time Series.”</span> <em>Journal of the Institution of Electrical Engineers</em> 94 (1): 130–42. <a href="https://doi.org/10.1049/ji-2a.1947.0020">https://doi.org/10.1049/ji-2a.1947.0020</a>.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1810,12 +1770,16 @@ G(\omega_j)=\sum_{n\ge 0}\bar K_n\,\omega_j^{\,n}=\sum_{n\ge 0}\bar K_n\,e^{-2\p
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>Transfer functions, generating functions, resolvents, and FFT-based convolution are standard in linear systems and signal processing. The continuous-time state space transfer function and resolvent are treated in standard linear-systems texts <span class="citation" data-cites="kailath1980">(Kailath 1980)</span>. The zero-order hold, the bilinear or Tustin transform <span class="citation" data-cites="tustin1947">(Tustin 1947)</span>, the <span class="math inline">\(z\)</span>-transform, and the generating-function view are standard in discrete-time signal processing <span class="citation" data-cites="oppenheim1999dtsp">(Oppenheim et al. 1999)</span>; FFT convolution goes back to Cooley and Tukey <span class="citation" data-cites="cooley1965fft">(Cooley and Tukey 1965)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Many signal-processing texts write the <span class="math inline">\(z\)</span>-transform as <span class="math inline">\(\sum_{m\ge0}\bar K_m z^{-m}\)</span>. Here <span class="math inline">\(z\)</span> is used as an ordinary power-series variable, so the discrete resolvent appears as <span class="math inline">\((I-z\bar A)^{-1}\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1834,14 +1798,12 @@ G(\omega_j)=\sum_{n\ge 0}\bar K_n\,\omega_j^{\,n}=\sum_{n\ge 0}\bar K_n\,e^{-2\p
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2285,8 +2247,8 @@ G(\omega_j)=\sum_{n\ge 0}\bar K_n\,\omega_j^{\,n}=\sum_{n\ge 0}\bar K_n\,e^{-2\p
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="pagination-link" aria-label="5.10 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5.10 Notes and references</span>
+      <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

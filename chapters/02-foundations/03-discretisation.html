@@ -58,31 +58,12 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <link href="../../chapters/02-foundations/03-discretisation.qmd#sec-4-1" rel="next">
-<link href="../../chapters/02-foundations/02-continuous-time.qmd#sec-3-8" rel="prev">
+<link href="../../chapters/02-foundations/02-continuous-time.qmd#footnotes" rel="prev">
 <link href="../../misc/icon-blue.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -96,9 +77,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d1ccd37803302f88ad0ef3263c8e0f7a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-db4f2841bf43f22e237b4b50ac309a29.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c27bd8c5a8766f1874de3d4a50411227.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0fee082c8b819d3f39cef6e571aa4bc4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -115,11 +96,10 @@ div.csl-indent {
   }
 }</script>
 <!--
-  Shared math macros for the HTML build (mirrors _macros.tex).
-  Injected into every page's <head> via `include-in-header` in _quarto.yml,
-  so the macros resolve on every chapter page of the book.
-  KEEP IN SYNC with _macros.tex. Backslashes are doubled for the JS string;
-  multi-argument macros use the ["{body}", argcount] form (see `inner`).
+  Shared math macros for the HTML build; injected into every page's <head> via
+  `include-in-header` in _quarto.yml. Keep in sync with _macros.tex.
+  Backslashes are doubled for the JS string; multi-argument macros use the
+  ["{body}", argcount] form (see `inner`).
 -->
 <script>
 window.MathJax = {
@@ -430,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/00-front/notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
+ <span class="menu-text">Notation &amp; Preliminaries</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +455,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/01-introduction/index.html#sec-1-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1.5 Notes and references</span></a>
+ <span class="menu-text">1.5 State space layers and attention</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01-introduction/index.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -527,8 +513,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/01-state-as-memory.html#sec-2-5" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2.5 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/01-state-as-memory.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -592,8 +578,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -657,8 +643,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/03-discretisation.html#sec-4-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/03-discretisation.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -734,8 +720,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#sec-5-10" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5.10 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/04-recurrence-convolution-toeplitz.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -799,8 +785,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/02-foundations/05-transfer-functions.html#sec-6-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6.8 Notes and references</span></a>
+  <a href="../../chapters/02-foundations/05-transfer-functions.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -858,8 +844,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/06-memory-problem.html#sec-7-7" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7.7 Notes and references</span></a>
+  <a href="../../chapters/03-s4/06-memory-problem.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -923,8 +909,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/07-hippo.html#sec-8-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/07-hippo.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -988,8 +974,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/08-structured-state-matrices.html#sec-9-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/08-structured-state-matrices.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1053,8 +1039,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#sec-10-8" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10.8 Notes and references</span></a>
+  <a href="../../chapters/03-s4/09-s4-kernel-algorithm.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1136,8 +1122,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#sec-11-11" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11.11 Notes and references</span></a>
+  <a href="../../chapters/03-s4/10-diagonal-state-spaces.html#footnotes" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Footnotes and references</span></a>
   </div>
 </li>
       </ul>
@@ -1165,7 +1151,6 @@ window.Quarto = {
   <li><a href="#sec-4-5" id="toc-sec-4-5" class="nav-link" data-scroll-target="#sec-4-5">4.5 Eigenvalues and the step size as a timescale</a></li>
   <li><a href="#sec-4-6" id="toc-sec-4-6" class="nav-link" data-scroll-target="#sec-4-6">4.6 From recurrence to kernel</a></li>
   <li><a href="#sec-4-7" id="toc-sec-4-7" class="nav-link" data-scroll-target="#sec-4-7">4.7 Notation</a></li>
-  <li><a href="#sec-4-8" id="toc-sec-4-8" class="nav-link" data-scroll-target="#sec-4-8">4.8 Notes and references</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
@@ -1194,7 +1179,7 @@ window.Quarto = {
 </header>
 
 
-<p>A neural sequence layer sees samples, not a continuous signal. Discretisation turns the continuous state equation into a recurrence indexed by sequence position. The step size and the rule used between samples decide which discrete matrices <span class="math inline">\(\bar A\)</span> and <span class="math inline">\(\bar B\)</span> replace the continuous matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
+<p>A neural sequence layer sees samples, not a continuous signal. Discretisation turns the continuous state equation into a recurrence indexed by sequence position. The step size and the rule used between samples decide which discrete matrices <span class="math inline">\(\bar A\)</span> and <span class="math inline">\(\bar B\)</span> replace the continuous matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and therefore which lag weights the sampled model will use.</p>
 <section id="sec-4-1" class="level2">
 <h2 class="anchored" data-anchor-id="sec-4-1">4.1 Why discretisation is needed</h2>
 <p>In continuous time, the state space model is</p>
@@ -1239,7 +1224,7 @@ x_k=x(t_k).
 <p><span class="math display">\[
 y_k=Cx_{k+1}.
 \]</span></p>
-<p>Reading the output after the update makes the first discrete kernel coefficient equal to the immediate response to the current input. The choice is a convention, not a law of nature. If the output were instead read as <span class="math inline">\(Cx_k\)</span>, the same dynamics would appear with a one-step shift in the discrete kernel.</p>
+<p>Reading the output after the update makes the first discrete kernel coefficient equal to the immediate response to the current input.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>With the grid fixed, the exact evolution over one interval follows from the continuous solution. The continuous solution over one interval <span class="math inline">\([t_k,t_{k+1}]\)</span> is</p>
 <p><span class="math display">\[
 x_{k+1}
@@ -1249,7 +1234,7 @@ e^{A\Delta}x_k
 \int_{t_k}^{t_{k+1}}
 e^{A(t_{k+1}-s)}Bu(s)\dd s.
 \]</span></p>
-<p>The one-step formula is exact. No approximation has been made yet.</p>
+<p>The one-step formula is exact. No approximation has been made yet. Sampling has only selected the endpoints of the intervals; the unresolved part is the input path between those endpoints.</p>
 <p>The first term,</p>
 <p><span class="math display">\[
 e^{A\Delta}x_k,
@@ -1257,9 +1242,7 @@ e^{A\Delta}x_k,
 <p>is the old state propagated forward by one step.</p>
 <p>The second term is the accumulated effect of the input during the interval. It is also where the difficulty appears. The integral requires <span class="math inline">\(u(s)\)</span> for every <span class="math inline">\(s\)</span> between <span class="math inline">\(t_k\)</span> and <span class="math inline">\(t_{k+1}\)</span>, but sequence data gives only the sample <span class="math inline">\(u_k\)</span>.</p>
 <p>Therefore discretisation must answer a specific question:</p>
-<blockquote class="blockquote">
-<p>What assumption describes the input between two sampled positions?</p>
-</blockquote>
+<p><span class="math display">\[\text{What assumption describes the input between two sampled positions?}\]</span></p>
 <p>Different answers give different discretisations.</p>
 </section>
 <section id="sec-4-3" class="level2">
@@ -1270,7 +1253,7 @@ u(s)=u_k
 \qquad
 \text{for }s\in[t_k,t_{k+1}).
 \]</span></p>
-<p>The assumption is called <strong>zero-order hold</strong>. The between-sample input is approximated by a polynomial of degree zero, a constant held at the last sampled value.</p>
+<p>The assumption is called <strong>zero-order hold</strong>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The between-sample input is approximated by a polynomial of degree zero, a constant held at the last sampled value.</p>
 <p>Substituting this assumption into the exact one-step formula gives</p>
 <p><span class="math display">\[
 x_{k+1}
@@ -1434,9 +1417,9 @@ x_{k+1}-x_k
 \left(I-\frac{\Delta}{2}A\right)^{-1}\Delta B.
 }
 \]</span></p>
-<p>The resulting map is the <strong>bilinear transform</strong>, also called the Tustin transform. Here it is the trapezoidal, or Crank–Nicolson, discretisation of the state dynamics together with the held-input convention. Other input-output conventions can move factors between the state update and the readout, but the eigenvalue map for <span class="math inline">\(\bar A\)</span> is the same.</p>
+<p>The resulting map is the <strong>bilinear transform</strong>, also called the Tustin transform.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>The two factors of <span class="math inline">\(\bar A\)</span> read as one averaged step. The right factor <span class="math inline">\(I+\frac{\Delta}{2}A\)</span> advances the state by half a step of the explicit forward Euler rule, and the left factor <span class="math inline">\(\left(I-\frac{\Delta}{2}A\right)^{-1}\)</span> completes the step with half a step of the implicit backward Euler rule. The bilinear map averages a forward half-step and a backward half-step, which is why it matches the trapezoidal rule applied to the state dynamics.</p>
-<p>The averaging earns its place next to zero-order hold through what it asks of <span class="math inline">\(\bar A\)</span>. Zero-order hold sets <span class="math inline">\(\bar A=e^{A\Delta}\)</span>, which requires a matrix exponential. The bilinear <span class="math inline">\(\bar A\)</span> instead needs only the linear solve with <span class="math inline">\(I-\frac{\Delta}{2}A\)</span> that defines the inverse factor, with no exponential at all. When <span class="math inline">\(A\)</span> is structured so that this solve is cheap, the bilinear form gives <span class="math inline">\(\bar A\)</span> at a cost the matrix exponential cannot match.</p>
+<p>The bilinear form differs from zero-order hold in what computing <span class="math inline">\(\bar A\)</span> requires. Zero-order hold sets <span class="math inline">\(\bar A=e^{A\Delta}\)</span>, which requires a matrix exponential. The bilinear <span class="math inline">\(\bar A\)</span> instead needs only the linear solve with <span class="math inline">\(I-\frac{\Delta}{2}A\)</span> that defines the inverse factor, with no exponential at all. When <span class="math inline">\(A\)</span> is structured so that this solve is cheap, the bilinear form gives <span class="math inline">\(\bar A\)</span> at a cost the matrix exponential cannot match.</p>
 <p>Reducing to one dimension checks the formula and shows its agreement with zero-order hold per mode. For <span class="math inline">\(N=1\)</span> with <span class="math inline">\(A=[a]\)</span>, the bilinear eigenvalue is</p>
 <p><span class="math display">\[
 \mu=\frac{1+\frac{\Delta}{2}a}{1-\frac{\Delta}{2}a}.
@@ -1512,7 +1495,7 @@ e^{(\Real\lambda)\Delta}.
 |\mu|&lt;1.
 \]</span></p>
 <p>Thus the bilinear transform also maps the stable continuous-time region into the stable discrete-time region.</p>
-<p>The eigenvalue <span class="math inline">\(\mu\)</span> also fixes how much continuous time a single step spans, so the step size <span class="math inline">\(\Delta\)</span> is not just a numerical detail. It determines how much continuous time passes in one discrete step.</p>
+<p>The eigenvalue <span class="math inline">\(\mu\)</span> also fixes how much continuous time a single step spans, so the step size <span class="math inline">\(\Delta\)</span> determines how much continuous time passes in one discrete step.</p>
 <p>For zero-order hold,</p>
 <p><span class="math display">\[
 \mu=e^{\lambda\Delta}.
@@ -1523,7 +1506,7 @@ e^{(\Real\lambda)\Delta}.
 \]</span></p>
 <p>smaller. The state forgets more per discrete step.</p>
 <p>Decreasing <span class="math inline">\(\Delta\)</span> does the opposite. Each step changes the state less, but more steps fit into the same amount of continuous time.</p>
-<p>For sequence models, memory is measured in positions. A continuous mode that decays slowly can still disappear over only a few positions if <span class="math inline">\(\Delta\)</span> is large. Conversely, a smaller <span class="math inline">\(\Delta\)</span> lets the same continuous mode persist over more positions.</p>
+<p>For sequence models, memory is measured in positions. A continuous mode that decays slowly can still disappear over only a few positions if <span class="math inline">\(\Delta\)</span> is large. Conversely, a smaller <span class="math inline">\(\Delta\)</span> lets the same continuous mode persist over more positions. Changing the step size changes the lag weights used by the discrete model.</p>
 <p>The <strong>discrete half-life</strong> of a decaying mode is the number of steps <span class="math inline">\(m_{1/2}\)</span> needed for its magnitude to shrink by a factor of two. If <span class="math inline">\(|\mu|&lt;1\)</span>, then</p>
 <p><span class="math display">\[
 |\mu|^{m_{1/2}}=\frac12,
@@ -1543,7 +1526,7 @@ m_{1/2}
 <p>The continuous half-life is divided by the step size, so a continuous timescale becomes a memory length measured in sequence positions.</p>
 <p>Nothing in the mathematics requires one shared step size for all coordinates or all state directions. Here, however, the discretised matrices are fixed once chosen, so the resulting kernel is fixed as well.</p>
 <p>The eigenvalue identity <span class="math inline">\(\mu=e^{\lambda\Delta}\)</span> can be checked on a small stable system: discretise with zero-order hold and compare the eigenvalues of <span class="math inline">\(\bar A\)</span> against <span class="math inline">\(e^{\lambda\Delta}\)</span>.</p>
-<div id="93300d5e" class="cell" data-execution_count="1">
+<div id="5fb0dc93" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shared example: a stable rotation and its predicted discrete eigenvalues</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1560,7 +1543,7 @@ m_{1/2}
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">NumPy</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PyTorch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">JAX</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="d6bd3d25" class="cell" data-execution_count="2">
+<div id="298d5005" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.numpy_ref.discretisation <span class="im">import</span> zoh_discretise</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Abar, _ <span class="op">=</span> zoh_discretise(A, B, Delta)</span>
@@ -1576,7 +1559,7 @@ max |mu|                     = 0.8607</code></pre>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="af87006a" class="cell" data-execution_count="3">
+<div id="2ad2173c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.torch_ref.discretisation <span class="im">import</span> zoh_discretise <span class="im">as</span> zoh_t</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1593,7 +1576,7 @@ max |mu|                     = 0.8607</code></pre>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="cd6ed67c" class="cell" data-execution_count="4">
+<div id="aba9b1ab" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ssm_book.jax_ref.discretisation <span class="im">import</span> zoh_discretise <span class="im">as</span> zoh_j</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1621,7 +1604,7 @@ max |mu|                     = 0.8607</code></pre>
 </section>
 <section id="sec-4-6" class="level2">
 <h2 class="anchored" data-anchor-id="sec-4-6">4.6 From recurrence to kernel</h2>
-<p>After discretisation, the model is</p>
+<p>With the discrete matrices fixed, the state equation becomes</p>
 <p><span class="math display">\[
 x_{k+1}
 =
@@ -1669,7 +1652,7 @@ y_k
 \bar K_m u_{k-m}.
 }
 \]</span></p>
-<p>The formula is the discrete analogue of the continuous convolution. The same model can be computed either as a recurrence or as a convolution, and the two forms differ in cost and parallelism.</p>
+<p>The formula is the discrete analogue of the continuous convolution. The recurrence carries the state locally; the convolution exposes all lag weights at once. The two forms compute the same map but have different costs and different opportunities for parallelism.</p>
 </section>
 <section id="sec-4-7" class="level2">
 <h2 class="anchored" data-anchor-id="sec-4-7">4.7 Notation</h2>
@@ -1744,18 +1727,6 @@ y_k
 </tr>
 </tbody>
 </table>
-</section>
-<section id="sec-4-8" class="level2">
-<h2 class="anchored" data-anchor-id="sec-4-8">4.8 Notes and references</h2>
-<p>The two discretisations used here are standard. The zero-order hold, in which the input is held constant between samples, is the conventional sample-and-hold rule of discrete-time signal processing <span class="citation" data-cites="oppenheim1999dtsp">(<a href="#ref-oppenheim1999dtsp" role="doc-biblioref">Oppenheim et al. 1999</a>)</span>. The bilinear, or Tustin, transform comes from analysing a continuous system through the trapezoidal rule <span class="citation" data-cites="tustin1947">(<a href="#ref-tustin1947" role="doc-biblioref">Tustin 1947</a>)</span>. The same source explains why the map sends the stable left half-plane into the unit disc.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-oppenheim1999dtsp" class="csl-entry" role="listitem">
-Oppenheim, Alan V., Ronald W. Schafer, and John R. Buck. 1999. <em>Discrete-Time Signal Processing</em>. 2nd ed. Prentice Hall.
-</div>
-<div id="ref-tustin1947" class="csl-entry" role="listitem">
-Tustin, A. 1947. <span>“A Method of Analysing the Behaviour of Linear Systems in Terms of Time Series.”</span> <em>Journal of the Institution of Electrical Engineers</em> 94 (1): 130–42. <a href="https://doi.org/10.1049/ji-2a.1947.0020">https://doi.org/10.1049/ji-2a.1947.0020</a>.
-</div>
-</div>
 </section>
 <section id="summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -1889,12 +1860,17 @@ m_{1/2}
 
 </section>
 
-</main> <!-- /main -->
-<!-- Move the page breadcrumb up into the orange navbar, just after the
-     "State Space Models" brand, so the banner reads
-     "State Space Models > <section> > <subsection>". The node is relocated
-     (not duplicated); on narrow screens it keeps its d-none class and the
-     secondary-nav breadcrumb takes over as before. -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes and references</h2>
+
+<ol>
+<li id="fn1"><p>If the output is instead read as <span class="math inline">\(Cx_k\)</span>, the same dynamics appear with a one-step shift in the discrete kernel. The convention changes the indexing of the immediate response, not the continuous state dynamics.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Zero-order hold is the conventional sample-and-hold rule of discrete-time signal processing; the input is kept constant between samples <span class="citation" data-cites="oppenheim1999dtsp">(Oppenheim et al. 1999)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The bilinear, or Tustin, transform comes from analysing a continuous system through the trapezoidal rule <span class="citation" data-cites="tustin1947">(Tustin 1947)</span>. In numerical analysis the same update for the homogeneous state equation is the trapezoidal, or Crank–Nicolson, rule. Input-output conventions can move factors between the state update and the readout, but the eigenvalue map for <span class="math inline">\(\bar A\)</span> is unchanged; the map sends the stable left half-plane into the unit disc.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<!-- Relocate (not duplicate) the page breadcrumb into the navbar brand container.
+     On narrow screens its d-none class hides it and the secondary-nav breadcrumb takes over. -->
 <script>
 (function () {
   function moveBreadcrumb() {
@@ -1913,14 +1889,12 @@ m_{1/2}
 })();
 </script>
 <!--
-  Fix the bottom prev/next page navigation.
+  Rebuild the bottom prev/next nav so it steps page-to-page.
 
-  The sidebar lists every X.Y.Z subsection as its own entry (e.g. ...#sec-2-1-1),
-  and Quarto builds prev/next by stepping through EVERY sidebar entry in order —
-  so "next" from a section page lands on its own first subsection (2.1 -> 2.1.1)
-  instead of the next page (2.1 -> 2.2). This script rebuilds prev/next from the
-  sidebar's PAGE order, collapsing same-page subsection anchors into their page,
-  so it steps page-to-page. The three-level sidebar is left exactly as it is.
+  Quarto builds prev/next by stepping through every sidebar entry, including
+  per-subsection anchors (...#sec-2-1-1), so "next" lands on a page's own first
+  subsection (2.1 -> 2.1.1) rather than the next page (2.1 -> 2.2). Fold
+  same-page subsection anchors into their page before computing prev/next.
 -->
 <script>
 (function () {
@@ -2364,8 +2338,8 @@ m_{1/2}
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/02-foundations/02-continuous-time.html#sec-3-8" class="pagination-link" aria-label="3.8 Notes and references">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3.8 Notes and references</span>
+      <a href="../../chapters/02-foundations/02-continuous-time.html#footnotes" class="pagination-link" aria-label="Footnotes and references">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Footnotes and references</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
