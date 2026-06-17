@@ -1,6 +1,6 @@
 # Acknowledgements {.unnumbered}
 
-This book would not have been possible without the help, advice, and example of many people.
+This work would not have been possible without the help, advice, and example of many people.
 
 I am especially grateful to Thomas S. Churcher and Oliver J. Watson, my PhD supervisors at Imperial College London, for teaching me how much research depends on synthesis, communication, and choosing the right level of abstraction. Much of my work began in software, but they helped me see software as one part of a larger scientific argument.
 
