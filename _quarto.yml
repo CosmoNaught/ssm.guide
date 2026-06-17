@@ -16,6 +16,10 @@ project:
 
 website:
   title: "State Space Models"
+  site-url: "https://ssm.guide"
+  image: cover/front_cover_web.png
+  open-graph: true
+  twitter-card: true
   favicon: misc/icon-blue.svg
   search: false
   page-navigation: true

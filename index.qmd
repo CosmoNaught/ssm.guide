@@ -1,6 +1,6 @@
 ---
 pagetitle: "State Space Models — a guide to structured memory and complex dynamics in deep learning"
-description: "A focused mathematical monograph on neural state-space sequence models, from first principles to Mamba-3."
+description: "A guide to structured memory and complex dynamics in deep learning."
 page-layout: full
 toc: false
 anchor-sections: false
@@ -27,6 +27,10 @@ anchor-sections: false
         <a class="ssm-btn ssm-btn-primary" href="chapters/01-introduction/index.html">Start reading</a>
         <a class="ssm-btn ssm-btn-ghost" href="https://github.com/CosmoNaught/ssm.guide" target="_blank" rel="noopener">GitHub</a>
       </div>
+
+      <p class="ssm-doi">
+        <a href="https://doi.org/10.5281/zenodo.20736327" target="_blank" rel="noopener"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20736327.svg" alt="DOI 10.5281/zenodo.20736327"></a>
+      </p>
     </div>
 
   </div>
