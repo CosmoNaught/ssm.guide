@@ -8,6 +8,7 @@ authors:
     email: santonicosmo@gmail.com
 url: "https://ssm.guide"
 repository-code: "https://github.com/CosmoNaught/ssm.guide"
+doi: "10.5281/zenodo.20736327"
 version: "0.1.0"
 date-released: "2026-06-01"
 license: CC-BY-4.0

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://zenodo.org/badge/latestdoi/1256467769"><img src="https://zenodo.org/badge/1256467769.svg" alt="DOI"></a>
+  <a href="https://doi.org/10.5281/zenodo.20736327"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.20736327.svg" alt="DOI"></a>
 </p>
 
 A mathematical text on the S4–Mamba line of neural state space sequence models.
@@ -39,7 +39,7 @@ Corrections, clearer explanations, and worked examples are welcome. See
   title  = {State Space Models: A guide to structured memory and complex dynamics in deep learning},
   year   = {2026},
   note   = {Open Edition},
-  doi    = {10.5281/zenodo.XXXXXXX},
+  doi    = {10.5281/zenodo.20736327},
   url    = {https://ssm.guide}
 }
 ```
