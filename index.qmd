@@ -80,7 +80,6 @@ anchor-sections: false
     <div class="ssm-toc">
       <ul class="ssm-toc-front">
         <li><a href="chapters/00-front/preface.html">Preface</a></li>
-        <li><a href="chapters/00-front/acknowledgements.html">Acknowledgements</a></li>
         <li><a href="chapters/00-front/reader-guide.html">Reader&rsquo;s Guide</a></li>
         <li><a href="chapters/00-front/notation.html">Notation &amp; Preliminaries</a></li>
         <li><a href="chapters/00-front/roadmap.html">Roadmap &amp; Contributing</a></li>

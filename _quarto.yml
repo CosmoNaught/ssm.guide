@@ -6,6 +6,7 @@ project:
   render:
     - index.qmd
     - chapters/
+    - "!chapters/00-front/acknowledgements.qmd"
   resources:
     - cover/front_cover.png
     - cover/front_cover_web.png
@@ -47,8 +48,6 @@ website:
         text: "Home"
       - href: chapters/00-front/preface.qmd
         text: "Preface"
-      - href: chapters/00-front/acknowledgements.qmd
-        text: "Acknowledgements"
       - href: chapters/00-front/reader-guide.qmd
         text: "Reader's Guide"
       - href: chapters/00-front/notation.qmd
