@@ -1,5 +1,5 @@
 ---
-title: "7 The Memory Problem"
+title: "7 Approximating the History"
 jupyter: python3
 suppress-bibliography: true
 link-citations: false

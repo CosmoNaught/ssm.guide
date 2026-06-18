@@ -1,5 +1,5 @@
 ---
-title: "3 Continuous-Time Linear State Spaces"
+title: "3 Continuous-Time State Space Models"
 jupyter: python3
 suppress-bibliography: true
 link-citations: false

@@ -86,7 +86,7 @@ website:
             href: chapters/02-foundations/01-state-as-memory.qmd#exercises
           - text: "Footnotes and references"
             href: chapters/02-foundations/01-state-as-memory.qmd#footnotes
-      - section: "3. Continuous-Time Linear State Spaces"
+      - section: "3. Continuous-Time State Space Models"
         href: chapters/02-foundations/02-continuous-time.qmd
         contents:
           - text: "3.1 Solving the differential equation"
@@ -128,7 +128,7 @@ website:
             href: chapters/02-foundations/03-discretisation.qmd#exercises
           - text: "Footnotes and references"
             href: chapters/02-foundations/03-discretisation.qmd#footnotes
-      - section: "5. Recurrence, Convolution, and Toeplitz Maps"
+      - section: "5. From Recurrence to Convolution"
         href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd
         contents:
           - text: "5.1 The question after discretisation"
@@ -153,7 +153,7 @@ website:
             href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#exercises
           - text: "Footnotes and references"
             href: chapters/02-foundations/04-recurrence-convolution-toeplitz.qmd#footnotes
-      - section: "6. Transfer Functions and Kernel Generation"
+      - section: "6. Transfer Functions"
         href: chapters/02-foundations/05-transfer-functions.qmd
         contents:
           - text: "6.1 Why another view is useful"
@@ -174,7 +174,7 @@ website:
             href: chapters/02-foundations/05-transfer-functions.qmd#exercises
           - text: "Footnotes and references"
             href: chapters/02-foundations/05-transfer-functions.qmd#footnotes
-      - section: "7. The Memory Problem"
+      - section: "7. Approximating the History"
         href: chapters/03-s4/06-memory-problem.qmd
         contents:
           - text: "7.1 A fixed state is not a stored history"
@@ -256,7 +256,7 @@ website:
             href: chapters/03-s4/09-s4-kernel-algorithm.qmd#exercises
           - text: "Footnotes and references"
             href: chapters/03-s4/09-s4-kernel-algorithm.qmd#footnotes
-      - section: "11. Diagonal State Spaces: DSS, S4D, and S5"
+      - section: "11. Diagonal State Space Models"
         href: chapters/03-s4/10-diagonal-state-spaces.qmd
         contents:
           - text: "11.1 Removing the correction"

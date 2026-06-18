@@ -1,5 +1,5 @@
 ---
-title: "5 Recurrence, Convolution, and Toeplitz Maps"
+title: "5 From Recurrence to Convolution"
 jupyter: python3
 suppress-bibliography: true
 link-citations: false
