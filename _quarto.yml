@@ -174,7 +174,7 @@ website:
             href: chapters/02-foundations/05-transfer-functions.qmd#exercises
           - text: "Footnotes and references"
             href: chapters/02-foundations/05-transfer-functions.qmd#footnotes
-      - section: "7. Approximating the History"
+      - section: "7. Polynomial Projection"
         href: chapters/03-s4/06-memory-problem.qmd
         contents:
           - text: "7.1 A fixed state is not a stored history"

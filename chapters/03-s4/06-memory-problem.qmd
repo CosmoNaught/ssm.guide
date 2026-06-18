@@ -1,5 +1,5 @@
 ---
-title: "7 Approximating the History"
+title: "7 Polynomial Projection"
 jupyter: python3
 suppress-bibliography: true
 link-citations: false
